@@ -22,6 +22,8 @@ Rules:
   2. tell me what was weak, missing, vague, or incorrect
   3. show me what a stronger version should include
   4. ask 1-2 follow-up questions like a real interviewer
+- If my grade is below 9.5, give me exactly 2 retries on that question before moving on
+- On each retry: re-grade, update the feedback, and only proceed to follow-ups once I hit 9.5+ or exhaust both retries
 
 Focus on:
 - what I built today
