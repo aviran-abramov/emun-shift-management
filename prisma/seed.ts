@@ -1,44 +1,45 @@
 import prisma from "../lib/prisma";
-import type {User} from "../app/generated/prisma/client";
+import type { User } from "../app/generated/prisma/client";
 
 const employees: Pick<User, "firstName" | "lastName" | "username">[] = [
-    {firstName: "יוסי", lastName: "כהן", username: "yossicoh123"},
-    {firstName: "דני", lastName: "לוי", username: "danilev456"},
-    {firstName: "משה", lastName: "אברהם", username: "mosheabr789"},
-    {firstName: "אבי", lastName: "ישראלי", username: "aviisr321"},
-    {firstName: "רון", lastName: "דוד", username: "rondav654"},
-    {firstName: "עומר", lastName: "חיים", username: "omercha987"},
-    {firstName: "איתי", lastName: "שלום", username: "itaysha246"},
-    {firstName: "נועם", lastName: "ברק", username: "noambar135"},
-    {firstName: "גל", lastName: "מזרחי", username: "galmiz864"},
-    {firstName: "תומר", lastName: "אלון", username: "tomeralo753"},
+  { firstName: "יוסי", lastName: "כהן", username: "yossicoh123" },
+  { firstName: "דני", lastName: "לוי", username: "danilev456" },
+  { firstName: "משה", lastName: "אברהם", username: "mosheabr789" },
+  { firstName: "אבי", lastName: "ישראלי", username: "aviisr321" },
+  { firstName: "רון", lastName: "דוד", username: "rondav654" },
+  { firstName: "עומר", lastName: "חיים", username: "omercha987" },
+  { firstName: "איתי", lastName: "שלום", username: "itaysha246" },
+  { firstName: "נועם", lastName: "ברק", username: "noambar135" },
+  { firstName: "גל", lastName: "מזרחי", username: "galmiz864" },
+  { firstName: "תומר", lastName: "אלון", username: "tomeralo753" },
 ];
 
 async function createEmployee(
-    employee: Pick<User, "firstName" | "lastName" | "username">,
+  employee: Pick<User, "firstName" | "lastName" | "username">,
 ) {
-    return prisma.user.create({
-        data: {
-            firstName: employee.firstName,
-            lastName: employee.lastName,
-            username: employee.username,
-            password: "123456",
-            role: "GUARD",
-        },
-    });
+  return prisma.user.create({
+    data: {
+      firstName: employee.firstName,
+      lastName: employee.lastName,
+      name: `${employee.firstName} ${employee.lastName}`,
+      username: employee.username,
+      password: "123456",
+      role: "GUARD",
+    },
+  });
 }
 
 async function main() {
-    for (const employee of employees) {
-        await createEmployee(employee);
-    }
+  for (const employee of employees) {
+    await createEmployee(employee);
+  }
 
-    console.log(`✅ Created ${employees.length} employees`);
+  console.log(`✅ Created ${employees.length} employees`);
 }
 
 main()
-    .catch(e => {
-        console.error(e);
-        process.exit(1);
-    })
-    .finally(() => prisma.$disconnect());
+  .catch(e => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(() => prisma.$disconnect());
