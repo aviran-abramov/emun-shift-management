@@ -31,7 +31,7 @@ export default function SignInPage() {
             <form className="flex flex-col gap-2">
               <Field>
                 <FieldLabel className="px-1">שם משתמש / אימייל</FieldLabel>
-                <Input placeholder="יוסי כהן" />
+                <Input placeholder="yossicoh123" />
               </Field>
 
               <Field>
