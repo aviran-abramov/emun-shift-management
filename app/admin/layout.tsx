@@ -13,21 +13,21 @@ export default function AdminLayout({children}: {children: React.ReactNode}) {
 
 function Sidebar() {
     return (
-        <aside className="hidden md:block bg-[#FCFAF8] w-72 p-4">
-            <div className="flex items-center justify-between px-2 py-2 mb-3 border-b">
-                <p className="font-semibold">שקד</p>
-                <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
-                    מנהל
-                </Badge>
-            </div>
-
-            <nav>
+        <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] w-72 p-4">
+            <nav className="flex-1">
                 <ul>
                     {adminNavItems.map(item => (
                         <SidebarNavItem key={item.href} {...item} />
                     ))}
                 </ul>
             </nav>
+
+            <div className="flex items-center justify-between px-2 py-4 border-t">
+                <p className="font-semibold">שקד</p>
+                <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
+                    מנהל
+                </Badge>
+            </div>
         </aside>
     );
 }
