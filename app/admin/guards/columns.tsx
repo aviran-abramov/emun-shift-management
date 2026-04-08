@@ -3,9 +3,7 @@
 import {Badge} from "@/components/ui/badge";
 import {ColumnDef} from "@tanstack/react-table";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Employee = {
+export type Guard = {
     id: string;
     isActive: boolean;
     firstName: string;
@@ -14,7 +12,7 @@ export type Employee = {
     createdAt: Date;
 };
 
-export const columns: ColumnDef<Employee>[] = [
+export const columns: ColumnDef<Guard>[] = [
     {
         accessorKey: "isActive",
         header: "סטטוס",
