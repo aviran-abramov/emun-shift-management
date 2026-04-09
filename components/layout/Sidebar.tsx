@@ -27,16 +27,15 @@ export function Sidebar({navItems}: SidebarProps) {
     return isOpen ? (
         <ExpandedSidebar navItems={navItems} onToggle={toggleSidebar} />
     ) : (
-        <CollapsedSidebar onToggle={toggleSidebar} />
+        <CollapsedSidebar navItems={navItems} onToggle={toggleSidebar} />
     );
 }
 
-interface ExpandedSidebarProps {
-    navItems: NavItem[];
+interface SidebarPanelProps extends SidebarProps {
     onToggle: () => void;
 }
 
-function ExpandedSidebar({navItems, onToggle}: ExpandedSidebarProps) {
+function ExpandedSidebar({navItems, onToggle}: SidebarPanelProps) {
     return (
         <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] w-72 p-4">
             <div className="flex items-center justify-between pt-2 py-4">
@@ -60,7 +59,7 @@ function ExpandedSidebar({navItems, onToggle}: ExpandedSidebarProps) {
             <nav className="flex-1">
                 <ul>
                     {navItems.map(item => (
-                        <SidebarNavLink key={item.href} {...item} />
+                        <SidebarNavLink key={item.href} {...item} showLabel />
                     ))}
                 </ul>
             </nav>
@@ -75,26 +74,38 @@ function ExpandedSidebar({navItems, onToggle}: ExpandedSidebarProps) {
     );
 }
 
-interface CollapsedSidebarProps {
-    onToggle: () => void;
-}
-
-function CollapsedSidebar({onToggle}: CollapsedSidebarProps) {
+function CollapsedSidebar({navItems, onToggle}: SidebarPanelProps) {
     return (
-        <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] p-4">
+        <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] p-4 pt-6">
             <button
                 onClick={onToggle}
-                className="px-2 py-4 hover:bg-gray-300 rounded-md"
+                className="p-2 hover:bg-gray-300 rounded-md mb-5"
             >
                 <PanelLeft size={24} />
             </button>
+
+            <nav className="flex-1">
+                <ul>
+                    {navItems.map(item => (
+                        <SidebarNavLink
+                            key={item.href}
+                            {...item}
+                            showLabel={false}
+                        />
+                    ))}
+                </ul>
+            </nav>
         </aside>
     );
 }
 
 const icons = {PanelsTopLeft, ClipboardList, Building2, Contact, CalendarClock};
 
-function SidebarNavLink({label, href, icon}: NavItem) {
+interface SidebarNavLinkProps extends NavItem {
+    showLabel: boolean;
+}
+
+function SidebarNavLink({label, href, icon, showLabel}: SidebarNavLinkProps) {
     const Icon = icons[icon];
 
     return (
@@ -104,7 +115,7 @@ function SidebarNavLink({label, href, icon}: NavItem) {
                 className="flex items-center gap-1.5 px-2 py-2 rounded-sm hover:bg-[#FFEFE5]"
             >
                 <Icon className="size-6" />
-                <span>{label}</span>
+                {showLabel && <span>{label}</span>}
             </Link>
         </li>
     );
