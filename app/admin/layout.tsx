@@ -1,6 +1,9 @@
 import {Badge} from "@/components/ui/badge";
 import {adminNavItems} from "@/lib/sidebar-nav";
 import Link from "next/link";
+import {PanelRight} from "lucide-react";
+
+import Image from "next/image";
 
 export default function AdminLayout({children}: {children: React.ReactNode}) {
     return (
@@ -14,6 +17,20 @@ export default function AdminLayout({children}: {children: React.ReactNode}) {
 function Sidebar() {
     return (
         <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] w-72 p-4">
+            <div className="flex items-center justify-between pt-2 py-4">
+                <div className="p-2 hover:bg-gray-300 rounded-md cursor-pointer">
+                    <Image
+                        src="/favicon.ico"
+                        height={30}
+                        width={30}
+                        alt="emun logo"
+                    />
+                </div>
+                <div className="cursor-pointer p-2 hover:bg-gray-300 rounded-md">
+                    <PanelRight size={24} />
+                </div>
+            </div>
+
             <nav className="flex-1">
                 <ul>
                     {adminNavItems.map(item => (
