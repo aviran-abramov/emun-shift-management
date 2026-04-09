@@ -24,18 +24,19 @@ export function Sidebar({navItems}: SidebarProps) {
 
     const toggleSidebar = () => setIsOpen(prevState => !prevState);
 
-    if (!isOpen)
-        return (
-            <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] pt-2">
-                <button
-                    onClick={toggleSidebar}
-                    className="p-2 hover:bg-gray-300 rounded-md"
-                >
-                    <PanelLeft size={24} />
-                </button>
-            </aside>
-        );
+    return isOpen ? (
+        <ExpandedSidebar navItems={navItems} onToggle={toggleSidebar} />
+    ) : (
+        <CollapsedSidebar onToggle={toggleSidebar} />
+    );
+}
 
+interface ExpandedSidebarProps {
+    navItems: NavItem[];
+    onToggle: () => void;
+}
+
+function ExpandedSidebar({navItems, onToggle}: ExpandedSidebarProps) {
     return (
         <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] w-72 p-4">
             <div className="flex items-center justify-between pt-2 py-4">
@@ -49,7 +50,7 @@ export function Sidebar({navItems}: SidebarProps) {
                 </div>
 
                 <button
-                    onClick={toggleSidebar}
+                    onClick={onToggle}
                     className="p-2 hover:bg-gray-300 rounded-md"
                 >
                     <PanelRight size={24} />
@@ -70,6 +71,23 @@ export function Sidebar({navItems}: SidebarProps) {
                     מנהל
                 </Badge>
             </div>
+        </aside>
+    );
+}
+
+interface CollapsedSidebarProps {
+    onToggle: () => void;
+}
+
+function CollapsedSidebar({onToggle}: CollapsedSidebarProps) {
+    return (
+        <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] p-4">
+            <button
+                onClick={onToggle}
+                className="px-2 py-4 hover:bg-gray-300 rounded-md"
+            >
+                <PanelLeft size={24} />
+            </button>
         </aside>
     );
 }
