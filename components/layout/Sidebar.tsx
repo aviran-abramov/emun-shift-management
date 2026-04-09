@@ -31,11 +31,11 @@ export function Sidebar({navItems}: SidebarProps) {
     );
 }
 
-interface SidebarPanelProps extends SidebarProps {
+interface SidebarContentProps extends SidebarProps {
     onToggle: () => void;
 }
 
-function ExpandedSidebar({navItems, onToggle}: SidebarPanelProps) {
+function ExpandedSidebar({navItems, onToggle}: SidebarContentProps) {
     return (
         <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] w-72 p-4">
             <div className="flex items-center justify-between pt-2 py-4">
@@ -74,7 +74,7 @@ function ExpandedSidebar({navItems, onToggle}: SidebarPanelProps) {
     );
 }
 
-function CollapsedSidebar({navItems, onToggle}: SidebarPanelProps) {
+function CollapsedSidebar({navItems, onToggle}: SidebarContentProps) {
     return (
         <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] p-4 pt-6">
             <button
@@ -99,14 +99,20 @@ function CollapsedSidebar({navItems, onToggle}: SidebarPanelProps) {
     );
 }
 
-const icons = {PanelsTopLeft, ClipboardList, Building2, Contact, CalendarClock};
+const navIcons = {
+    PanelsTopLeft,
+    ClipboardList,
+    Building2,
+    Contact,
+    CalendarClock,
+};
 
 interface SidebarNavLinkProps extends NavItem {
     showLabel: boolean;
 }
 
 function SidebarNavLink({label, href, icon, showLabel}: SidebarNavLinkProps) {
-    const Icon = icons[icon];
+    const Icon = navIcons[icon];
 
     return (
         <li>
