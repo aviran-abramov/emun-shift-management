@@ -1,10 +1,20 @@
-import {PanelRight} from "lucide-react";
+"use client";
+
 import Image from "next/image";
 import {Badge} from "../ui/badge";
 import Link from "next/link";
+import {
+    PanelRight,
+    PanelsTopLeft,
+    ClipboardList,
+    Building2,
+    Contact,
+    CalendarClock,
+} from "lucide-react";
+import {NavItem} from "@/lib/sidebar-nav";
 
 interface SidebarProps {
-    navItems: SidebarNavItemProps[];
+    navItems: NavItem[];
 }
 
 export function Sidebar({navItems}: SidebarProps) {
@@ -19,6 +29,7 @@ export function Sidebar({navItems}: SidebarProps) {
                         alt="emun logo"
                     />
                 </div>
+
                 <div className="cursor-pointer p-2 hover:bg-gray-300 rounded-md">
                     <PanelRight size={24} />
                 </div>
@@ -27,7 +38,7 @@ export function Sidebar({navItems}: SidebarProps) {
             <nav className="flex-1">
                 <ul>
                     {navItems.map(item => (
-                        <SidebarNavItem key={item.href} {...item} />
+                        <SidebarNavLink key={item.href} {...item} />
                     ))}
                 </ul>
             </nav>
@@ -42,13 +53,11 @@ export function Sidebar({navItems}: SidebarProps) {
     );
 }
 
-interface SidebarNavItemProps {
-    label: string;
-    href: string;
-    icon: React.ComponentType<{className?: string}>;
-}
+const icons = {PanelsTopLeft, ClipboardList, Building2, Contact, CalendarClock};
 
-function SidebarNavItem({label, href, icon: Icon}: SidebarNavItemProps) {
+function SidebarNavLink({label, href, icon}: NavItem) {
+    const Icon = icons[icon];
+
     return (
         <li>
             <Link
