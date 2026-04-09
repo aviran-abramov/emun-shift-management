@@ -1,10 +1,13 @@
-import {adminNavItems} from "@/lib/sidebar-nav";
 import {PanelRight} from "lucide-react";
 import Image from "next/image";
 import {Badge} from "../ui/badge";
 import Link from "next/link";
 
-export function Sidebar() {
+interface SidebarProps {
+    navItems: SidebarNavItemProps[];
+}
+
+export function Sidebar({navItems}: SidebarProps) {
     return (
         <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] w-72 p-4">
             <div className="flex items-center justify-between pt-2 py-4">
@@ -23,7 +26,7 @@ export function Sidebar() {
 
             <nav className="flex-1">
                 <ul>
-                    {adminNavItems.map(item => (
+                    {navItems.map(item => (
                         <SidebarNavItem key={item.href} {...item} />
                     ))}
                 </ul>
