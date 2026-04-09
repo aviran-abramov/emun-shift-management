@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import {NavItem} from "@/lib/sidebar-nav";
 import {useState} from "react";
+import {usePathname} from "next/navigation";
 
 interface SidebarProps {
     navItems: NavItem[];
@@ -114,11 +115,14 @@ interface SidebarNavLinkProps extends NavItem {
 function SidebarNavLink({label, href, icon, showLabel}: SidebarNavLinkProps) {
     const Icon = navIcons[icon];
 
+    const pathname = usePathname();
+    const isActive = pathname === href;
+
     return (
         <li>
             <Link
                 href={href}
-                className="flex items-center gap-1.5 px-2 py-2 rounded-sm hover:bg-[#FFEFE5]"
+                className={`flex items-center gap-1.5 px-2 py-2 rounded-sm ${isActive ? "bg-[#FFEFE5]" : "hover:bg-[#FFEFE5]"}`}
             >
                 <Icon className="size-6" />
                 {showLabel && <span>{label}</span>}
