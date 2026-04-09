@@ -10,14 +10,32 @@ import {
     Building2,
     Contact,
     CalendarClock,
+    PanelLeft,
 } from "lucide-react";
 import {NavItem} from "@/lib/sidebar-nav";
+import {useState} from "react";
 
 interface SidebarProps {
     navItems: NavItem[];
 }
 
 export function Sidebar({navItems}: SidebarProps) {
+    const [isOpen, setIsOpen] = useState(true);
+
+    const toggleSidebar = () => setIsOpen(prevState => !prevState);
+
+    if (!isOpen)
+        return (
+            <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] pt-2">
+                <button
+                    onClick={toggleSidebar}
+                    className="p-2 hover:bg-gray-300 rounded-md"
+                >
+                    <PanelLeft size={24} />
+                </button>
+            </aside>
+        );
+
     return (
         <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] w-72 p-4">
             <div className="flex items-center justify-between pt-2 py-4">
@@ -30,9 +48,12 @@ export function Sidebar({navItems}: SidebarProps) {
                     />
                 </div>
 
-                <div className="cursor-pointer p-2 hover:bg-gray-300 rounded-md">
+                <button
+                    onClick={toggleSidebar}
+                    className="p-2 hover:bg-gray-300 rounded-md"
+                >
                     <PanelRight size={24} />
-                </div>
+                </button>
             </div>
 
             <nav className="flex-1">
