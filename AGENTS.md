@@ -54,5 +54,6 @@ Shift availability platform for Emun security company. Hebrew UI (RTL).
 - No Co-Authored-By in commits
 - Always push after every commit
 - Commit unrelated changes separately
-- Keep commit messages under 50 characters
+- Keep commit messages under 50 characters (including the full prefix like `feat(sidebar):`)
 - Use conventional commits format
+- When suggesting a commit message, always show the character count
