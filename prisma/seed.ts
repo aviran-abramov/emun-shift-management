@@ -1,5 +1,24 @@
 import prisma from "../lib/prisma";
-import type {User} from "../app/generated/prisma/client";
+import type {User, Building} from "../app/generated/prisma/client";
+
+const buildings: Pick<Building, "name" | "street" | "city">[] = [
+    {name: "מגדל אלקטרה", street: "רוטשילד 22", city: "תל אביב"},
+    {name: "בית אמות", street: "ז'בוטינסקי 7", city: "תל אביב"},
+    {name: "מתחם שבעת הכוכבים", street: "אבא אבן 10", city: "הרצליה"},
+    {name: "מגדל ויטה", street: "הסדנאות 3", city: "הרצליה"},
+];
+
+async function createBuilding(
+    building: Pick<Building, "name" | "street" | "city">,
+) {
+    return prisma.building.create({
+        data: {
+            name: building.name,
+            street: building.street,
+            city: building.city,
+        },
+    });
+}
 
 const employees: Pick<User, "firstName" | "lastName" | "username" | "role">[] =
     [
@@ -87,10 +106,14 @@ async function createEmployee(
 }
 
 async function main() {
+    for (const building of buildings) {
+        await createBuilding(building);
+    }
+    console.log(`✅ Created ${buildings.length} buildings`);
+
     for (const employee of employees) {
         await createEmployee(employee);
     }
-
     console.log(`✅ Created ${employees.length} employees`);
 }
 
