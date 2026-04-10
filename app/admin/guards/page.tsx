@@ -6,6 +6,7 @@ import {Field, FieldLabel} from "@/components/ui/field";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {DataTable} from "@/components/ui/data-table";
+import {PageContainer} from "@/components/layout/PageContainer";
 
 export const metadata: Metadata = {
     title: "שומרים",
@@ -28,7 +29,7 @@ export default async function GuardsPage() {
     const guards = await getGuards();
 
     return (
-        <div className="p-6 flex flex-col gap-8">
+        <PageContainer>
             <div>
                 <h2 className="text-2xl font-bold mb-2 mr-2">
                     רשימת שומרים ({guards.length})
@@ -71,6 +72,6 @@ export default async function GuardsPage() {
                     </Button>
                 </CardFooter>
             </Card>
-        </div>
+        </PageContainer>
     );
 }
