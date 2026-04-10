@@ -18,3 +18,10 @@ export const adminNavItems: NavItem[] = [
     {label: "שומרים", href: "/admin/guards", icon: "Contact"},
     {label: "בניינים", href: "/admin/buildings", icon: "Building2"},
 ];
+
+export const guardNavItems: NavItem[] = [
+    {label: "פרטים אישיים", href: "/guard/personal-info", icon: "Contact"},
+    {label: "הגש משמרות", href: "/guard/schedule", icon: "ClipboardList"},
+    {label: "המשמרות שלי", href: "/guard/my-shifts", icon: "CalendarClock"},
+    {label: "הבניינים שלי", href: "/guard/buildings", icon: "Building2"},
+];
