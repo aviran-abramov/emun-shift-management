@@ -8,9 +8,7 @@ import {Button} from "@/components/ui/button";
 import {DataTable} from "@/components/ui/data-table";
 import {PageContainer} from "@/components/layout/PageContainer";
 
-export const metadata: Metadata = {
-    title: "שומרים",
-};
+export const metadata: Metadata = {title: "שומרים"};
 
 async function getGuards(): Promise<Guard[]> {
     return await prisma.user.findMany({

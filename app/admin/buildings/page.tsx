@@ -9,9 +9,7 @@ import {Building} from "@/app/generated/prisma/client";
 import {DataTable} from "@/components/ui/data-table";
 import {PageContainer} from "@/components/layout/PageContainer";
 
-export const metadata: Metadata = {
-    title: "בניינים",
-};
+export const metadata: Metadata = {title: "בניינים"};
 
 async function getBuildings(): Promise<Building[]> {
     return await prisma.building.findMany();
