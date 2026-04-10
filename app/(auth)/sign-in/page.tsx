@@ -33,7 +33,6 @@ export default function SignInPage() {
                     <Field>
                         <div className="flex items-center justify-between px-1">
                             <FieldLabel>סיסמה</FieldLabel>
-                            {/* TODO: Create forgot-password page */}
                             <Link
                                 href="/forgot-password"
                                 className="text-blue-500 underline"
