@@ -1,12 +1,12 @@
 import {Metadata} from "next";
 import {columns} from "./columns";
-import {DataTable} from "./data-table";
 import prisma from "@/lib/prisma";
 import {Card, CardContent, CardFooter, CardHeader} from "@/components/ui/card";
 import {Field, FieldLabel} from "@/components/ui/field";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Building} from "@/app/generated/prisma/client";
+import {DataTable} from "@/components/ui/data-table";
 
 export const metadata: Metadata = {
     title: "בניינים",
