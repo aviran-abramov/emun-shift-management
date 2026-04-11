@@ -21,8 +21,8 @@ export default function SignInPage() {
                 <CardDescription>מערכת לניהול משמרות</CardDescription>
             </CardHeader>
 
-            <CardContent className="flex flex-col gap-3">
-                <form className="flex flex-col gap-2">
+            <form className="flex flex-col gap-4">
+                <CardContent className="flex flex-col gap-2">
                     <Field>
                         <FieldLabel className="px-1">
                             שם משתמש / אימייל
@@ -33,6 +33,7 @@ export default function SignInPage() {
                     <Field>
                         <div className="flex items-center justify-between px-1">
                             <FieldLabel>סיסמה</FieldLabel>
+
                             <Link
                                 href="/forgot-password"
                                 className="text-blue-500 underline"
@@ -42,12 +43,14 @@ export default function SignInPage() {
                         </div>
                         <Input placeholder="123456" />
                     </Field>
-                </form>
-            </CardContent>
+                </CardContent>
 
-            <CardFooter className="flex flex-col items-center">
-                <Button className="self-stretch">התחבר</Button>
-            </CardFooter>
+                <CardFooter className="flex flex-col items-center">
+                    <Button type="submit" className="self-stretch">
+                        התחבר
+                    </Button>
+                </CardFooter>
+            </form>
         </Card>
     );
 }
