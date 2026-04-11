@@ -7,6 +7,7 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {DataTable} from "@/components/ui/data-table";
 import {PageContainer} from "@/components/layout/PageContainer";
+import {PageTitle} from "@/components/layout/PageTitle";
 
 export const metadata: Metadata = {title: "שומרים"};
 
@@ -29,9 +30,7 @@ export default async function GuardsPage() {
     return (
         <PageContainer>
             <div>
-                <h2 className="text-2xl font-bold mb-2 mr-2">
-                    רשימת שומרים ({guards.length})
-                </h2>
+                <PageTitle title="רשימת שומרים" count={guards.length} />
                 <DataTable columns={columns} data={guards} />
             </div>
             <Card className="w-full max-w-sm shadow-md">

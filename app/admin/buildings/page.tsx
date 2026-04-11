@@ -8,6 +8,7 @@ import {Button} from "@/components/ui/button";
 import {Building} from "@/app/generated/prisma/client";
 import {DataTable} from "@/components/ui/data-table";
 import {PageContainer} from "@/components/layout/PageContainer";
+import {PageTitle} from "@/components/layout/PageTitle";
 
 export const metadata: Metadata = {title: "בניינים"};
 
@@ -21,9 +22,7 @@ export default async function BuildingsPage() {
     return (
         <PageContainer>
             <div>
-                <h2 className="text-2xl font-bold mb-2 mr-2">
-                    רשימת בניינים ({buildings.length})
-                </h2>
+                <PageTitle title="רשימת בניינים" count={buildings.length} />
                 <DataTable columns={columns} data={buildings} />
             </div>
             <Card className="w-full max-w-sm shadow-md">
