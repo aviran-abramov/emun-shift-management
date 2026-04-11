@@ -49,6 +49,20 @@ model Building {
   updatedAt DateTime @updatedAt
 }
 
+enum ShiftType {
+  MORNING
+  EVENING
+  NIGHT
+}
+
+model Availability {
+  id        String    @id @default(cuid())
+  date      DateTime  @db.Date
+  shiftType ShiftType
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
 model Session {
   id        String   @id
   expiresAt DateTime
