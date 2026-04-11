@@ -23,25 +23,27 @@ export default function ForgotPasswordPage() {
                 </CardDescription>
             </CardHeader>
 
-            <CardContent className="flex flex-col gap-3">
-                <form className="flex flex-col gap-2">
+            <form className="flex flex-col gap-4">
+                <CardContent className="flex flex-col">
                     <Field>
                         <FieldLabel className="px-1">כתובת אימייל</FieldLabel>
                         <Input placeholder="yossicoh123@gmail.com" />
                     </Field>
-                </form>
-            </CardContent>
+                </CardContent>
 
-            <CardFooter className="flex flex-col items-center gap-2">
-                <Button className="self-stretch">איפוס סיסמה</Button>
-                <Button
-                    asChild
-                    variant={"outline"}
-                    className="self-stretch border-primary"
-                >
-                    <Link href="/sign-in">חזור לעמוד התחברות</Link>
-                </Button>
-            </CardFooter>
+                <CardFooter className="flex flex-col items-center gap-2">
+                    <Button type="submit" className="self-stretch">
+                        איפוס סיסמה
+                    </Button>
+                    <Button
+                        asChild
+                        variant={"outline"}
+                        className="self-stretch border-primary"
+                    >
+                        <Link href="/sign-in">חזור לעמוד התחברות</Link>
+                    </Button>
+                </CardFooter>
+            </form>
         </Card>
     );
 }

@@ -32,34 +32,39 @@ export default async function BuildingsPage() {
                         <h2 className="text-2xl font-bold">הוסף בניין</h2>
                     </CardHeader>
 
-                    <CardContent className="flex flex-col gap-3">
-                        <form className="flex flex-col gap-2">
+                    <form className="flex flex-col gap-4">
+                        <CardContent className="flex flex-col">
                             <Field>
                                 <FieldLabel className="px-1">
                                     שם הבניין
                                 </FieldLabel>
                                 <Input />
                             </Field>
+
                             <Field>
                                 <FieldLabel className="px-1">רחוב</FieldLabel>
                                 <Input />
                             </Field>
+
                             <Field>
                                 <FieldLabel className="px-1">עיר</FieldLabel>
                                 <Input />
                             </Field>
-                        </form>
-                    </CardContent>
+                        </CardContent>
 
-                    <CardFooter className="flex flex-col items-center gap-2">
-                        <Button className="self-stretch">הוסף</Button>
-                        <Button
-                            variant={"outline"}
-                            className="self-stretch border-primary"
-                        >
-                            איפוס טופס
-                        </Button>
-                    </CardFooter>
+                        <CardFooter className="flex flex-col items-center gap-2">
+                            <Button type="submit" className="self-stretch">
+                                הוסף
+                            </Button>
+                            <Button
+                                type="reset"
+                                variant={"outline"}
+                                className="self-stretch border-primary"
+                            >
+                                איפוס טופס
+                            </Button>
+                        </CardFooter>
+                    </form>
                 </Card>
             </section>
         </PageContainer>
