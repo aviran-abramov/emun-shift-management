@@ -10,7 +10,7 @@ import {Field, FieldLabel} from "@/components/ui/field";
 import {Input} from "@/components/ui/input";
 import Link from "next/link";
 import type {Metadata} from "next";
-import {PageTitle} from "@/components/layout/PageTitle";
+import {PageTitle} from "@/components/layout/page-title";
 
 export const metadata: Metadata = {title: "התחברות"};
 
