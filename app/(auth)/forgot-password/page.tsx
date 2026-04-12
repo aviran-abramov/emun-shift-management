@@ -26,8 +26,8 @@ export default function ForgotPasswordPage() {
             <form className="flex flex-col gap-4">
                 <CardContent className="flex flex-col">
                     <Field>
-                        <FieldLabel className="px-1">כתובת אימייל</FieldLabel>
-                        <Input placeholder="yossicoh123@gmail.com" />
+                        <FieldLabel htmlFor="email" className="px-1">כתובת אימייל</FieldLabel>
+                        <Input id="email" placeholder="yossicoh123@gmail.com" />
                     </Field>
                 </CardContent>
 

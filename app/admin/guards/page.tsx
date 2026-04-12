@@ -43,29 +43,34 @@ export default async function GuardsPage() {
                     <form className="flex flex-col gap-4">
                         <CardContent className="flex flex-col">
                             <Field>
-                                <FieldLabel className="px-1">
+                                <FieldLabel
+                                    htmlFor="firstName"
+                                    className="px-1"
+                                >
                                     שם פרטי
                                 </FieldLabel>
-                                <Input />
+                                <Input id="firstName" />
                             </Field>
 
                             <Field>
-                                <FieldLabel className="px-1">
+                                <FieldLabel htmlFor="lastName" className="px-1">
                                     שם משפחה
                                 </FieldLabel>
-                                <Input />
+                                <Input id="lastName" />
                             </Field>
 
                             <Field>
-                                <FieldLabel className="px-1">
+                                <FieldLabel htmlFor="username" className="px-1">
                                     שם משתמש
                                 </FieldLabel>
-                                <Input />
+                                <Input id="username" />
                             </Field>
 
                             <Field>
-                                <FieldLabel className="px-1">סיסמה</FieldLabel>
-                                <Input />
+                                <FieldLabel htmlFor="password" className="px-1">
+                                    סיסמה
+                                </FieldLabel>
+                                <Input id="password" />
                             </Field>
                         </CardContent>
 

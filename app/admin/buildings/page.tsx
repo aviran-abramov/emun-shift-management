@@ -35,20 +35,24 @@ export default async function BuildingsPage() {
                     <form className="flex flex-col gap-4">
                         <CardContent className="flex flex-col">
                             <Field>
-                                <FieldLabel className="px-1">
+                                <FieldLabel htmlFor="name" className="px-1">
                                     שם הבניין
                                 </FieldLabel>
-                                <Input />
+                                <Input id="name" />
                             </Field>
 
                             <Field>
-                                <FieldLabel className="px-1">רחוב</FieldLabel>
-                                <Input />
+                                <FieldLabel htmlFor="street" className="px-1">
+                                    רחוב
+                                </FieldLabel>
+                                <Input id="street" />
                             </Field>
 
                             <Field>
-                                <FieldLabel className="px-1">עיר</FieldLabel>
-                                <Input />
+                                <FieldLabel htmlFor="city" className="px-1">
+                                    עיר
+                                </FieldLabel>
+                                <Input id="city" />
                             </Field>
                         </CardContent>
 

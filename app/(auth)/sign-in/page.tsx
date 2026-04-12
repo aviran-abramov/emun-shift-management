@@ -24,15 +24,15 @@ export default function SignInPage() {
             <form className="flex flex-col gap-4">
                 <CardContent className="flex flex-col gap-2">
                     <Field>
-                        <FieldLabel className="px-1">
+                        <FieldLabel htmlFor="identifier" className="px-1">
                             שם משתמש / אימייל
                         </FieldLabel>
-                        <Input placeholder="yossicoh123" />
+                        <Input id="identifier" placeholder="yossicoh123" />
                     </Field>
 
                     <Field>
                         <div className="flex items-center justify-between px-1">
-                            <FieldLabel>סיסמה</FieldLabel>
+                            <FieldLabel htmlFor="password">סיסמה</FieldLabel>
 
                             <Link
                                 href="/forgot-password"
@@ -41,7 +41,7 @@ export default function SignInPage() {
                                 שכחתי סיסמה
                             </Link>
                         </div>
-                        <Input placeholder="123456" />
+                        <Input id="password" placeholder="123456" />
                     </Field>
                 </CardContent>
 
