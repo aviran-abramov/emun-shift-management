@@ -17,37 +17,45 @@ import {useState} from "react";
 import {usePathname} from "next/navigation";
 
 interface SidebarProps {
+    userType: "admin" | "guard";
     navItems: NavItem[];
 }
 
-export function Sidebar({navItems}: SidebarProps) {
+export function Sidebar({userType, navItems}: SidebarProps) {
     const [isOpen, setIsOpen] = useState(true);
 
     const toggleSidebar = () => setIsOpen(prevState => !prevState);
 
     return isOpen ? (
-        <ExpandedSidebar navItems={navItems} onToggle={toggleSidebar} />
+        <ExpandedSidebar
+            userType={userType}
+            navItems={navItems}
+            onToggle={toggleSidebar}
+        />
     ) : (
         <CollapsedSidebar navItems={navItems} onToggle={toggleSidebar} />
     );
 }
 
-interface SidebarContentProps extends SidebarProps {
+interface ExpandedSidebarProps extends SidebarProps {
     onToggle: () => void;
 }
 
-function ExpandedSidebar({navItems, onToggle}: SidebarContentProps) {
+function ExpandedSidebar({userType, navItems, onToggle}: ExpandedSidebarProps) {
     return (
         <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] w-72 p-4">
             <div className="flex items-center justify-between pt-2 py-4">
-                <div className="p-2 hover:bg-gray-300 rounded-md cursor-pointer">
+                <Link
+                    href={`/${userType}/dashboard`}
+                    className="p-2 hover:bg-gray-300 rounded-md cursor-pointer"
+                >
                     <Image
                         src="/favicon.ico"
                         height={30}
                         width={30}
                         alt="emun logo"
                     />
-                </div>
+                </Link>
 
                 <button
                     onClick={onToggle}
@@ -75,7 +83,12 @@ function ExpandedSidebar({navItems, onToggle}: SidebarContentProps) {
     );
 }
 
-function CollapsedSidebar({navItems, onToggle}: SidebarContentProps) {
+interface CollapsedSidebarProps {
+    navItems: NavItem[];
+    onToggle: () => void;
+}
+
+function CollapsedSidebar({navItems, onToggle}: CollapsedSidebarProps) {
     return (
         <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] p-4 pt-6">
             <button
