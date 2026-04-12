@@ -38,21 +38,21 @@ export default async function BuildingsPage() {
                                 <FieldLabel htmlFor="name" className="px-1">
                                     שם הבניין
                                 </FieldLabel>
-                                <Input id="name" />
+                                <Input type="text" id="name" />
                             </Field>
 
                             <Field>
                                 <FieldLabel htmlFor="street" className="px-1">
                                     רחוב
                                 </FieldLabel>
-                                <Input id="street" />
+                                <Input type="text" id="street" />
                             </Field>
 
                             <Field>
                                 <FieldLabel htmlFor="city" className="px-1">
                                     עיר
                                 </FieldLabel>
-                                <Input id="city" />
+                                <Input type="text" id="city" />
                             </Field>
                         </CardContent>
 

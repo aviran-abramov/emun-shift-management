@@ -27,7 +27,11 @@ export default function SignInPage() {
                         <FieldLabel htmlFor="identifier" className="px-1">
                             שם משתמש / אימייל
                         </FieldLabel>
-                        <Input id="identifier" placeholder="yossicoh123" />
+                        <Input
+                            type="text"
+                            id="identifier"
+                            placeholder="yossicoh123"
+                        />
                     </Field>
 
                     <Field>
@@ -41,7 +45,11 @@ export default function SignInPage() {
                                 שכחתי סיסמה
                             </Link>
                         </div>
-                        <Input id="password" placeholder="123456" />
+                        <Input
+                            type="password"
+                            id="password"
+                            placeholder="123456"
+                        />
                     </Field>
                 </CardContent>
 
