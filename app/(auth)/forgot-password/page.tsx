@@ -10,6 +10,7 @@ import {Field, FieldLabel} from "@/components/ui/field";
 import {Input} from "@/components/ui/input";
 import Link from "next/link";
 import type {Metadata} from "next";
+import {PageTitle} from "@/components/layout/PageTitle";
 
 export const metadata: Metadata = {title: "שכחתי סיסמה"};
 
@@ -17,7 +18,7 @@ export default function ForgotPasswordPage() {
     return (
         <Card className="w-full max-w-sm shadow-md">
             <CardHeader className="flex flex-col items-center">
-                <h1 className="text-2xl font-bold">שכחתי סיסמה</h1>
+                <PageTitle title="שכחתי סיסמה" className="mb-0 mr-0" />
                 <CardDescription className="text-center">
                     הזן את כתובת האימייל שלך ונשלח לך קישור לאיפוס הסיסמה.
                 </CardDescription>
