@@ -10,6 +10,7 @@ import {Field, FieldLabel} from "@/components/ui/field";
 import {Input} from "@/components/ui/input";
 import Link from "next/link";
 import type {Metadata} from "next";
+import {PageTitle} from "@/components/layout/PageTitle";
 
 export const metadata: Metadata = {title: "התחברות"};
 
@@ -17,7 +18,7 @@ export default function SignInPage() {
     return (
         <Card className="w-full max-w-sm shadow-md">
             <CardHeader className="flex flex-col items-center">
-                <h1 className="text-2xl font-bold">התחברות</h1>
+                <PageTitle title="התחברות" className="mb-0 mr-0" />
                 <CardDescription>מערכת לניהול משמרות</CardDescription>
             </CardHeader>
 
