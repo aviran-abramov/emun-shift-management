@@ -7,8 +7,8 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Building} from "@/app/generated/prisma/client";
 import {DataTable} from "@/components/ui/data-table";
-import {PageContainer} from "@/components/layout/PageContainer";
-import {PageTitle} from "@/components/layout/PageTitle";
+import {PageContainer} from "@/components/layout/page-container";
+import {PageTitle} from "@/components/layout/page-title";
 
 export const metadata: Metadata = {title: "בניינים"};
 
