@@ -49,28 +49,28 @@ export default async function GuardsPage() {
                                 >
                                     שם פרטי
                                 </FieldLabel>
-                                <Input id="firstName" />
+                                <Input type="text" id="firstName" />
                             </Field>
 
                             <Field>
                                 <FieldLabel htmlFor="lastName" className="px-1">
                                     שם משפחה
                                 </FieldLabel>
-                                <Input id="lastName" />
+                                <Input type="text" id="lastName" />
                             </Field>
 
                             <Field>
                                 <FieldLabel htmlFor="username" className="px-1">
                                     שם משתמש
                                 </FieldLabel>
-                                <Input id="username" />
+                                <Input type="text" id="username" />
                             </Field>
 
                             <Field>
                                 <FieldLabel htmlFor="password" className="px-1">
                                     סיסמה
                                 </FieldLabel>
-                                <Input id="password" />
+                                <Input type="password" id="password" />
                             </Field>
                         </CardContent>
 
