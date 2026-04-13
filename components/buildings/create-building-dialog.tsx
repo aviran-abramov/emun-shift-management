@@ -1,6 +1,6 @@
 "use client";
 
-import { CreateBuildingForm } from "@/components/buildings/create-form";
+import { CreateBuildingForm } from "@/components/buildings/create-building-form";
 import { Button } from "@/components/ui/button";
 import {
   DialogTrigger,
