@@ -18,7 +18,7 @@ export default function SignInPage() {
     return (
         <Card className="w-full max-w-sm shadow-md">
             <CardHeader className="flex flex-col items-center">
-                <PageTitle title="התחברות" className="mb-0 mr-0" />
+                <PageTitle title="התחברות" />
                 <CardDescription>מערכת לניהול משמרות</CardDescription>
             </CardHeader>
 
