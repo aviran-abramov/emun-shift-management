@@ -1,12 +1,20 @@
 import {Metadata} from "next";
 import {columns} from "./columns";
 import prisma from "@/lib/prisma";
-import {Card, CardHeader} from "@/components/ui/card";
 import {Building} from "@/app/generated/prisma/client";
 import {DataTable} from "@/components/ui/data-table";
 import {PageContainer} from "@/components/layout/page-container";
 import {PageTitle} from "@/components/layout/page-title";
 import {CreateBuildingForm} from "@/components/buildings/create-form";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import {Button} from "@/components/ui/button";
 
 export const metadata: Metadata = {title: "בניינים"};
 
@@ -19,19 +27,27 @@ export default async function BuildingsPage() {
 
     return (
         <PageContainer>
-            <section>
+            <section className="flex flex-col gap-3">
                 <PageTitle title="רשימת בניינים" count={buildings.length} />
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button className="self-start">
+                            <span className="text-xl">+</span>
+                            <span>הוסף בניין</span>
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>הוסף בניין</DialogTitle>
+                            <DialogDescription>
+                                מלא את פרטי הבניין החדש
+                            </DialogDescription>
+                        </DialogHeader>
+
+                        <CreateBuildingForm />
+                    </DialogContent>
+                </Dialog>
                 <DataTable columns={columns} data={buildings} />
-            </section>
-
-            <section>
-                <Card className="w-full max-w-sm shadow-md pb-0">
-                    <CardHeader className="flex flex-col items-center">
-                        <h2 className="text-2xl font-bold">הוסף בניין</h2>
-                    </CardHeader>
-
-                    <CreateBuildingForm />
-                </Card>
             </section>
         </PageContainer>
     );
