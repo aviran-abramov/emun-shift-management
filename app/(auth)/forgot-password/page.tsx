@@ -18,7 +18,7 @@ export default function ForgotPasswordPage() {
     return (
         <Card className="w-full max-w-sm shadow-md">
             <CardHeader className="flex flex-col items-center">
-                <PageTitle title="שכחתי סיסמה" className="mb-0 mr-0" />
+                <PageTitle title="שכחתי סיסמה" />
                 <CardDescription className="text-center">
                     הזן את כתובת האימייל שלך ונשלח לך קישור לאיפוס הסיסמה.
                 </CardDescription>
