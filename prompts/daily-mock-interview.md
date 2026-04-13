@@ -80,10 +80,10 @@ When my answer is weak on a high-learning area such as auth, session flow, schem
 
 - do not immediately explain everything
 - first ask me to state:
-    1. my current understanding
-    2. the approach I was trying to take
-    3. the tradeoff I thought I was making
-    4. what I was unsure about
+  1. my current understanding
+  2. the approach I was trying to take
+  3. the tradeoff I thought I was making
+  4. what I was unsure about
 - then continue the interview based on that
 
 At the end, give me:
