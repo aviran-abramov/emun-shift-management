@@ -5,16 +5,7 @@ import { Building } from "@/app/generated/prisma/client";
 import { DataTable } from "@/components/ui/data-table";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
-import { CreateBuildingForm } from "@/components/buildings/create-form";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { CreateBuildingDialog } from "@/components/buildings/create-building-dialog";
 
 export const metadata: Metadata = { title: "בניינים" };
 
@@ -29,22 +20,7 @@ export default async function BuildingsPage() {
     <PageContainer>
       <section className="flex flex-col gap-3">
         <PageTitle title="רשימת בניינים" count={buildings.length} />
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button className="self-start">
-              <span className="text-xl">+</span>
-              <span>הוסף בניין</span>
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>הוסף בניין</DialogTitle>
-              <DialogDescription>מלא את פרטי הבניין החדש</DialogDescription>
-            </DialogHeader>
-
-            <CreateBuildingForm />
-          </DialogContent>
-        </Dialog>
+        <CreateBuildingDialog />
         <DataTable columns={columns} data={buildings} />
       </section>
     </PageContainer>
