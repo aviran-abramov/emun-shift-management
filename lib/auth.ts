@@ -1,5 +1,5 @@
 import { betterAuth } from "better-auth";
-import { username } from "better-auth/plugins"
+import { username } from "better-auth/plugins";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 import prisma from "./prisma";
@@ -9,7 +9,7 @@ export const auth = betterAuth({
     provider: "postgresql",
   }),
   emailAndPassword: {
-    enabled: true
+    enabled: true,
   },
   plugins: [nextCookies(), username()],
 });

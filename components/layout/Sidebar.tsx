@@ -1,146 +1,141 @@
 "use client";
 
 import Image from "next/image";
-import {Badge} from "../ui/badge";
+import { Badge } from "../ui/badge";
 import Link from "next/link";
 import {
-    PanelRight,
-    PanelsTopLeft,
-    ClipboardList,
-    Building2,
-    Contact,
-    CalendarClock,
-    PanelLeft,
+  PanelRight,
+  PanelsTopLeft,
+  ClipboardList,
+  Building2,
+  Contact,
+  CalendarClock,
+  PanelLeft,
 } from "lucide-react";
-import {NavItem} from "@/lib/sidebar-nav";
-import {useState} from "react";
-import {usePathname} from "next/navigation";
+import { NavItem } from "@/lib/sidebar-nav";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface SidebarProps {
-    userType: "admin" | "guard";
-    navItems: NavItem[];
+  userType: "admin" | "guard";
+  navItems: NavItem[];
 }
 
-export function Sidebar({userType, navItems}: SidebarProps) {
-    const [isOpen, setIsOpen] = useState(true);
+export function Sidebar({ userType, navItems }: SidebarProps) {
+  const [isOpen, setIsOpen] = useState(true);
 
-    const toggleSidebar = () => setIsOpen(prevState => !prevState);
+  const toggleSidebar = () => setIsOpen((prevState) => !prevState);
 
-    return isOpen ? (
-        <ExpandedSidebar
-            userType={userType}
-            navItems={navItems}
-            onToggle={toggleSidebar}
-        />
-    ) : (
-        <CollapsedSidebar navItems={navItems} onToggle={toggleSidebar} />
-    );
+  return isOpen ? (
+    <ExpandedSidebar
+      userType={userType}
+      navItems={navItems}
+      onToggle={toggleSidebar}
+    />
+  ) : (
+    <CollapsedSidebar navItems={navItems} onToggle={toggleSidebar} />
+  );
 }
 
 interface ExpandedSidebarProps extends SidebarProps {
-    onToggle: () => void;
+  onToggle: () => void;
 }
 
-function ExpandedSidebar({userType, navItems, onToggle}: ExpandedSidebarProps) {
-    return (
-        <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] w-72 p-4">
-            <div className="flex items-center justify-between pt-2 py-4">
-                <Link
-                    href={`/${userType}/dashboard`}
-                    className="p-2 hover:bg-gray-300 rounded-md cursor-pointer"
-                >
-                    <Image
-                        src="/favicon.ico"
-                        height={30}
-                        width={30}
-                        alt="emun logo"
-                    />
-                </Link>
+function ExpandedSidebar({
+  userType,
+  navItems,
+  onToggle,
+}: ExpandedSidebarProps) {
+  return (
+    <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] w-72 p-4">
+      <div className="flex items-center justify-between pt-2 py-4">
+        <Link
+          href={`/${userType}/dashboard`}
+          className="p-2 hover:bg-gray-300 rounded-md cursor-pointer"
+        >
+          <Image src="/favicon.ico" height={30} width={30} alt="emun logo" />
+        </Link>
 
-                <button
-                    type="button"
-                    onClick={onToggle}
-                    className="p-2 hover:bg-gray-300 rounded-md"
-                >
-                    <PanelRight size={24} />
-                </button>
-            </div>
+        <button
+          type="button"
+          onClick={onToggle}
+          className="p-2 hover:bg-gray-300 rounded-md"
+        >
+          <PanelRight size={24} />
+        </button>
+      </div>
 
-            <nav className="flex-1">
-                <ul>
-                    {navItems.map(item => (
-                        <SidebarNavLink key={item.href} {...item} showLabel />
-                    ))}
-                </ul>
-            </nav>
+      <nav className="flex-1">
+        <ul>
+          {navItems.map((item) => (
+            <SidebarNavLink key={item.href} {...item} showLabel />
+          ))}
+        </ul>
+      </nav>
 
-            <div className="flex items-center justify-between px-2 py-4 border-t">
-                <p className="font-semibold">שקד</p>
-                <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
-                    מנהל
-                </Badge>
-            </div>
-        </aside>
-    );
+      <div className="flex items-center justify-between px-2 py-4 border-t">
+        <p className="font-semibold">שקד</p>
+        <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
+          מנהל
+        </Badge>
+      </div>
+    </aside>
+  );
 }
 
 interface CollapsedSidebarProps {
-    navItems: NavItem[];
-    onToggle: () => void;
+  navItems: NavItem[];
+  onToggle: () => void;
 }
 
-function CollapsedSidebar({navItems, onToggle}: CollapsedSidebarProps) {
-    return (
-        <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] p-4 pt-6">
-            <button
-                onClick={onToggle}
-                className="p-2 hover:bg-gray-300 rounded-md mb-5"
-            >
-                <PanelLeft size={24} />
-            </button>
+function CollapsedSidebar({ navItems, onToggle }: CollapsedSidebarProps) {
+  return (
+    <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] p-4 pt-6">
+      <button
+        onClick={onToggle}
+        className="p-2 hover:bg-gray-300 rounded-md mb-5"
+      >
+        <PanelLeft size={24} />
+      </button>
 
-            <nav className="flex-1">
-                <ul>
-                    {navItems.map(item => (
-                        <SidebarNavLink
-                            key={item.href}
-                            {...item}
-                            showLabel={false}
-                        />
-                    ))}
-                </ul>
-            </nav>
-        </aside>
-    );
+      <nav className="flex-1">
+        <ul>
+          {navItems.map((item) => (
+            <SidebarNavLink key={item.href} {...item} showLabel={false} />
+          ))}
+        </ul>
+      </nav>
+    </aside>
+  );
 }
 
 const navIcons = {
-    PanelsTopLeft,
-    ClipboardList,
-    Building2,
-    Contact,
-    CalendarClock,
+  PanelsTopLeft,
+  ClipboardList,
+  Building2,
+  Contact,
+  CalendarClock,
 };
 
 interface SidebarNavLinkProps extends NavItem {
-    showLabel: boolean;
+  showLabel: boolean;
 }
 
-function SidebarNavLink({label, href, icon, showLabel}: SidebarNavLinkProps) {
-    const Icon = navIcons[icon];
+function SidebarNavLink({ label, href, icon, showLabel }: SidebarNavLinkProps) {
+  const Icon = navIcons[icon];
 
-    const pathname = usePathname();
-    const isActive = pathname === href;
+  const pathname = usePathname();
+  const isActive = pathname === href;
 
-    return (
-        <li>
-            <Link
-                href={href}
-                className={`flex items-center gap-1.5 px-2 py-2 rounded-sm ${isActive ? "bg-[#FFEFE5]" : "hover:bg-[#FFEFE5]"}`}
-            >
-                <Icon className="size-6" />
-                {showLabel && <span>{label}</span>}
-            </Link>
-        </li>
-    );
+  return (
+    <li>
+      <Link
+        href={href}
+        className={`flex items-center gap-1.5 px-2 py-2 rounded-sm ${isActive ? "bg-[#FFEFE5]" : "hover:bg-[#FFEFE5]"}`}
+      >
+        <Icon className="size-6" />
+        {showLabel && <span>{label}</span>}
+      </Link>
+    </li>
+  );
 }
