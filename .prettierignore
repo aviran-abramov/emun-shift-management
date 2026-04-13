@@ -1,0 +1,13 @@
+# Dependencies & build output
+node_modules
+.next
+build
+dist
+coverage
+
+# Lock files
+package-lock.json
+
+# Generated code
+app/generated
+prisma/migrations
