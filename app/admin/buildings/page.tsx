@@ -25,7 +25,7 @@ export default async function BuildingsPage() {
             </section>
 
             <section>
-                <Card className="w-full max-w-sm shadow-md">
+                <Card className="w-full max-w-sm shadow-md pb-0">
                     <CardHeader className="flex flex-col items-center">
                         <h2 className="text-2xl font-bold">הוסף בניין</h2>
                     </CardHeader>
