@@ -7,7 +7,7 @@ import {Input} from "@/components/ui/input";
 export function CreateBuildingForm() {
     return (
         <form className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2 px-4">
+            <div className="flex flex-col gap-2">
                 <Field>
                     <FieldLabel htmlFor="name" className="px-1">
                         שם הבניין
@@ -30,7 +30,7 @@ export function CreateBuildingForm() {
                 </Field>
             </div>
 
-            <div className="flex flex-col items-center border-t bg-muted/50 p-4 gap-2">
+            <div className="flex flex-col items-center border-t py-4 gap-2">
                 <Button type="submit" className="self-stretch">
                     הוסף
                 </Button>
