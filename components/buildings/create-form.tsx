@@ -1,12 +1,13 @@
+"use client";
+
 import {Button} from "@/components/ui/button";
-import {CardContent, CardFooter} from "@/components/ui/card";
 import {Field, FieldLabel} from "@/components/ui/field";
 import {Input} from "@/components/ui/input";
 
 export function CreateBuildingForm() {
     return (
         <form className="flex flex-col gap-4">
-            <CardContent className="flex flex-col">
+            <div className="flex flex-col gap-2 px-4">
                 <Field>
                     <FieldLabel htmlFor="name" className="px-1">
                         שם הבניין
@@ -27,20 +28,21 @@ export function CreateBuildingForm() {
                     </FieldLabel>
                     <Input type="text" id="city" />
                 </Field>
-            </CardContent>
+            </div>
 
-            <CardFooter className="flex flex-col items-center gap-2">
+            <div className="flex flex-col items-center border-t bg-muted/50 p-4 gap-2">
                 <Button type="submit" className="self-stretch">
                     הוסף
                 </Button>
+
                 <Button
                     type="reset"
-                    variant={"outline"}
+                    variant="outline"
                     className="self-stretch border-primary"
                 >
                     איפוס טופס
                 </Button>
-            </CardFooter>
+            </div>
         </form>
     );
 }
