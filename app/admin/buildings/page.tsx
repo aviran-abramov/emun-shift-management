@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { columns } from "./columns";
 import prisma from "@/lib/prisma";
-import { Building } from "@/app/generated/prisma/client";
 import { DataTable } from "@/components/ui/data-table";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
@@ -9,12 +8,8 @@ import { CreateBuildingDialog } from "@/components/buildings/create-building-dia
 
 export const metadata: Metadata = { title: "בניינים" };
 
-async function getBuildings(): Promise<Building[]> {
-  return await prisma.building.findMany();
-}
-
 export default async function BuildingsPage() {
-  const buildings = await getBuildings();
+  const buildings = await prisma.building.findMany();
 
   return (
     <PageContainer>
