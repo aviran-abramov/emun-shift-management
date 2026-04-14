@@ -1,4 +1,4 @@
-import { CreateBuildingForm } from "@/components/buildings/create-building-form";
+import { CreateBuildingForm } from "@/app/admin/buildings/_components/create-building-form";
 import { FormDialog } from "@/components/shared/form-dialog";
 
 export function CreateBuildingDialog() {

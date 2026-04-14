@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 import { DataTable } from "@/components/ui/data-table";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
-import { CreateBuildingDialog } from "@/components/buildings/create-building-dialog";
+import { CreateBuildingDialog } from "@/app/admin/buildings/_components/create-building-dialog";
 
 export const metadata: Metadata = { title: "בניינים" };
 
