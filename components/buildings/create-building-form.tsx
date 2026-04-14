@@ -1,13 +1,18 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Field, FieldLabel } from "@/components/ui/field";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { CreateBuildingFormData } from "@/lib/validators/building";
+import {
+  CreateBuildingFormData,
+  CreateBuildingSchema,
+} from "@/lib/validators/building";
 import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export function CreateBuildingForm() {
   const form = useForm<CreateBuildingFormData>({
+    resolver: zodResolver(CreateBuildingSchema),
     defaultValues: {
       name: "",
       street: "",
@@ -26,12 +31,18 @@ export function CreateBuildingForm() {
         <Controller
           name="name"
           control={form.control}
-          render={({ field }) => (
-            <Field>
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor={field.name} className="px-1">
                 שם הבניין
               </FieldLabel>
-              <Input {...field} type="text" id={field.name} />
+              <Input
+                {...field}
+                type="text"
+                id={field.name}
+                aria-invalid={fieldState.invalid}
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
@@ -39,12 +50,18 @@ export function CreateBuildingForm() {
         <Controller
           name="street"
           control={form.control}
-          render={({ field }) => (
-            <Field>
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor={field.name} className="px-1">
                 רחוב
               </FieldLabel>
-              <Input {...field} type="text" id={field.name} />
+              <Input
+                {...field}
+                type="text"
+                id={field.name}
+                aria-invalid={fieldState.invalid}
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
@@ -52,12 +69,18 @@ export function CreateBuildingForm() {
         <Controller
           name="city"
           control={form.control}
-          render={({ field }) => (
-            <Field>
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor={field.name} className="px-1">
                 עיר
               </FieldLabel>
-              <Input {...field} type="text" id={field.name} />
+              <Input
+                {...field}
+                type="text"
+                id={field.name}
+                aria-invalid={fieldState.invalid}
+              />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
