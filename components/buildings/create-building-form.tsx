@@ -3,31 +3,64 @@
 import { Button } from "@/components/ui/button";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { CreateBuildingFormData } from "@/lib/validators/building";
+import { Controller, useForm } from "react-hook-form";
 
 export function CreateBuildingForm() {
+  const form = useForm<CreateBuildingFormData>({
+    defaultValues: {
+      name: "",
+      street: "",
+      city: "",
+    },
+  });
+
+  const onSubmit = (data: CreateBuildingFormData) => console.log(data);
+
   return (
-    <form className="flex flex-col gap-4">
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="flex flex-col gap-4"
+    >
       <div className="flex flex-col gap-2">
-        <Field>
-          <FieldLabel htmlFor="name" className="px-1">
-            שם הבניין
-          </FieldLabel>
-          <Input type="text" id="name" />
-        </Field>
+        <Controller
+          name="name"
+          control={form.control}
+          render={({ field }) => (
+            <Field>
+              <FieldLabel htmlFor={field.name} className="px-1">
+                שם הבניין
+              </FieldLabel>
+              <Input {...field} type="text" id={field.name} />
+            </Field>
+          )}
+        />
 
-        <Field>
-          <FieldLabel htmlFor="street" className="px-1">
-            רחוב
-          </FieldLabel>
-          <Input type="text" id="street" />
-        </Field>
+        <Controller
+          name="street"
+          control={form.control}
+          render={({ field }) => (
+            <Field>
+              <FieldLabel htmlFor={field.name} className="px-1">
+                רחוב
+              </FieldLabel>
+              <Input {...field} type="text" id={field.name} />
+            </Field>
+          )}
+        />
 
-        <Field>
-          <FieldLabel htmlFor="city" className="px-1">
-            עיר
-          </FieldLabel>
-          <Input type="text" id="city" />
-        </Field>
+        <Controller
+          name="city"
+          control={form.control}
+          render={({ field }) => (
+            <Field>
+              <FieldLabel htmlFor={field.name} className="px-1">
+                עיר
+              </FieldLabel>
+              <Input {...field} type="text" id={field.name} />
+            </Field>
+          )}
+        />
       </div>
 
       <div className="flex flex-col items-center border-t py-4 gap-2">
@@ -36,9 +69,10 @@ export function CreateBuildingForm() {
         </Button>
 
         <Button
-          type="reset"
+          type="button"
           variant="outline"
           className="self-stretch border-primary"
+          onClick={() => form.reset()}
         >
           איפוס טופס
         </Button>
