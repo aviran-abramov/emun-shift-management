@@ -15,6 +15,8 @@ interface FormDialogProps {
   title: string;
   description?: string;
   children: React.ReactNode;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
 export function FormDialog({
@@ -22,9 +24,11 @@ export function FormDialog({
   title,
   description,
   children,
+  open,
+  onOpenChange,
 }: FormDialogProps) {
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <Button className="self-start">
           <span className="text-xl">+</span>
