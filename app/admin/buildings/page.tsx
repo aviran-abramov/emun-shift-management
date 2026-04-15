@@ -16,7 +16,11 @@ export default async function BuildingsPage() {
       <section className="flex flex-col gap-3">
         <PageTitle title="רשימת בניינים" count={buildings.length} />
         <CreateBuildingDialog />
-        <DataTable columns={columns} data={buildings} />
+        <DataTable
+          columns={columns}
+          data={buildings}
+          filter={{ column: "name", placeholder: "סנן לפי שם הבניין" }}
+        />
       </section>
     </PageContainer>
   );
