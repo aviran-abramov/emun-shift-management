@@ -9,8 +9,13 @@ import {
 } from "@/lib/validators/building";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createBuilding } from "@/app/admin/buildings/actions";
 
-export function CreateBuildingForm() {
+interface CreateBuildingFormProps {
+  onSuccess: () => void;
+}
+
+export function CreateBuildingForm({ onSuccess }: CreateBuildingFormProps) {
   const form = useForm<CreateBuildingFormData>({
     resolver: zodResolver(CreateBuildingSchema),
     defaultValues: {
@@ -20,7 +25,15 @@ export function CreateBuildingForm() {
     },
   });
 
-  const onSubmit = (data: CreateBuildingFormData) => console.log(data);
+  const onSubmit = async (data: CreateBuildingFormData) => {
+    const result = await createBuilding(data);
+    if (result.success) {
+      form.reset();
+      onSuccess();
+    } else {
+      form.setError("root", { message: result.error });
+    }
+  };
 
   return (
     <form
@@ -86,8 +99,18 @@ export function CreateBuildingForm() {
         />
       </div>
 
+      {form.formState.errors.root && (
+        <p className="text-sm text-destructive">
+          {form.formState.errors.root.message}
+        </p>
+      )}
+
       <div className="flex flex-col items-center border-t py-4 gap-2">
-        <Button type="submit" className="self-stretch">
+        <Button
+          type="submit"
+          disabled={form.formState.isSubmitting}
+          className="self-stretch"
+        >
           הוסף
         </Button>
 
