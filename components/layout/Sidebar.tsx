@@ -26,85 +26,48 @@ export function Sidebar({ userType, navItems }: SidebarProps) {
 
   const toggleSidebar = () => setIsOpen((prevState) => !prevState);
 
-  return isOpen ? (
-    <ExpandedSidebar
-      userType={userType}
-      navItems={navItems}
-      onToggle={toggleSidebar}
-    />
-  ) : (
-    <CollapsedSidebar navItems={navItems} onToggle={toggleSidebar} />
-  );
-}
-
-interface ExpandedSidebarProps extends SidebarProps {
-  onToggle: () => void;
-}
-
-function ExpandedSidebar({
-  userType,
-  navItems,
-  onToggle,
-}: ExpandedSidebarProps) {
   return (
-    <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] w-72 p-4">
+    <aside
+      className={`
+      hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] p-4
+      ${isOpen && "w-72"}
+      `}
+    >
       <div className="flex items-center justify-between pt-2 py-4">
-        <Link
-          href={`/${userType}/dashboard`}
-          className="p-2 hover:bg-gray-300 rounded-md cursor-pointer"
-        >
-          <Image src="/favicon.ico" height={30} width={30} alt="emun logo" />
-        </Link>
+        {isOpen && (
+          <Link
+            href={`/${userType}/dashboard`}
+            className="p-2 hover:bg-gray-300 rounded-md cursor-pointer"
+          >
+            <Image src="/favicon.ico" height={30} width={30} alt="emun logo" />
+          </Link>
+        )}
 
         <button
           type="button"
-          onClick={onToggle}
+          onClick={toggleSidebar}
           className="p-2 hover:bg-gray-300 rounded-md"
         >
-          <PanelRight size={24} />
+          {isOpen ? <PanelRight size={24} /> : <PanelLeft size={24} />}
         </button>
       </div>
 
       <nav className="flex-1">
         <ul>
           {navItems.map((item) => (
-            <SidebarNavLink key={item.href} {...item} showLabel />
+            <SidebarNavLink key={item.href} {...item} showLabel={isOpen} />
           ))}
         </ul>
       </nav>
 
-      <div className="flex items-center justify-between px-2 py-4 border-t">
-        <p className="font-semibold">שקד</p>
-        <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
-          מנהל
-        </Badge>
-      </div>
-    </aside>
-  );
-}
-
-interface CollapsedSidebarProps {
-  navItems: NavItem[];
-  onToggle: () => void;
-}
-
-function CollapsedSidebar({ navItems, onToggle }: CollapsedSidebarProps) {
-  return (
-    <aside className="hidden md:flex md:flex-col h-screen sticky top-0 bg-[#FCFAF8] p-4 pt-6">
-      <button
-        onClick={onToggle}
-        className="p-2 hover:bg-gray-300 rounded-md mb-5"
-      >
-        <PanelLeft size={24} />
-      </button>
-
-      <nav className="flex-1">
-        <ul>
-          {navItems.map((item) => (
-            <SidebarNavLink key={item.href} {...item} showLabel={false} />
-          ))}
-        </ul>
-      </nav>
+      {isOpen && (
+        <div className="flex items-center justify-between px-2 py-4 border-t">
+          <p className="font-semibold">שקד</p>
+          <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
+            מנהל
+          </Badge>
+        </div>
+      )}
     </aside>
   );
 }
