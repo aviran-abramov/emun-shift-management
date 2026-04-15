@@ -1,5 +1,5 @@
 import { MenuTrigger } from "@/components/layout/menu-trigger";
-import { AppSidebar } from "@/components/layout/Sidebar";
+import { AppSidebar } from "@/components/layout/sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { adminNavItems } from "@/lib/sidebar-nav";
 import Image from "next/image";
