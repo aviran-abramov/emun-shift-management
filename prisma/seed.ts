@@ -4,8 +4,26 @@ import type { User, Building } from "../app/generated/prisma/client";
 const buildings: Pick<Building, "name" | "street" | "city">[] = [
   { name: "מגדל אלקטרה", street: "רוטשילד 22", city: "תל אביב" },
   { name: "בית אמות", street: "ז'בוטינסקי 7", city: "תל אביב" },
+  { name: "מגדל משה אביב", street: "ז'בוטינסקי 7", city: "רמת גן" },
+  { name: "מגדלי עזריאלי", street: "דרך מנחם בגין 132", city: "תל אביב" },
+  { name: "מגדל שלום", street: "אחד העם 9", city: "תל אביב" },
   { name: "מתחם שבעת הכוכבים", street: "אבא אבן 10", city: "הרצליה" },
   { name: "מגדל ויטה", street: "הסדנאות 3", city: "הרצליה" },
+  { name: "בית הדר דפנה", street: "הנחושת 4", city: "תל אביב" },
+  { name: "מגדל אלרוב", street: "ויצמן 2", city: "תל אביב" },
+  { name: "מגדל רוטשילד", street: "רוטשילד 46", city: "תל אביב" },
+  { name: "בית אמריקה", street: "המרד 25", city: "תל אביב" },
+  { name: "מגדל דיסקונט", street: "יהודה הלוי 23", city: "תל אביב" },
+  { name: "בית קלקא", street: "ויצמן 14", city: "תל אביב" },
+  { name: "מגדל גיבור ספורט", street: "מנחם בגין 7", city: "רמת גן" },
+  { name: "מגדל אמות ביטוח", street: "ויצמן 48", city: "תל אביב" },
+  { name: "בית אפריקה ישראל", street: "דרך החורש 4", city: "יהוד" },
+  { name: "מגדל הכשרת הישוב", street: "דרך מנחם בגין 9", city: "רמת גן" },
+  { name: "מגדל צ'מפיון", street: "הברזל 38", city: "תל אביב" },
+  { name: "בית אוסישקין", street: "ארלוזורוב 17", city: "תל אביב" },
+  { name: "מגדל אלון", street: "אבן גבירול 54", city: "תל אביב" },
+  { name: "בית גיבור", street: "מנחם בגין 11", city: "רמת גן" },
+  { name: "מגדל לוינשטיין", street: "ויצמן 23", city: "תל אביב" },
 ];
 
 async function createBuilding(
