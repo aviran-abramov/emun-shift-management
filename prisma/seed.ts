@@ -37,10 +37,11 @@ const buildings: Pick<Building, "id" | "name" | "street" | "city">[] = [
 ];
 
 async function createBuilding(
-  building: Pick<Building, "name" | "street" | "city">,
+  building: Pick<Building, "id" | "name" | "street" | "city">,
 ) {
   return prisma.building.create({
     data: {
+      id: building.id,
       name: building.name,
       street: building.street,
       city: building.city,
