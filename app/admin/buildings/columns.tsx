@@ -16,8 +16,8 @@ export const columns: ColumnDef<Building>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           className="px-0"
         >
-          <ArrowUpDown className="h-4 w-4" />
           סטטוס
+          <ArrowUpDown className="h-4 w-4" />
         </Button>
       );
     },
@@ -39,8 +39,8 @@ export const columns: ColumnDef<Building>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           className="px-0"
         >
-          <ArrowUpDown className="h-4 w-4" />
           שם הבניין
+          <ArrowUpDown className="h-4 w-4" />
         </Button>
       );
     },
@@ -54,8 +54,8 @@ export const columns: ColumnDef<Building>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           className="px-0"
         >
-          <ArrowUpDown className="h-4 w-4" />
           רחוב
+          <ArrowUpDown className="h-4 w-4" />
         </Button>
       );
     },
@@ -69,8 +69,8 @@ export const columns: ColumnDef<Building>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           className="px-0"
         >
-          <ArrowUpDown className="h-4 w-4" />
           עיר
+          <ArrowUpDown className="h-4 w-4" />
         </Button>
       );
     },
@@ -84,8 +84,8 @@ export const columns: ColumnDef<Building>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           className="px-0"
         >
-          <ArrowUpDown className="h-4 w-4" />
           תאריך הוספה
+          <ArrowUpDown className="h-4 w-4" />
         </Button>
       );
     },
