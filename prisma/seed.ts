@@ -453,6 +453,8 @@ const guards: Pick<User, "firstName" | "lastName" | "username" | "role">[] = [
 async function createGuard(
   guard: Pick<User, "firstName" | "lastName" | "username" | "role">,
 ) {
+  const buildingId = String(Math.floor(Math.random() * buildings.length) + 1);
+
   return prisma.user.create({
     data: {
       firstName: guard.firstName,
@@ -461,6 +463,9 @@ async function createGuard(
       username: guard.username,
       password: "123456",
       role: guard.role,
+      buildings: {
+        connect: { id: buildingId },
+      },
     },
   });
 }
