@@ -18,6 +18,9 @@ async function getGuards(): Promise<Guard[]> {
       username: true,
       createdAt: true,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 }
 
