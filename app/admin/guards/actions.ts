@@ -30,7 +30,7 @@ export async function createGuard(data: unknown): Promise<ActionResult> {
   const { firstName, lastName, username, password } = result.data;
 
   try {
-    await auth.api.signUpEmail({
+    const signUpResult = await auth.api.signUpEmail({
       body: {
         role: "GUARD",
         email: `${username}@emun.local`,
@@ -41,7 +41,11 @@ export async function createGuard(data: unknown): Promise<ActionResult> {
         password,
       },
     });
-    // TODO: add building connection (id = "1")
+
+    await prisma.user.update({
+      where: { id: signUpResult.user.id },
+      data: { buildings: { connect: { id: "1" } } },
+    });
   } catch (error) {
     console.error(error);
     return { success: false, error: "הוספת המאבטח נכשלה" };
