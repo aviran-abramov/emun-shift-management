@@ -43,6 +43,7 @@ export async function createGuard(data: unknown): Promise<ActionResult> {
     });
     // TODO: add building connection (id = "1")
   } catch (error) {
+    console.error(error);
     return { success: false, error: "הוספת המאבטח נכשלה" };
   }
 
