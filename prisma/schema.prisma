@@ -23,7 +23,6 @@ model User {
   firstName       String
   lastName        String
   username        String     @unique
-  password        String
   role            Role       @default(GUARD)
   name            String
   email           String?    @unique
