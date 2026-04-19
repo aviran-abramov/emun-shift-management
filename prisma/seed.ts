@@ -65,7 +65,7 @@ async function createGuard(
 ) {
   const buildingId = String(Math.floor(Math.random() * buildings.length) + 1);
 
-  return auth.api.signUpEmail({
+  const signUpResult = await auth.api.signUpEmail({
     body: {
       email: `${guard.username}@emun.local`,
       firstName: guard.firstName,
@@ -75,6 +75,11 @@ async function createGuard(
       password: "123456",
       role: guard.role,
     },
+  });
+
+  await prisma.user.update({
+    where: { id: signUpResult.user.id },
+    data: { buildings: { connect: { id: buildingId } } },
   });
 }
 
