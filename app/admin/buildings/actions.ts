@@ -29,6 +29,7 @@ export async function createBuilding(data: unknown): Promise<ActionResult> {
   try {
     await prisma.building.create({ data: result.data });
   } catch (error) {
+    console.error(error);
     return { success: false, error: "הוספת הבניין נכשלה" };
   }
 
