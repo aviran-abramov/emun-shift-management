@@ -2,7 +2,7 @@ import prisma from "../lib/prisma";
 import type { User, Building } from "../app/generated/prisma/client";
 
 const buildings: Pick<Building, "id" | "name" | "street" | "city">[] = [
-  { id: "1", name: "מגדל אלקטרה", street: "רוטשילד 22", city: "תל אביב" },
+  { id: "1", name: "מכון מופת", street: "שושנה פרסיץ 15", city: "תל אביב" },
   { id: "2", name: "בית אמות", street: "ז'בוטינסקי 7", city: "תל אביב" },
   { id: "3", name: "מגדל משה אביב", street: "ז'בוטינסקי 7", city: "רמת גן" },
   {
