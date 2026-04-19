@@ -32,13 +32,16 @@ export async function createGuard(data: unknown): Promise<ActionResult> {
   try {
     await auth.api.signUpEmail({
       body: {
+        role: "GUARD",
         email: `${username}@emun.local`,
+        firstName,
+        lastName,
         name: `${firstName} ${lastName}`,
         username,
         password,
       },
     });
-    // TODO: add firstName, lastName, role (GUARD), building (id = "1")
+    // TODO: add building connection (id = "1")
   } catch (error) {
     return { success: false, error: "הוספת המאבטח נכשלה" };
   }
