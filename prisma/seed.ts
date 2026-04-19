@@ -1,5 +1,6 @@
 import prisma from "../lib/prisma";
 import type { User, Building } from "../app/generated/prisma/client";
+import { auth } from "@/lib/auth";
 
 const buildings: Pick<Building, "id" | "name" | "street" | "city">[] = [
   { id: "1", name: "מכון מופת", street: "שושנה פרסיץ 15", city: "תל אביב" },
@@ -455,17 +456,15 @@ async function createGuard(
 ) {
   const buildingId = String(Math.floor(Math.random() * buildings.length) + 1);
 
-  return prisma.user.create({
-    data: {
+  return auth.api.signUpEmail({
+    body: {
+      email: `${guard.username}@emun.local`,
       firstName: guard.firstName,
       lastName: guard.lastName,
       name: `${guard.firstName} ${guard.lastName}`,
       username: guard.username,
       password: "123456",
       role: guard.role,
-      buildings: {
-        connect: { id: buildingId },
-      },
     },
   });
 }
