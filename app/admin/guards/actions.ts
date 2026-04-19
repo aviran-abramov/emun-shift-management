@@ -3,6 +3,7 @@
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { CreateGuardSchema } from "@/lib/validators/guard";
+import { APIError } from "better-auth";
 import { revalidatePath } from "next/cache";
 import * as z from "zod";
 
@@ -48,7 +49,14 @@ export async function createGuard(data: unknown): Promise<ActionResult> {
     });
   } catch (error) {
     console.error(error);
-    return { success: false, error: "הוספת המאבטח נכשלה" };
+    if (error instanceof APIError) {
+      const code = error.body?.code;
+      if (code === "USERNAME_IS_ALREADY_TAKEN") {
+        return { success: false, error: "שם המשתמש כבר קיים" };
+      }
+    }
+
+    return { success: false, error: "הוספת השומר נכשלה" };
   }
 
   revalidatePath("/admin/guards");
