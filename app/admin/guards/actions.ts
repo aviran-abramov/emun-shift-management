@@ -1,5 +1,6 @@
 "use server";
 
+import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { CreateGuardSchema } from "@/lib/validators/guard";
 import { revalidatePath } from "next/cache";
@@ -29,21 +30,15 @@ export async function createGuard(data: unknown): Promise<ActionResult> {
   const { firstName, lastName, username, password } = result.data;
 
   try {
-    await prisma.user.create({
-      data: {
-        firstName,
-        lastName,
+    await auth.api.signUpEmail({
+      body: {
+        email: `${username}@emun.local`,
         name: `${firstName} ${lastName}`,
         username,
         password,
-        role: "GUARD",
-        buildings: {
-          connect: {
-            id: "1",
-          },
-        },
       },
     });
+    // TODO: add firstName, lastName, role (GUARD), building (id = "1")
   } catch (error) {
     return { success: false, error: "הוספת המאבטח נכשלה" };
   }
