@@ -1,23 +1,11 @@
 "use server";
 
+import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { CreateGuardSchema } from "@/lib/validators/guard";
 import { APIError } from "better-auth";
 import { revalidatePath } from "next/cache";
-import * as z from "zod";
-
-type ActionResult = { success: true } | { success: false; error: string };
-
-const createErrorMessage = (issues: z.core.$ZodIssueBase[]): string => {
-  let errorMessage = "";
-
-  issues.forEach((issue) => {
-    errorMessage += `${issue.path}: ${issue.message}`;
-  });
-
-  return errorMessage;
-};
 
 export async function createGuard(data: unknown): Promise<ActionResult> {
   const result = CreateGuardSchema.safeParse(data);
