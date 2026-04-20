@@ -21,7 +21,7 @@ export const adminNavItems: NavItem[] = [
 
 export const guardNavItems: NavItem[] = [
   { label: "פרטים אישיים", href: "/guard/personal-info", icon: "Contact" },
-  { label: "הגשת משמרות", href: "/guard/schedule", icon: "ClipboardList" },
+  { label: "הגשת משמרות", href: "/guard/availability", icon: "ClipboardList" },
   { label: "המשמרות שלי", href: "/guard/my-shifts", icon: "CalendarClock" },
   { label: "הבניינים שלי", href: "/guard/buildings", icon: "Building2" },
 ];
