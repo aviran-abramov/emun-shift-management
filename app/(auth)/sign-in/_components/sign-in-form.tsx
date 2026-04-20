@@ -51,15 +51,9 @@ export default function SignInForm() {
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <div className="flex items-center justify-between px-1">
-                <FieldLabel htmlFor={field.name}>סיסמה</FieldLabel>
-                <Link
-                  href="/forgot-password"
-                  className="text-blue-500 underline"
-                >
-                  שכחתי סיסמה
-                </Link>
-              </div>
+              <FieldLabel htmlFor={field.name} className="px-1">
+                סיסמה
+              </FieldLabel>
               <Input
                 {...field}
                 type="password"
