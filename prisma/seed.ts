@@ -58,6 +58,12 @@ const guards: Pick<User, "firstName" | "lastName" | "username" | "role">[] = [
     username: "omercha987",
     role: "GUARD",
   },
+  {
+    firstName: "שקד",
+    lastName: "אריאל",
+    username: "shakedari123",
+    role: "MANAGER",
+  },
 ];
 
 async function createGuard(
