@@ -27,7 +27,7 @@ async function createBuilding(
   });
 }
 
-const guards: Pick<User, "firstName" | "lastName" | "username" | "role">[] = [
+const users: Pick<User, "firstName" | "lastName" | "username" | "role">[] = [
   {
     firstName: "יוסי",
     lastName: "כהן",
@@ -66,20 +66,20 @@ const guards: Pick<User, "firstName" | "lastName" | "username" | "role">[] = [
   },
 ];
 
-async function createGuard(
-  guard: Pick<User, "firstName" | "lastName" | "username" | "role">,
+async function createUser(
+  user: Pick<User, "firstName" | "lastName" | "username" | "role">,
 ) {
   const buildingId = String(Math.floor(Math.random() * buildings.length) + 1);
 
   const signUpResult = await auth.api.signUpEmail({
     body: {
-      email: `${guard.username}@emun.local`,
-      firstName: guard.firstName,
-      lastName: guard.lastName,
-      name: `${guard.firstName} ${guard.lastName}`,
-      username: guard.username,
+      email: `${user.username}@emun.local`,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      name: `${user.firstName} ${user.lastName}`,
+      username: user.username,
       password: "123456",
-      role: guard.role,
+      role: user.role,
     },
   });
 
@@ -95,10 +95,10 @@ async function main() {
   }
   console.log(`✅ Created ${buildings.length} buildings`);
 
-  for (const guard of guards) {
-    await createGuard(guard);
+  for (const user of users) {
+    await createUser(user);
   }
-  console.log(`✅ Created ${guards.length} guards`);
+  console.log(`✅ Created ${users.length} users`);
 }
 
 main()
