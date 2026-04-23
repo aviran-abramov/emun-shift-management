@@ -6,8 +6,17 @@ import prisma from "@/lib/prisma";
 import { CreateGuardSchema } from "@/lib/validators/guard";
 import { APIError } from "better-auth";
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
 
 export async function createGuard(data: unknown): Promise<ActionResult> {
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (!session || session.user.role !== "MANAGER") {
+    return {
+      success: false,
+      error: "אין לך הרשאה להוסיף שומר",
+    };
+  }
+
   const result = CreateGuardSchema.safeParse(data);
   if (!result.success) {
     return {
