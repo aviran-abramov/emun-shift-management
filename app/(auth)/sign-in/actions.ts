@@ -2,6 +2,7 @@
 
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import { auth } from "@/lib/auth";
+import { DEFAULT_PATHS } from "@/lib/paths";
 import prisma from "@/lib/prisma";
 import { SignInSchema } from "@/lib/validators/auth";
 import { redirect } from "next/navigation";
@@ -50,7 +51,5 @@ export async function signIn(data: unknown): Promise<ActionResult> {
     };
   }
 
-  const redirectPath =
-    user.role === "GUARD" ? "/guard/dashboard" : "/admin/dashboard";
-  redirect(redirectPath);
+  redirect(DEFAULT_PATHS[user.role]);
 }
