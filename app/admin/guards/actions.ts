@@ -1,5 +1,6 @@
 "use server";
 
+import { Guard } from "@/app/admin/guards/columns";
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
@@ -7,6 +8,29 @@ import { CreateGuardSchema } from "@/lib/validators/guard";
 import { APIError } from "better-auth";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+
+export async function getGuards(): Promise<Guard[]> {
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (!session || session.user.role !== "MANAGER") {
+    redirect("/forbidden");
+  }
+
+  return await prisma.user.findMany({
+    where: { role: "GUARD" },
+    select: {
+      id: true,
+      isActive: true,
+      firstName: true,
+      lastName: true,
+      username: true,
+      createdAt: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+}
 
 export async function createGuard(data: unknown): Promise<ActionResult> {
   const session = await auth.api.getSession({ headers: await headers() });

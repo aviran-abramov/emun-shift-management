@@ -1,28 +1,12 @@
 import { Metadata } from "next";
-import { columns, Guard } from "./columns";
-import prisma from "@/lib/prisma";
+import { columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
 import { CreateGuardDialog } from "@/app/admin/guards/_components/create-guard-dialog";
+import { getGuards } from "@/app/admin/guards/actions";
 
 export const metadata: Metadata = { title: "שומרים" };
-
-async function getGuards(): Promise<Guard[]> {
-  return await prisma.user.findMany({
-    select: {
-      id: true,
-      isActive: true,
-      firstName: true,
-      lastName: true,
-      username: true,
-      createdAt: true,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
-}
 
 export default async function GuardsPage() {
   const guards = await getGuards();
