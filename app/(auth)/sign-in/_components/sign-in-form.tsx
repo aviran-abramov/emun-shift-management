@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInFormData, SignInSchema } from "@/lib/validators/auth";
+import { signIn } from "@/app/(auth)/sign-in/actions";
 
 export default function SignInForm() {
   const form = useForm<SignInFormData>({
@@ -18,7 +19,12 @@ export default function SignInForm() {
     },
   });
 
-  const onSubmit = async (data: SignInFormData) => {};
+  const onSubmit = async (data: SignInFormData) => {
+    const result = await signIn(data);
+    if (!result.success) {
+      form.setError("root", { message: result.error });
+    }
+  };
 
   return (
     <form
@@ -67,8 +73,15 @@ export default function SignInForm() {
         />
       </CardContent>
 
-      <CardFooter className="flex flex-col items-center">
-        <Button type="submit" className="self-stretch">
+      <CardFooter className="flex flex-col items-center gap-2">
+        {form.formState.errors.root && (
+          <FieldError errors={[form.formState.errors.root]} />
+        )}
+        <Button
+          type="submit"
+          disabled={form.formState.isSubmitting}
+          className="self-stretch"
+        >
           התחבר
         </Button>
       </CardFooter>
