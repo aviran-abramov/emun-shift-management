@@ -47,16 +47,16 @@ export function AppSidebar({ userType, navItems }: AppSidebarProps) {
         <div className="flex items-center">
           <SidebarMenu className="flex-1 group-data-[collapsible=icon]:hidden">
             <SidebarMenuItem>
-              <SidebarMenuButton asChild size="lg">
-                <Link href={`/${userType}/dashboard`}>
-                  <Image
-                    src="/favicon.ico"
-                    height={30}
-                    width={30}
-                    alt="emun logo"
-                  />
-                  <span className="font-semibold">מוקד אמון</span>
-                </Link>
+              <SidebarMenuButton size="lg" className="cursor-default">
+                {/* <Link href={`/${userType}/dashboard`}> */}
+                <Image
+                  src="/favicon.ico"
+                  height={30}
+                  width={30}
+                  alt="emun logo"
+                />
+                <span className="font-semibold">מוקד אמון</span>
+                {/* </Link> */}
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
