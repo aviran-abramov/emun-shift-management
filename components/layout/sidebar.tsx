@@ -24,6 +24,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { PanelTrigger } from "@/components/layout/panel-trigger";
+import { Button } from "@/components/ui/button";
+import { signOut } from "@/lib/actions/auth";
 
 interface AppSidebarProps {
   userType: "admin" | "guard";
@@ -97,6 +99,9 @@ export function AppSidebar({ userType, navItems }: AppSidebarProps) {
           <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
             מנהל
           </Badge>
+          <Button variant={"destructive"} onClick={() => signOut()}>
+            התנתק
+          </Button>
         </div>
       </SidebarFooter>
     </Sidebar>
