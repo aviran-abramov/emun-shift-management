@@ -18,28 +18,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 import {
   CreateAvailabilityFormData,
   CreateAvailabilitySchema,
 } from "@/lib/validators/availability";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
-
-const DAY_LABELS: Record<DayOfWeek, string> = {
-  SUNDAY: "ראשון",
-  MONDAY: "שני",
-  TUESDAY: "שלישי",
-  WEDNESDAY: "רביעי",
-  THURSDAY: "חמישי",
-  FRIDAY: "שישי",
-  SATURDAY: "שבת",
-};
-
-const SHIFT_LABELS: Record<ShiftType, string> = {
-  MORNING: "בוקר",
-  EVENING: "ערב",
-  NIGHT: "לילה",
-};
 
 export default function CreateAvailabilityForm() {
   const form = useForm<CreateAvailabilityFormData>({
