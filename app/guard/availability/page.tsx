@@ -1,4 +1,5 @@
 import { CreateAvailabilityForm } from "@/app/guard/_components/create-availability-form";
+import { DeleteAvailabilityButton } from "@/app/guard/_components/delete-availability-button";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
 import { auth } from "@/lib/auth";
@@ -12,7 +13,7 @@ export default async function GuardAvailabilityPage() {
   if (!session || session.user.role !== "GUARD") redirect("/sign-in");
 
   const availabilities = await prisma.availability.findMany({
-    where: { userId: session?.user.id },
+    where: { userId: session.user.id },
   });
 
   return (
@@ -32,7 +33,7 @@ export default async function GuardAvailabilityPage() {
               {availabilities.map((availability) => (
                 <li
                   key={availability.id}
-                  className="font-medium rounded-md border bg-muted/50 px-3 py-2"
+                  className="font-medium rounded-md border bg-muted/50 px-3 py-2 space-y-1"
                 >
                   <div className="flex items-center gap-1 text-lg">
                     <span>{DAY_LABELS[availability.day]}</span>
@@ -45,6 +46,7 @@ export default async function GuardAvailabilityPage() {
                       <span>{availability.note}</span>
                     </p>
                   )}
+                  <DeleteAvailabilityButton id={availability.id} />
                 </li>
               ))}
             </ul>
