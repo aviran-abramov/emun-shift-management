@@ -26,7 +26,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 
-export default function CreateAvailabilityForm() {
+export function CreateAvailabilityForm() {
   const form = useForm<CreateAvailabilityFormData>({
     resolver: zodResolver(CreateAvailabilitySchema),
     defaultValues: {
