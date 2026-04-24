@@ -12,7 +12,7 @@ export default function GuardLayout({
     <SidebarProvider>
       <AppSidebar userType="guard" navItems={guardNavItems} />
       <main className="flex-1 min-w-0">
-        <MobileHeader homeHref="/guard/dashboard" />
+        <MobileHeader />
         {children}
       </main>
     </SidebarProvider>

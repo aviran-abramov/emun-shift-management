@@ -12,7 +12,7 @@ export default function AdminLayout({
     <SidebarProvider>
       <AppSidebar userType="admin" navItems={adminNavItems} />
       <main className="flex-1 min-w-0">
-        <MobileHeader homeHref="/admin/dashboard" />
+        <MobileHeader />
         {children}
       </main>
     </SidebarProvider>
