@@ -30,4 +30,8 @@ export const auth = betterAuth({
     },
   },
   plugins: [nextCookies(), username()],
+  trustedOrigins:
+    process.env.DEV_ALLOWED_ORIGINS?.split(",")
+      .map((s) => s.trim())
+      .filter(Boolean) ?? [],
 });
