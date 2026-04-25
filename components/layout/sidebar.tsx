@@ -9,6 +9,7 @@ import {
   Building2,
   Contact,
   CalendarClock,
+  LogOut,
 } from "lucide-react";
 import { NavItem } from "@/lib/sidebar-nav";
 import { usePathname } from "next/navigation";
@@ -99,13 +100,24 @@ export function AppSidebar({
       </SidebarContent>
 
       <SidebarFooter>
-        <div className="flex items-center justify-between px-2 py-2 group-data-[collapsible=icon]:hidden">
-          <p className="font-semibold">{userFirstName}</p>
-          <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
-            מנהל
-          </Badge>
-          <Button variant={"destructive"} onClick={() => signOut()}>
-            התנתק
+        <div className="flex items-center gap-2 px-2 py-2 group-data-[collapsible=icon]:hidden">
+          <div className="flex min-w-0 flex-1 items-center gap-2">
+            <p className="font-semibold">{userFirstName}</p>
+            <Badge
+              variant="secondary"
+              className="bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300"
+            >
+              {userType === "admin" ? "מנהל" : "מאבטח"}
+            </Badge>
+          </div>
+
+          <Button
+            variant="destructive"
+            aria-label="התנתק"
+            onClick={() => signOut()}
+          >
+            <span>התנתק</span>
+            <LogOut />
           </Button>
         </div>
       </SidebarFooter>
