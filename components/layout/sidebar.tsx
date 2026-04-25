@@ -27,11 +27,6 @@ import { PanelTrigger } from "@/components/layout/panel-trigger";
 import { Button } from "@/components/ui/button";
 import { signOut } from "@/lib/actions/auth";
 
-interface AppSidebarProps {
-  userType: "admin" | "guard";
-  navItems: NavItem[];
-}
-
 const navIcons = {
   PanelsTopLeft,
   ClipboardList,
@@ -40,7 +35,17 @@ const navIcons = {
   CalendarClock,
 };
 
-export function AppSidebar({ userType, navItems }: AppSidebarProps) {
+interface AppSidebarProps {
+  userFirstName: string;
+  userType: "admin" | "guard";
+  navItems: NavItem[];
+}
+
+export function AppSidebar({
+  userFirstName,
+  userType,
+  navItems,
+}: AppSidebarProps) {
   const pathname = usePathname();
 
   return (
@@ -95,7 +100,7 @@ export function AppSidebar({ userType, navItems }: AppSidebarProps) {
 
       <SidebarFooter>
         <div className="flex items-center justify-between px-2 py-2 group-data-[collapsible=icon]:hidden">
-          <p className="font-semibold">שקד</p>
+          <p className="font-semibold">{userFirstName}</p>
           <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
             מנהל
           </Badge>
