@@ -8,7 +8,7 @@ interface PageTitleProps {
 
 export function PageTitle({ title, count, className }: PageTitleProps) {
   return (
-    <h1 className={cn("text-2xl font-bold", className)}>
+    <h1 className={cn("text-3xl font-bold", className)}>
       {title} {count !== undefined && `(${count})`}
     </h1>
   );
