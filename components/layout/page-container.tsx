@@ -7,7 +7,7 @@ interface PageContainerProps {
 
 export function PageContainer({ children, className }: PageContainerProps) {
   return (
-    <div className={cn("p-2 flex flex-col max-w-3xl", className)}>
+    <div className={cn("p-2 md:px-4 flex flex-col max-w-3xl", className)}>
       {children}
     </div>
   );
