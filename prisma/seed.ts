@@ -4,14 +4,6 @@ import { auth } from "@/lib/auth";
 
 const buildings: Pick<Building, "id" | "name" | "street" | "city">[] = [
   { id: "1", name: "מכון מופת", street: "שושנה פרסיץ 15", city: "תל אביב" },
-  { id: "2", name: "בית אמות", street: "ז'בוטינסקי 7", city: "תל אביב" },
-  { id: "3", name: "מגדל משה אביב", street: "ז'בוטינסקי 7", city: "רמת גן" },
-  {
-    id: "4",
-    name: "מגדלי עזריאלי",
-    street: "דרך מנחם בגין 132",
-    city: "תל אביב",
-  },
 ];
 
 async function createBuilding(
@@ -29,39 +21,33 @@ async function createBuilding(
 
 const users: Pick<User, "firstName" | "lastName" | "username" | "role">[] = [
   {
-    firstName: "יוסי",
-    lastName: "כהן",
-    username: "yossicoh123",
+    firstName: "אבירן",
+    lastName: "אברמוב",
+    username: "aviranabr123",
     role: "GUARD",
   },
   {
-    firstName: "דני",
+    firstName: "מיכאל",
     lastName: "לוי",
-    username: "danilev456",
+    username: "michael636",
     role: "GUARD",
   },
   {
-    firstName: "משה",
+    firstName: "אמיר",
     lastName: "אברהם",
-    username: "mosheabr789",
+    username: "amir427",
     role: "GUARD",
   },
   {
-    firstName: "אבי",
+    firstName: "ערן",
     lastName: "ישראלי",
-    username: "aviisr321",
-    role: "GUARD",
-  },
-  {
-    firstName: "עומר",
-    lastName: "חיים",
-    username: "omercha987",
+    username: "eran943",
     role: "GUARD",
   },
   {
     firstName: "שקד",
-    lastName: "אריאל",
-    username: "shakedari123",
+    lastName: "ספקטור",
+    username: "shakedspector",
     role: "MANAGER",
   },
 ];
@@ -69,8 +55,6 @@ const users: Pick<User, "firstName" | "lastName" | "username" | "role">[] = [
 async function createUser(
   user: Pick<User, "firstName" | "lastName" | "username" | "role">,
 ) {
-  const buildingId = String(Math.floor(Math.random() * buildings.length) + 1);
-
   const signUpResult = await auth.api.signUpEmail({
     body: {
       email: `${user.username}@emun.local`,
@@ -85,7 +69,7 @@ async function createUser(
 
   await prisma.user.update({
     where: { id: signUpResult.user.id },
-    data: { buildings: { connect: { id: buildingId } } },
+    data: { buildings: { connect: { id: "1" } } },
   });
 }
 
