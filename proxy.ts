@@ -16,6 +16,13 @@ export async function proxy(request: NextRequest) {
   const role = session.user.role as Role;
   const { pathname } = request.nextUrl;
 
+  if (pathname === "/") {
+    if (role === "MANAGER")
+      return NextResponse.redirect(new URL("/admin", request.url));
+    if (role === "GUARD")
+      return NextResponse.redirect(new URL("/guard", request.url));
+  }
+
   if (pathname.startsWith("/admin") && role !== "MANAGER") {
     return NextResponse.rewrite(new URL("/forbidden", request.url), {
       status: 403,
@@ -32,5 +39,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/guard/:path*"],
+  matcher: ["/", "/admin/:path*", "/guard/:path*"],
 };
