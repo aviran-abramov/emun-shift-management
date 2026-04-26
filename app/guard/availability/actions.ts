@@ -1,5 +1,6 @@
 "use server";
 
+import { Prisma } from "@/app/generated/prisma/client";
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
@@ -34,11 +35,14 @@ export async function createAvailability(data: unknown): Promise<ActionResult> {
       },
     });
   } catch (error) {
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === "P2002"
+    ) {
+      return { success: false, error: "כבר הגשת זמינות למשמרת זו" };
+    }
     console.error(error);
-    return {
-      success: false,
-      error: "הוספת המשמרת נכשלה",
-    };
+    return { success: false, error: "הוספת המשמרת נכשלה" };
   }
 
   revalidatePath("/guard/availability");
