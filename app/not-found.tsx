@@ -1,4 +1,5 @@
 import { Role } from "@/app/generated/prisma/enums";
+import { SectionTitle } from "@/components/layout/section-title";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import { DEFAULT_PATHS } from "@/lib/paths";
@@ -16,7 +17,7 @@ export default async function NotFoundPage() {
   return (
     <div className="flex flex-col items-center gap-4 py-4">
       <div className="flex flex-col items-center gap-1">
-        <h2 className="font-bold">הדף לא נמצא</h2>
+        <SectionTitle>הדף לא נמצא</SectionTitle>
         <p>לא הצלחנו למצוא את מה שחיפשת.</p>
       </div>
       <Button variant="outline" asChild>
