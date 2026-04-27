@@ -1,5 +1,6 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
+import { SectionTitle } from "@/components/layout/section-title";
 import prisma from "@/lib/prisma";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -30,7 +31,7 @@ export default async function AdminSchedulePage() {
         <PageTitle title="סידורי עבודה" />
         <div className="flex flex-col gap-4">
           <section className="flex flex-col gap-2 rounded-lg border p-4 shadow-sm">
-            <h2 className="text-2xl font-bold">{building.name}</h2>
+            <SectionTitle>{building.name}</SectionTitle>
 
             <div className="flex flex-col gap-2">
               <h3 className="text-lg font-bold">

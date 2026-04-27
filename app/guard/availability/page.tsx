@@ -2,6 +2,7 @@ import { CreateAvailabilityForm } from "@/app/guard/_components/create-availabil
 import { DeleteAvailabilityButton } from "@/app/guard/_components/delete-availability-button";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
+import { SectionTitle } from "@/components/layout/section-title";
 import { auth } from "@/lib/auth";
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 import prisma from "@/lib/prisma";
@@ -22,12 +23,12 @@ export default async function GuardAvailabilityPage() {
         <PageTitle title="הגשת משמרות" />
 
         <section className="flex flex-col gap-2 rounded-lg border p-4 shadow-sm">
-          <h2 className="text-lg font-bold">הוסף משמרת</h2>
+          <SectionTitle>הוסף משמרת</SectionTitle>
           <CreateAvailabilityForm />
         </section>
 
         <section className="rounded-lg border p-4 shadow-sm space-y-4">
-          <h2 className="text-lg font-bold">המשמרות שהגשתי</h2>
+          <SectionTitle>המשמרות שהגשתי</SectionTitle>
           {availabilities.length !== 0 ? (
             <ul className="flex flex-col gap-2">
               {availabilities.map((availability) => (
