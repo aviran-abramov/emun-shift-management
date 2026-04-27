@@ -52,6 +52,8 @@ interface DaySectionProps {
 }
 
 function DaySection({ dayName, availabilities }: DaySectionProps) {
+  if (availabilities.length === 0) return null;
+
   const morning = availabilities.filter(
     (availability) => availability.shiftType === "MORNING",
   );
@@ -68,14 +70,26 @@ function DaySection({ dayName, availabilities }: DaySectionProps) {
     <div className="flex flex-col mb-4">
       <DayTitle>{dayName}</DayTitle>
 
-      <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-      <ShiftAvailabilities availabilities={morning} />
+      {morning.length > 0 && (
+        <>
+          <ShiftTypeTitle>בוקר</ShiftTypeTitle>
+          <ShiftAvailabilities availabilities={morning} />
+        </>
+      )}
 
-      <ShiftTypeTitle>ערב</ShiftTypeTitle>
-      <ShiftAvailabilities availabilities={evening} />
+      {evening.length > 0 && (
+        <>
+          <ShiftTypeTitle>ערב</ShiftTypeTitle>
+          <ShiftAvailabilities availabilities={evening} />
+        </>
+      )}
 
-      <ShiftTypeTitle>לילה</ShiftTypeTitle>
-      <ShiftAvailabilities availabilities={night} />
+      {night.length > 0 && (
+        <>
+          <ShiftTypeTitle>לילה</ShiftTypeTitle>
+          <ShiftAvailabilities availabilities={night} />
+        </>
+      )}
     </div>
   );
 }
