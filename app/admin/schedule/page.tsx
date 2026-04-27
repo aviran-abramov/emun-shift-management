@@ -27,7 +27,7 @@ export default async function AdminSchedulePage() {
   );
 
   return (
-    <PageContainer className="max-w-md">
+    <PageContainer className="max-w-2xl">
       <div className="flex flex-col gap-4">
         <PageTitle title="סידורי עבודה" />
         <div className="flex flex-col gap-4">
