@@ -1,3 +1,4 @@
+import { Availability } from "@/app/generated/prisma/client";
 import prisma from "@/lib/prisma";
 
 export async function WeeklyAvailabilities() {
@@ -107,239 +108,110 @@ export async function WeeklyAvailabilities() {
         <DayTitle>ראשון</DayTitle>
 
         <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        {sundayMorning.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={sundayMorning} />
 
         <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        {sundayEvening.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={sundayEvening} />
 
         <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        {sundayNight.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={sundayNight} />
       </div>
 
       <div className="flex flex-col">
         <DayTitle>שני</DayTitle>
 
         <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        {mondayMorning.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={mondayMorning} />
 
         <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        {mondayEvening.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={mondayEvening} />
 
         <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        {mondayNight.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={mondayNight} />
       </div>
 
       <div className="flex flex-col">
         <DayTitle>שלישי</DayTitle>
 
         <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        {tuesdayMorning.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={tuesdayMorning} />
 
         <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        {tuesdayEvening.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={tuesdayEvening} />
 
         <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        {tuesdayNight.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={tuesdayNight} />
       </div>
 
       <div className="flex flex-col">
         <DayTitle>רביעי</DayTitle>
 
         <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        {wednesdayMorning.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={wednesdayMorning} />
 
         <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        {wednesdayEvening.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={wednesdayEvening} />
 
         <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        {wednesdayNight.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={wednesdayNight} />
       </div>
 
       <div className="flex flex-col">
         <DayTitle>חמישי</DayTitle>
 
         <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        {thursdayMorning.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={thursdayMorning} />
 
         <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        {thursdayEvening.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={thursdayEvening} />
 
         <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        {thursdayNight.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={thursdayNight} />
       </div>
 
       <div className="flex flex-col">
         <DayTitle>שישי</DayTitle>
 
         <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        {fridayMorning.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={fridayMorning} />
 
         <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        {fridayEvening.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={fridayEvening} />
 
         <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        {fridayNight.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={fridayNight} />
       </div>
 
       <div className="flex flex-col">
         <DayTitle>שבת</DayTitle>
 
         <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        {saturdayMorning.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={saturdayMorning} />
 
         <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        {saturdayEvening.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={saturdayEvening} />
 
         <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        {saturdayNight.map((availability) => (
-          <div key={availability.id} className="flex items-center gap-2">
-            <SingleAvailability
-              name={availability.user.name}
-              note={availability.note}
-            />
-          </div>
-        ))}
+        <ShiftAvailabilities availabilities={saturdayNight} />
       </div>
+    </div>
+  );
+}
+
+interface ShiftAvailabilitiesProps {
+  availabilities: (Availability & { user: { name: string } })[];
+}
+
+function ShiftAvailabilities({ availabilities }: ShiftAvailabilitiesProps) {
+  return (
+    <div className="flex flex-col">
+      {availabilities.map((availability) => (
+        <SingleAvailability
+          key={availability.id}
+          name={availability.user.name}
+          note={availability.note}
+        />
+      ))}
     </div>
   );
 }
@@ -351,7 +223,7 @@ interface SingleAvailabilityProps {
 
 function SingleAvailability({ name, note }: SingleAvailabilityProps) {
   return (
-    <>
+    <div className="flex items-center gap-2">
       <span>{name}</span>
       {note && (
         <>
@@ -359,7 +231,7 @@ function SingleAvailability({ name, note }: SingleAvailabilityProps) {
           <span className="text-orange-600">{note}</span>
         </>
       )}
-    </>
+    </div>
   );
 }
 
