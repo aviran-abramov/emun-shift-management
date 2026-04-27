@@ -68,26 +68,28 @@ function DaySection({ dayName, availabilities }: DaySectionProps) {
     <div className="flex flex-col mb-4">
       <DayTitle>{dayName}</DayTitle>
 
-      {morning.length > 0 && (
-        <>
-          <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-          <ShiftAvailabilities availabilities={morning} />
-        </>
-      )}
+      <div className="flex flex-col">
+        {morning.length > 0 && (
+          <div className="flex items-center gap-2">
+            <ShiftTypeTitle>בוקר</ShiftTypeTitle>
+            <ShiftAvailabilities availabilities={morning} />
+          </div>
+        )}
 
-      {evening.length > 0 && (
-        <>
-          <ShiftTypeTitle>ערב</ShiftTypeTitle>
-          <ShiftAvailabilities availabilities={evening} />
-        </>
-      )}
+        {evening.length > 0 && (
+          <div className="flex items-center gap-2">
+            <ShiftTypeTitle>ערב</ShiftTypeTitle>
+            <ShiftAvailabilities availabilities={evening} />
+          </div>
+        )}
 
-      {night.length > 0 && (
-        <>
-          <ShiftTypeTitle>לילה</ShiftTypeTitle>
-          <ShiftAvailabilities availabilities={night} />
-        </>
-      )}
+        {night.length > 0 && (
+          <div className="flex items-center gap-2">
+            <ShiftTypeTitle>לילה</ShiftTypeTitle>
+            <ShiftAvailabilities availabilities={night} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -98,14 +100,22 @@ interface ShiftAvailabilitiesProps {
 
 function ShiftAvailabilities({ availabilities }: ShiftAvailabilitiesProps) {
   return (
-    <div className="flex flex-col">
-      {availabilities.map((availability) => (
-        <p key={availability.id}>{availability.user.name}</p>
-      ))}
+    <div className="flex flex-col self-start gap-1">
+      <div className="flex items-center gap-2 flex-wrap">
+        {availabilities.map((availability) => (
+          <p
+            key={availability.id}
+            className="px-2 py-1 rounded bg-green-300 border border-green-600"
+          >
+            {availability.user.name}
+          </p>
+        ))}
+      </div>
+
       {availabilities.map((availability) => (
         <div key={availability.id} className="flex flex-col items-start">
           {availability.note && (
-            <p className="flex items-center gap-1 px-2 py-1 rounded bg-yellow-100 border border-yellow-300">
+            <p className="flex items-center flex-wrap mb-2 gap-1 px-2 py-1 rounded bg-yellow-100 border border-yellow-300">
               <span>* {availability.user.name} ביקש:</span>
               <span>{availability.note}</span>
             </p>
@@ -134,7 +144,7 @@ interface ShiftTypeTitleProps {
 
 function ShiftTypeTitle({ children }: ShiftTypeTitleProps) {
   return (
-    <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
+    <h5 className="bg-muted border border-black self-start px-2 py-1 font-semibold rounded">
       {children}
     </h5>
   );
