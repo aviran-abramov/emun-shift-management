@@ -5,9 +5,7 @@ export async function WeeklyAvailabilities() {
   const availabilties = await prisma.availability.findMany({
     include: { user: true },
   });
-  if (!availabilties) {
-    return <p>לא הוגשו אילוצים</p>;
-  }
+  if (availabilties.length === 0) return <p>לא הוגשו אילוצים</p>;
 
   const sunday = availabilties.filter(
     (availability) => availability.day === "SUNDAY",
