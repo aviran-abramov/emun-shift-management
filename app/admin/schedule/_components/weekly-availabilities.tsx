@@ -12,188 +12,70 @@ export async function WeeklyAvailabilities() {
   const sunday = availabilties.filter(
     (availability) => availability.day === "SUNDAY",
   );
-  const sundayMorning = sunday.filter(
-    (availability) => availability.shiftType === "MORNING",
-  );
-  const sundayEvening = sunday.filter(
-    (availability) => availability.shiftType === "EVENING",
-  );
-  const sundayNight = sunday.filter(
-    (availability) => availability.shiftType === "NIGHT",
-  );
-
   const monday = availabilties.filter(
     (availability) => availability.day === "MONDAY",
   );
-  const mondayMorning = monday.filter(
-    (availability) => availability.shiftType === "MORNING",
-  );
-  const mondayEvening = monday.filter(
-    (availability) => availability.shiftType === "EVENING",
-  );
-  const mondayNight = monday.filter(
-    (availability) => availability.shiftType === "NIGHT",
-  );
-
   const tuesday = availabilties.filter(
     (availability) => availability.day === "TUESDAY",
   );
-  const tuesdayMorning = tuesday.filter(
-    (availability) => availability.shiftType === "MORNING",
-  );
-  const tuesdayEvening = tuesday.filter(
-    (availability) => availability.shiftType === "EVENING",
-  );
-  const tuesdayNight = tuesday.filter(
-    (availability) => availability.shiftType === "NIGHT",
-  );
-
   const wednesday = availabilties.filter(
     (availability) => availability.day === "WEDNESDAY",
   );
-  const wednesdayMorning = wednesday.filter(
-    (availability) => availability.shiftType === "MORNING",
-  );
-  const wednesdayEvening = wednesday.filter(
-    (availability) => availability.shiftType === "EVENING",
-  );
-  const wednesdayNight = wednesday.filter(
-    (availability) => availability.shiftType === "NIGHT",
-  );
-
   const thursday = availabilties.filter(
     (availability) => availability.day === "THURSDAY",
   );
-  const thursdayMorning = thursday.filter(
-    (availability) => availability.shiftType === "MORNING",
-  );
-  const thursdayEvening = thursday.filter(
-    (availability) => availability.shiftType === "EVENING",
-  );
-  const thursdayNight = thursday.filter(
-    (availability) => availability.shiftType === "NIGHT",
-  );
-
   const friday = availabilties.filter(
     (availability) => availability.day === "FRIDAY",
   );
-  const fridayMorning = friday.filter(
-    (availability) => availability.shiftType === "MORNING",
-  );
-  const fridayEvening = friday.filter(
-    (availability) => availability.shiftType === "EVENING",
-  );
-  const fridayNight = friday.filter(
-    (availability) => availability.shiftType === "NIGHT",
-  );
-
   const saturday = availabilties.filter(
     (availability) => availability.day === "SATURDAY",
-  );
-  const saturdayMorning = saturday.filter(
-    (availability) => availability.shiftType === "MORNING",
-  );
-  const saturdayEvening = saturday.filter(
-    (availability) => availability.shiftType === "EVENING",
-  );
-  const saturdayNight = saturday.filter(
-    (availability) => availability.shiftType === "NIGHT",
   );
 
   return (
     <div className="flex flex-col gap-0.5">
       <h3 className="text-xl font-bold">אילוצים</h3>
 
-      <div className="flex flex-col mb-4">
-        <DayTitle>ראשון</DayTitle>
+      <DaySection dayName="ראשון" availabilities={sunday} />
+      <DaySection dayName="שני" availabilities={monday} />
+      <DaySection dayName="שלישי" availabilities={tuesday} />
+      <DaySection dayName="רביעי" availabilities={wednesday} />
+      <DaySection dayName="חמישי" availabilities={thursday} />
+      <DaySection dayName="שישי" availabilities={friday} />
+      <DaySection dayName="שבת" availabilities={saturday} />
+    </div>
+  );
+}
 
-        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={sundayMorning} />
+interface DaySectionProps {
+  dayName: string;
+  availabilities: (Availability & { user: { name: string } })[];
+}
 
-        <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={sundayEvening} />
+function DaySection({ dayName, availabilities }: DaySectionProps) {
+  const morning = availabilities.filter(
+    (availability) => availability.shiftType === "MORNING",
+  );
 
-        <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={sundayNight} />
-      </div>
+  const evening = availabilities.filter(
+    (availability) => availability.shiftType === "EVENING",
+  );
 
-      <div className="flex flex-col">
-        <DayTitle>שני</DayTitle>
+  const night = availabilities.filter(
+    (availability) => availability.shiftType === "NIGHT",
+  );
 
-        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={mondayMorning} />
+  return (
+    <div className="flex flex-col mb-4">
+      <DayTitle>{dayName}</DayTitle>
 
-        <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={mondayEvening} />
+      <ShiftTypeTitle>בוקר</ShiftTypeTitle>
+      <ShiftAvailabilities availabilities={morning} />
 
-        <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={mondayNight} />
-      </div>
+      <ShiftTypeTitle>ערב</ShiftTypeTitle>
+      <ShiftAvailabilities availabilities={evening} />
 
-      <div className="flex flex-col">
-        <DayTitle>שלישי</DayTitle>
-
-        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={tuesdayMorning} />
-
-        <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={tuesdayEvening} />
-
-        <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={tuesdayNight} />
-      </div>
-
-      <div className="flex flex-col">
-        <DayTitle>רביעי</DayTitle>
-
-        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={wednesdayMorning} />
-
-        <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={wednesdayEvening} />
-
-        <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={wednesdayNight} />
-      </div>
-
-      <div className="flex flex-col">
-        <DayTitle>חמישי</DayTitle>
-
-        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={thursdayMorning} />
-
-        <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={thursdayEvening} />
-
-        <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={thursdayNight} />
-      </div>
-
-      <div className="flex flex-col">
-        <DayTitle>שישי</DayTitle>
-
-        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={fridayMorning} />
-
-        <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={fridayEvening} />
-
-        <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={fridayNight} />
-      </div>
-
-      <div className="flex flex-col">
-        <DayTitle>שבת</DayTitle>
-
-        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={saturdayMorning} />
-
-        <ShiftTypeTitle>ערב</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={saturdayEvening} />
-
-        <ShiftTypeTitle>לילה</ShiftTypeTitle>
-        <ShiftAvailabilities availabilities={saturdayNight} />
-      </div>
+      <ShiftTypeTitle>לילה</ShiftTypeTitle>
+      <ShiftAvailabilities availabilities={night} />
     </div>
   );
 }
