@@ -1,5 +1,4 @@
 import prisma from "@/lib/prisma";
-import { cn } from "@/lib/utils";
 
 export async function WeeklyAvailabilities() {
   const availabilties = await prisma.availability.findMany({
@@ -107,9 +106,7 @@ export async function WeeklyAvailabilities() {
       <div className="flex flex-col mb-4">
         <DayTitle>ראשון</DayTitle>
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          בוקר
-        </h5>
+        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
         {sundayMorning.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -119,9 +116,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          ערב
-        </h5>
+        <ShiftTypeTitle>ערב</ShiftTypeTitle>
         {sundayEvening.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -131,9 +126,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          לילה
-        </h5>
+        <ShiftTypeTitle>לילה</ShiftTypeTitle>
         {sundayNight.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -147,9 +140,7 @@ export async function WeeklyAvailabilities() {
       <div className="flex flex-col">
         <DayTitle>שני</DayTitle>
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          בוקר
-        </h5>
+        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
         {mondayMorning.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -159,9 +150,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          ערב
-        </h5>
+        <ShiftTypeTitle>ערב</ShiftTypeTitle>
         {mondayEvening.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -171,9 +160,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          לילה
-        </h5>
+        <ShiftTypeTitle>לילה</ShiftTypeTitle>
         {mondayNight.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -187,9 +174,7 @@ export async function WeeklyAvailabilities() {
       <div className="flex flex-col">
         <DayTitle>שלישי</DayTitle>
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          בוקר
-        </h5>
+        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
         {tuesdayMorning.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -199,9 +184,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          ערב
-        </h5>
+        <ShiftTypeTitle>ערב</ShiftTypeTitle>
         {tuesdayEvening.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -211,9 +194,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          לילה
-        </h5>
+        <ShiftTypeTitle>לילה</ShiftTypeTitle>
         {tuesdayNight.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -227,9 +208,7 @@ export async function WeeklyAvailabilities() {
       <div className="flex flex-col">
         <DayTitle>רביעי</DayTitle>
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          בוקר
-        </h5>
+        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
         {wednesdayMorning.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -239,9 +218,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          ערב
-        </h5>
+        <ShiftTypeTitle>ערב</ShiftTypeTitle>
         {wednesdayEvening.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -251,9 +228,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          לילה
-        </h5>
+        <ShiftTypeTitle>לילה</ShiftTypeTitle>
         {wednesdayNight.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -267,9 +242,7 @@ export async function WeeklyAvailabilities() {
       <div className="flex flex-col">
         <DayTitle>חמישי</DayTitle>
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          בוקר
-        </h5>
+        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
         {thursdayMorning.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -279,9 +252,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          ערב
-        </h5>
+        <ShiftTypeTitle>ערב</ShiftTypeTitle>
         {thursdayEvening.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -291,9 +262,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          לילה
-        </h5>
+        <ShiftTypeTitle>לילה</ShiftTypeTitle>
         {thursdayNight.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -307,9 +276,7 @@ export async function WeeklyAvailabilities() {
       <div className="flex flex-col">
         <DayTitle>שישי</DayTitle>
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          בוקר
-        </h5>
+        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
         {fridayMorning.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -319,9 +286,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          ערב
-        </h5>
+        <ShiftTypeTitle>ערב</ShiftTypeTitle>
         {fridayEvening.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -331,9 +296,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          לילה
-        </h5>
+        <ShiftTypeTitle>לילה</ShiftTypeTitle>
         {fridayNight.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -347,9 +310,7 @@ export async function WeeklyAvailabilities() {
       <div className="flex flex-col">
         <DayTitle>שבת</DayTitle>
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          בוקר
-        </h5>
+        <ShiftTypeTitle>בוקר</ShiftTypeTitle>
         {saturdayMorning.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -359,9 +320,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          ערב
-        </h5>
+        <ShiftTypeTitle>ערב</ShiftTypeTitle>
         {saturdayEvening.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -371,9 +330,7 @@ export async function WeeklyAvailabilities() {
           </div>
         ))}
 
-        <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
-          לילה
-        </h5>
+        <ShiftTypeTitle>לילה</ShiftTypeTitle>
         {saturdayNight.map((availability) => (
           <div key={availability.id} className="flex items-center gap-2">
             <SingleAvailability
@@ -415,5 +372,17 @@ function DayTitle({ children }: DayTitleProps) {
     <h4 className="mb-2 bg-muted border border-black self-start px-2 rounded text-lg font-semibold">
       יום {children}
     </h4>
+  );
+}
+
+interface ShiftTypeTitleProps {
+  children: React.ReactNode;
+}
+
+function ShiftTypeTitle({ children }: ShiftTypeTitleProps) {
+  return (
+    <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
+      {children}
+    </h5>
   );
 }
