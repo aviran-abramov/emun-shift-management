@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { cn } from "@/lib/utils";
 
 export async function WeeklyAvailabilities() {
   const availabilties = await prisma.availability.findMany({
@@ -104,9 +105,7 @@ export async function WeeklyAvailabilities() {
       <h3 className="text-xl font-bold">אילוצים</h3>
 
       <div className="flex flex-col mb-4">
-        <h4 className="mb-2 bg-muted border border-black self-start px-2 rounded text-lg font-semibold">
-          יום ראשון
-        </h4>
+        <DayTitle>ראשון</DayTitle>
 
         <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
           בוקר
@@ -146,9 +145,7 @@ export async function WeeklyAvailabilities() {
       </div>
 
       <div className="flex flex-col">
-        <h4 className="mb-2 bg-muted border border-black self-start px-2 rounded text-lg font-semibold">
-          יום שני
-        </h4>
+        <DayTitle>שני</DayTitle>
 
         <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
           בוקר
@@ -188,9 +185,7 @@ export async function WeeklyAvailabilities() {
       </div>
 
       <div className="flex flex-col">
-        <h4 className="mb-2 bg-muted border border-black self-start px-2 rounded text-lg font-semibold">
-          יום שלישי
-        </h4>
+        <DayTitle>שלישי</DayTitle>
 
         <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
           בוקר
@@ -230,9 +225,7 @@ export async function WeeklyAvailabilities() {
       </div>
 
       <div className="flex flex-col">
-        <h4 className="mb-2 bg-muted border border-black self-start px-2 rounded text-lg font-semibold">
-          יום רביעי
-        </h4>
+        <DayTitle>רביעי</DayTitle>
 
         <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
           בוקר
@@ -272,9 +265,7 @@ export async function WeeklyAvailabilities() {
       </div>
 
       <div className="flex flex-col">
-        <h4 className="mb-2 bg-muted border border-black self-start px-2 rounded text-lg font-semibold">
-          יום חמישי
-        </h4>
+        <DayTitle>חמישי</DayTitle>
 
         <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
           בוקר
@@ -314,9 +305,7 @@ export async function WeeklyAvailabilities() {
       </div>
 
       <div className="flex flex-col">
-        <h4 className="mb-2 bg-muted border border-black self-start px-2 rounded text-lg font-semibold">
-          יום שישי
-        </h4>
+        <DayTitle>שישי</DayTitle>
 
         <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
           בוקר
@@ -356,9 +345,7 @@ export async function WeeklyAvailabilities() {
       </div>
 
       <div className="flex flex-col">
-        <h4 className="mb-2 bg-muted border border-black self-start px-2 rounded text-lg font-semibold">
-          שבת
-        </h4>
+        <DayTitle>שבת</DayTitle>
 
         <h5 className="text-sm bg-muted border border-black self-start px-2 font-semibold rounded">
           בוקר
@@ -416,5 +403,17 @@ function SingleAvailability({ name, note }: SingleAvailabilityProps) {
         </>
       )}
     </>
+  );
+}
+
+interface DayTitleProps {
+  children: React.ReactNode;
+}
+
+function DayTitle({ children }: DayTitleProps) {
+  return (
+    <h4 className="mb-2 bg-muted border border-black self-start px-2 rounded text-lg font-semibold">
+      יום {children}
+    </h4>
   );
 }
