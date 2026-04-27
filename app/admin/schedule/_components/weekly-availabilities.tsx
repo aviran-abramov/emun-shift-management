@@ -100,31 +100,18 @@ function ShiftAvailabilities({ availabilities }: ShiftAvailabilitiesProps) {
   return (
     <div className="flex flex-col">
       {availabilities.map((availability) => (
-        <SingleAvailability
-          key={availability.id}
-          name={availability.user.name}
-          note={availability.note}
-        />
+        <p key={availability.id}>{availability.user.name}</p>
       ))}
-    </div>
-  );
-}
-
-interface SingleAvailabilityProps {
-  name: string;
-  note?: string | null;
-}
-
-function SingleAvailability({ name, note }: SingleAvailabilityProps) {
-  return (
-    <div className="flex items-center gap-2">
-      <span>{name}</span>
-      {note && (
-        <>
-          <span>-</span>
-          <span className="text-orange-600">{note}</span>
-        </>
-      )}
+      {availabilities.map((availability) => (
+        <div key={availability.id} className="flex flex-col items-start">
+          {availability.note && (
+            <p className="flex items-center gap-1 px-2 py-1 rounded bg-yellow-100 border border-yellow-300">
+              <span>* {availability.user.name} ביקש:</span>
+              <span>{availability.note}</span>
+            </p>
+          )}
+        </div>
+      ))}
     </div>
   );
 }
