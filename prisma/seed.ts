@@ -1,5 +1,5 @@
 import prisma from "../lib/prisma";
-import type { User, Building } from "../app/generated/prisma/client";
+import type { Building } from "../app/generated/prisma/client";
 import { auth } from "@/lib/auth";
 
 const buildings: Pick<Building, "id" | "name" | "street" | "city">[] = [
@@ -19,42 +19,53 @@ async function createBuilding(
   });
 }
 
-const users: Pick<User, "firstName" | "lastName" | "username" | "role">[] = [
+interface User {
+  firstName: string;
+  lastName: string;
+  username: string;
+  role: string;
+  password: string;
+}
+
+const users: User[] = [
   {
     firstName: "אבירן",
     lastName: "אברמוב",
     username: "aviranabr123",
     role: "GUARD",
+    password: "356985",
   },
   {
     firstName: "מיכאל",
-    lastName: "לוי",
+    lastName: "זלצר",
     username: "michael636",
     role: "GUARD",
+    password: "486587",
   },
   {
     firstName: "אמיר",
-    lastName: "אברהם",
+    lastName: "ארבל",
     username: "amir427",
     role: "GUARD",
+    password: "252566",
   },
   {
     firstName: "ערן",
-    lastName: "ישראלי",
+    lastName: "פלג",
     username: "eran943",
     role: "GUARD",
+    password: "743569",
   },
   {
     firstName: "שקד",
     lastName: "ספקטור",
     username: "shakedspector",
     role: "MANAGER",
+    password: "994367",
   },
 ];
 
-async function createUser(
-  user: Pick<User, "firstName" | "lastName" | "username" | "role">,
-) {
+async function createUser(user: User) {
   const signUpResult = await auth.api.signUpEmail({
     body: {
       email: `${user.username}@emun.local`,
@@ -62,7 +73,7 @@ async function createUser(
       lastName: user.lastName,
       name: `${user.firstName} ${user.lastName}`,
       username: user.username,
-      password: "123456",
+      password: user.password,
       role: user.role,
     },
   });
