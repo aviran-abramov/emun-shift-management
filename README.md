@@ -30,3 +30,21 @@ Guards submit when they're available for the next week, then the manager assigns
 
 - **[TypeScript](https://www.typescriptlang.org)** - Type safety
 - **[Vercel](https://vercel.com)** - Deployment
+
+## Features
+
+### General
+
+- Hebrew UI with full right-to-left layout
+- Username + password authentication via better-auth
+
+### Guards
+
+- Submit weekly availability across morning, evening, and night shifts
+- Add an optional note per day (e.g. "available only after 16:00")
+
+### Managers
+
+- View all availabilities for all guards in one weekly grid
+- Assign guards to shifts and pick the building per assignment
+- Create guard accounts - guards cannot self-register
