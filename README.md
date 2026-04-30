@@ -54,3 +54,26 @@ Guards submit when they're available for the next week, then the manager assigns
 - View all availabilities for all guards in one weekly grid
 - Assign guards to shifts and pick the building per assignment
 - Create guard accounts - guards cannot self-register
+
+## Project Structure
+
+```
+app/
+  (auth)/         Sign-in and forbidden pages
+  admin/          Manager screens — schedule, guards, buildings
+  guard/          Guard screens — availability submission
+  api/            Route handlers
+components/
+  layout/         App shell, sidebar, headers
+  shared/         Cross-feature components
+  ui/             shadcn primitives
+lib/
+  actions/        Server actions
+  validators/     Zod schemas
+  auth.ts         better-auth setup
+  prisma.ts       Prisma client
+prisma/
+  schema.prisma   Database schema
+  seed.ts         Seed script
+proxy.ts          Routing middleware (role-based access)
+```
