@@ -38,6 +38,12 @@ Guards submit when they're available for the next week, then the manager assigns
 - Hebrew UI with full right-to-left layout
 - Username + password authentication via better-auth
 
+### Role-based routing
+
+- Visiting any protected page without a session redirects to `/sign-in`
+- Visiting `/` sends guards to `/guard` and managers to `/admin`
+- Cross-role access (a guard hitting `/admin` or vice versa) returns a 403 forbidden page
+
 ### Guards
 
 - Submit weekly availability across morning, evening, and night shifts
