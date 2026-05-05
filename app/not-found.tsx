@@ -1,15 +1,12 @@
 import { Role } from "@/app/generated/prisma/enums";
 import { SectionTitle } from "@/components/layout/section-title";
 import { Button } from "@/components/ui/button";
-import { auth } from "@/lib/auth";
 import { DEFAULT_PATHS } from "@/lib/paths";
-import { headers } from "next/headers";
+import { requireSession } from "@/lib/session";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 export default async function NotFoundPage() {
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) redirect("/sign-in");
+  const session = await requireSession();
 
   const role = session.user.role as Role;
   const href = DEFAULT_PATHS[role];

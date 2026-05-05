@@ -3,15 +3,12 @@ import { DeleteAvailabilityButton } from "@/app/guard/_components/delete-availab
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
 import { SectionTitle } from "@/components/layout/section-title";
-import { auth } from "@/lib/auth";
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 import prisma from "@/lib/prisma";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { requireRole } from "@/lib/session";
 
 export default async function GuardAvailabilityPage() {
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || session.user.role !== "GUARD") redirect("/sign-in");
+  const session = await requireRole("GUARD");
 
   const availabilities = await prisma.availability.findMany({
     where: { userId: session.user.id },
