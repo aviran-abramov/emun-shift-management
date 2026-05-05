@@ -22,3 +22,12 @@ export async function requireRole(role: Role) {
 
   return session;
 }
+
+export async function requireRoleAction(role: Role) {
+  const session = await getSession();
+  if (!session || session.user.role !== role) {
+    return { success: false, error: "אין לך הרשאה" };
+  }
+
+  return { success: true, session };
+}
