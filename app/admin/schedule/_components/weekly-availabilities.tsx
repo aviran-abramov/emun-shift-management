@@ -1,4 +1,5 @@
-import { Availability } from "@/app/generated/prisma/client";
+import { Availability, DayOfWeek } from "@/app/generated/prisma/client";
+import { DAY_LABELS } from "@/lib/labels";
 import prisma from "@/lib/prisma";
 
 export async function WeeklyAvailabilities() {
@@ -7,39 +8,17 @@ export async function WeeklyAvailabilities() {
   });
   if (availabilties.length === 0) return <p>לא הוגשו אילוצים</p>;
 
-  const sunday = availabilties.filter(
-    (availability) => availability.day === "SUNDAY",
-  );
-  const monday = availabilties.filter(
-    (availability) => availability.day === "MONDAY",
-  );
-  const tuesday = availabilties.filter(
-    (availability) => availability.day === "TUESDAY",
-  );
-  const wednesday = availabilties.filter(
-    (availability) => availability.day === "WEDNESDAY",
-  );
-  const thursday = availabilties.filter(
-    (availability) => availability.day === "THURSDAY",
-  );
-  const friday = availabilties.filter(
-    (availability) => availability.day === "FRIDAY",
-  );
-  const saturday = availabilties.filter(
-    (availability) => availability.day === "SATURDAY",
-  );
-
   return (
     <div className="flex flex-col gap-0.5">
       <h3 className="text-xl font-bold">אילוצים</h3>
 
-      <DaySection dayName="ראשון" availabilities={sunday} />
-      <DaySection dayName="שני" availabilities={monday} />
-      <DaySection dayName="שלישי" availabilities={tuesday} />
-      <DaySection dayName="רביעי" availabilities={wednesday} />
-      <DaySection dayName="חמישי" availabilities={thursday} />
-      <DaySection dayName="שישי" availabilities={friday} />
-      <DaySection dayName="שבת" availabilities={saturday} />
+      {(Object.keys(DAY_LABELS) as DayOfWeek[]).map((day) => (
+        <DaySection
+          key={day}
+          dayName={DAY_LABELS[day]}
+          availabilities={availabilties.filter((a) => a.day === day)}
+        />
+      ))}
     </div>
   );
 }
