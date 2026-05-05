@@ -7,6 +7,13 @@ export async function getSession() {
   return auth.api.getSession({ headers: await headers() });
 }
 
+export async function getSessionWithRole(role: Role) {
+  const session = await getSession();
+  if (!session || session.user.role !== role) return null;
+
+  return session;
+}
+
 export async function requireSession() {
   const session = await getSession();
   if (!session) redirect("/sign-in");
@@ -21,13 +28,4 @@ export async function requireRole(role: Role) {
   if (session.user.role !== role) redirect("/forbidden");
 
   return session;
-}
-
-export async function requireRoleAction(role: Role) {
-  const session = await getSession();
-  if (!session || session.user.role !== role) {
-    return { success: false, error: "אין לך הרשאה" };
-  }
-
-  return { success: true, session };
 }
