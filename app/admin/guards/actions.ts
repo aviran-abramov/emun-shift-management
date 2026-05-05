@@ -4,17 +4,13 @@ import { Guard } from "@/app/admin/guards/columns";
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
+import { getSessionWithRole, requireRole } from "@/lib/session";
 import { CreateGuardSchema } from "@/lib/validators/guard";
 import { APIError } from "better-auth";
 import { revalidatePath } from "next/cache";
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 
 export async function getGuards(): Promise<Guard[]> {
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || session.user.role !== "MANAGER") {
-    redirect("/forbidden");
-  }
+  await requireRole("MANAGER");
 
   return await prisma.user.findMany({
     where: { role: "GUARD" },
@@ -33,12 +29,9 @@ export async function getGuards(): Promise<Guard[]> {
 }
 
 export async function createGuard(data: unknown): Promise<ActionResult> {
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || session.user.role !== "MANAGER") {
-    return {
-      success: false,
-      error: "אין לך הרשאה להוסיף שומר",
-    };
+  const session = await getSessionWithRole("MANAGER");
+  if (!session) {
+    return { success: false, error: "אין לך הרשאה להוסיף שומר" };
   }
 
   const result = CreateGuardSchema.safeParse(data);

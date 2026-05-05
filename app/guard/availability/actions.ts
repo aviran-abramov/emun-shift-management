@@ -2,19 +2,18 @@
 
 import { Prisma } from "@/app/generated/prisma/client";
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
-import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
+import { getSessionWithRole } from "@/lib/session";
 import {
   CreateAvailabilitySchema,
   DeleteAvailabilitySchema,
 } from "@/lib/validators/availability";
 import { revalidatePath } from "next/cache";
-import { headers } from "next/headers";
 
 export async function createAvailability(data: unknown): Promise<ActionResult> {
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || session.user.role !== "GUARD") {
-    return { success: false, error: "אין לך הרשאה להגיש משמרת" };
+  const session = await getSessionWithRole("GUARD");
+  if (!session) {
+    return { success: false, error: "אין לך הרשאה להגיש משמרות" };
   }
 
   const result = CreateAvailabilitySchema.safeParse(data);
@@ -50,12 +49,9 @@ export async function createAvailability(data: unknown): Promise<ActionResult> {
 }
 
 export async function deleteAvailability(data: unknown): Promise<ActionResult> {
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || session.user.role !== "GUARD") {
-    return {
-      success: false,
-      error: "אינך רשאי למחוק זמינות זו",
-    };
+  const session = await getSessionWithRole("GUARD");
+  if (!session) {
+    return { success: false, error: "אינך רשאי למחוק זמינות זו" };
   }
 
   const result = DeleteAvailabilitySchema.safeParse(data);
