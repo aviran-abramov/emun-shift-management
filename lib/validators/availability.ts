@@ -18,3 +18,23 @@ export const DeleteAvailabilitySchema = z.object({
 export type DeleteAvailabilityFormData = z.infer<
   typeof DeleteAvailabilitySchema
 >;
+
+export const CreateScheduleNoteSchema = z.object({
+  content: z
+    .string()
+    .trim()
+    .min(1, { error: "הכנס לפחות תו אחד" })
+    .max(500, { error: "הערה ארוכה מדי (עד 500 תווים)" }),
+});
+
+export type CreateScheduleNoteFormData = z.infer<
+  typeof CreateScheduleNoteSchema
+>;
+
+export const DeleteScheduleNoteSchema = z.object({
+  id: z.string(),
+});
+
+export type DeleteScheduleNoteFormData = z.infer<
+  typeof DeleteScheduleNoteSchema
+>;

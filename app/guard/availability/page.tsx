@@ -1,5 +1,7 @@
 import { CreateAvailabilityForm } from "@/app/guard/_components/create-availability-form";
+import { CreateScheduleNoteForm } from "@/app/guard/_components/create-schedule-note-form";
 import { DeleteAvailabilityButton } from "@/app/guard/_components/delete-availability-button";
+import { DeleteScheduleNoteButton } from "@/app/guard/_components/delete-schedule-note-button";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
 import { SectionTitle } from "@/components/layout/section-title";
@@ -10,9 +12,10 @@ import { requireRole } from "@/lib/session";
 export default async function GuardAvailabilityPage() {
   const session = await requireRole("GUARD");
 
-  const availabilities = await prisma.availability.findMany({
-    where: { userId: session.user.id },
-  });
+  const [availabilities, scheduleNote] = await Promise.all([
+    prisma.availability.findMany({ where: { userId: session.user.id } }),
+    prisma.guardScheduleNote.findUnique({ where: { userId: session.user.id } }),
+  ]);
 
   return (
     <PageContainer className="max-w-md">
@@ -22,6 +25,18 @@ export default async function GuardAvailabilityPage() {
         <section className="flex flex-col gap-2 rounded-lg border p-4 shadow-sm">
           <SectionTitle>הוסף משמרת</SectionTitle>
           <CreateAvailabilityForm />
+        </section>
+
+        <section className="flex flex-col gap-2 rounded-lg border p-4 shadow-sm">
+          <SectionTitle>הערות כלליות</SectionTitle>
+          {scheduleNote ? (
+            <div className="space-y-2">
+              <p className="mr-1">{scheduleNote.content}</p>
+              <DeleteScheduleNoteButton id={scheduleNote.id} />
+            </div>
+          ) : (
+            <CreateScheduleNoteForm />
+          )}
         </section>
 
         <section className="rounded-lg border p-4 shadow-sm space-y-4">

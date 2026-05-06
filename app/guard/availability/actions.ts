@@ -6,7 +6,9 @@ import prisma from "@/lib/prisma";
 import { getSessionWithRole } from "@/lib/session";
 import {
   CreateAvailabilitySchema,
+  CreateScheduleNoteSchema,
   DeleteAvailabilitySchema,
+  DeleteScheduleNoteSchema,
 } from "@/lib/validators/availability";
 import { revalidatePath } from "next/cache";
 
@@ -71,6 +73,66 @@ export async function deleteAvailability(data: unknown): Promise<ActionResult> {
     return {
       success: false,
       error: "אינך רשאי למחוק זמינות זו",
+    };
+  }
+
+  revalidatePath("/guard/availability");
+  return { success: true };
+}
+
+export async function createScheduleNote(data: unknown): Promise<ActionResult> {
+  const session = await getSessionWithRole("GUARD");
+  if (!session) {
+    return { success: false, error: "אינך רשאי להוסיף הערות" };
+  }
+
+  const result = CreateScheduleNoteSchema.safeParse(data);
+  if (!result.success) {
+    return {
+      success: false,
+      error: createErrorMessage(result.error.issues),
+    };
+  }
+
+  try {
+    await prisma.guardScheduleNote.create({
+      data: { content: result.data.content, userId: session.user.id },
+    });
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: "אינך רשאי להוסיף הערות",
+    };
+  }
+
+  revalidatePath("/guard/availability");
+  return { success: true };
+}
+
+export async function deleteScheduleNote(data: unknown): Promise<ActionResult> {
+  const session = await getSessionWithRole("GUARD");
+  if (!session) {
+    return { success: false, error: "אינך רשאי למחוק הערות" };
+  }
+
+  const result = DeleteScheduleNoteSchema.safeParse(data);
+  if (!result.success) {
+    return {
+      success: false,
+      error: createErrorMessage(result.error.issues),
+    };
+  }
+
+  try {
+    await prisma.guardScheduleNote.delete({
+      where: { id: result.data.id, userId: session.user.id },
+    });
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: "אינך רשאי למחוק הערות",
     };
   }
 
