@@ -9,18 +9,15 @@ import { notFound } from "next/navigation";
 export const metadata: Metadata = { title: "סידורי עבודה" };
 
 export default async function AdminSchedulePage() {
-  const building = await prisma.building.findUnique({
-    where: { id: "1" },
-  });
+  const [building, guards, guardsScheduleNotes] = await Promise.all([
+    prisma.building.findUnique({ where: { id: "1" } }),
+    prisma.user.findMany({
+      where: { role: "GUARD", buildings: { some: { id: "1" } } },
+      include: { availabilities: true },
+    }),
+    prisma.guardScheduleNote.findMany({ include: { user: true } }),
+  ]);
   if (!building) notFound();
-
-  const guards = await prisma.user.findMany({
-    where: {
-      role: "GUARD",
-      buildings: { some: { id: building.id } },
-    },
-    include: { availabilities: true },
-  });
 
   const notSubmittedYet = guards.filter(
     (guard) => guard.availabilities.length === 0,
@@ -50,6 +47,21 @@ export default async function AdminSchedulePage() {
                 <p className="text-muted-foreground">כולם הגישו משמרות</p>
               )}
             </div>
+
+            {guardsScheduleNotes.length > 0 && (
+              <div>
+                <h3 className="text-lg font-bold">
+                  הערות כלליות ({guardsScheduleNotes.length})
+                </h3>
+                {guardsScheduleNotes.map((note) => (
+                  <p key={note.id} className="flex items-center gap-1">
+                    <span className="font-semibold">{note.user.name}</span>
+                    <span>-</span>
+                    <span>{note.content}</span>
+                  </p>
+                ))}
+              </div>
+            )}
 
             <WeeklyAvailabilities />
           </section>
