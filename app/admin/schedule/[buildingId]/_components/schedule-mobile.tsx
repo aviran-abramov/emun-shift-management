@@ -48,29 +48,6 @@ export function ScheduleMobile({
         </div>
       </div>
 
-      <div className="bg-[#F5F4ED] rounded-lg px-4 py-2">
-        <h3 className="text-lg font-semibold">הערות לפי משמרת</h3>
-        {notes.length > 0 ? (
-          <ul>
-            {notes.map((note) => (
-              <li key={note.id} className="flex items-center gap-1 font-medium">
-                <span className="text-muted-foreground">
-                  {DAY_LABELS[note.day]}
-                </span>
-                <span className="text-muted-foreground">
-                  {SHIFT_LABELS[note.shiftType]}
-                </span>
-                <span>-</span>
-                <span>{note.user.name} ביקש:</span>
-                <span>{note.note}</span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>אין הערות</p>
-        )}
-      </div>
-
       <div className="bg-[#F5F4ED] border rounded-lg px-4 py-2">
         <h3 className="text-lg font-semibold">הערות כלליות</h3>
         {generalNotes.length > 0 ? (
@@ -96,6 +73,8 @@ interface ShiftBlockProps {
 }
 
 function ShiftBlock({ type, availabilities }: ShiftBlockProps) {
+  const shiftTypeNotes = availabilities.filter((a) => a.note !== null);
+
   return (
     <div className="flex flex-col gap-2 rounded-lg border p-4">
       <h4 className="font-bold">{SHIFT_LABELS[type]}</h4>
@@ -109,6 +88,20 @@ function ShiftBlock({ type, availabilities }: ShiftBlockProps) {
         </ul>
       ) : (
         <p className="text-muted-foreground">אף שומר לא הציע את עצמו</p>
+      )}
+
+      {shiftTypeNotes.length > 0 && (
+        <ul className="bg-[#F5F4ED] rounded-lg px-4 py-2">
+          {shiftTypeNotes.map((note) => (
+            <li key={note.id} className="flex items-center gap-2">
+              <span className="inline-block size-1.5 rounded-full bg-orange-500" />
+              <div className="flex items-center gap-1">
+                <span className="font-medium">{note.user.name} ביקש:</span>
+                <span>{note.note}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
