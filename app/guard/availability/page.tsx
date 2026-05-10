@@ -53,10 +53,10 @@ export default async function GuardAvailabilityPage() {
                     <span>-</span>
                     <span>{SHIFT_LABELS[availability.shiftType]}</span>
                   </div>
-                  {availability.note && (
+                  {availability.shiftNote && (
                     <p className="flex items-center gap-1">
                       <span className="font-semibold">הערה:</span>
-                      <span>{availability.note}</span>
+                      <span>{availability.shiftNote}</span>
                     </p>
                   )}
                   <DeleteAvailabilityButton id={availability.id} />

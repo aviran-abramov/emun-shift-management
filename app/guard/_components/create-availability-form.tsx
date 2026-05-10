@@ -30,7 +30,7 @@ export function CreateAvailabilityForm() {
   const form = useForm<CreateAvailabilityFormData>({
     resolver: zodResolver(CreateAvailabilitySchema),
     defaultValues: {
-      note: "",
+      shiftNote: "",
     },
   });
 
@@ -111,7 +111,7 @@ export function CreateAvailabilityForm() {
         />
 
         <Controller
-          name="note"
+          name="shiftNote"
           control={form.control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>

@@ -93,10 +93,10 @@ function ShiftAvailabilities({ availabilities }: ShiftAvailabilitiesProps) {
 
       {availabilities.map((availability) => (
         <div key={availability.id} className="flex flex-col items-start">
-          {availability.note && (
+          {availability.shiftNote && (
             <p className="flex items-center flex-wrap mb-2 gap-1 px-2 py-1 rounded bg-yellow-100 border border-yellow-300">
               <span>* {availability.user.name} ביקש:</span>
-              <span>{availability.note}</span>
+              <span>{availability.shiftNote}</span>
             </p>
           )}
         </div>

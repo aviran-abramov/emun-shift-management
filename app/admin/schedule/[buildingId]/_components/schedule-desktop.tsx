@@ -7,7 +7,9 @@ export function ScheduleDesktop({
   availabilities,
   weeklyNotes,
 }: ScheduleProps) {
-  const notes = availabilities.filter((availability) => availability.note);
+  const shiftNotes = availabilities.filter(
+    (availability) => availability.shiftNote,
+  );
 
   return (
     <section className="flex flex-col gap-4">
@@ -35,7 +37,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -46,7 +48,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -57,7 +59,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -70,7 +72,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -83,7 +85,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -94,7 +96,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -107,7 +109,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -122,7 +124,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -133,7 +135,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -144,7 +146,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -157,7 +159,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -170,7 +172,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -181,7 +183,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -194,7 +196,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -209,7 +211,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -220,7 +222,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -231,7 +233,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -242,7 +244,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -253,7 +255,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -264,7 +266,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -275,7 +277,7 @@ export function ScheduleDesktop({
                   <GuardPill
                     key={a.id}
                     name={a.user.name}
-                    hasNotes={!!a.note}
+                    hasNotes={!!a.shiftNote}
                   />
                 ))}
             </td>
@@ -283,23 +285,23 @@ export function ScheduleDesktop({
         </tbody>
       </table>
 
-      <GuardWeeklyNotes weeklyNotes={weeklyNotes} />
-      <GuardShiftTypeNotes notes={notes} />
+      <WeeklyNotes weeklyNotes={weeklyNotes} />
+      <ShiftNotes shiftNotes={shiftNotes} />
     </section>
   );
 }
 
-interface GuardShiftTypeNotesProps {
-  notes: (Availability & { user: { name: string } })[];
+interface ShiftNotesProps {
+  shiftNotes: (Availability & { user: { name: string } })[];
 }
 
-function GuardShiftTypeNotes({ notes }: GuardShiftTypeNotesProps) {
+function ShiftNotes({ shiftNotes }: ShiftNotesProps) {
   return (
     <div className="bg-[#F5F4ED] rounded-lg px-4 py-2">
       <h3 className="text-lg font-semibold">הערות לפי משמרת</h3>
-      {notes.length > 0 ? (
+      {shiftNotes.length > 0 ? (
         <ul>
-          {notes.map((note) => (
+          {shiftNotes.map((note) => (
             <li key={note.id} className="flex items-start gap-1 font-medium">
               <span className="text-muted-foreground">
                 {DAY_LABELS[note.day]}
@@ -309,7 +311,7 @@ function GuardShiftTypeNotes({ notes }: GuardShiftTypeNotesProps) {
               </span>
               <span>-</span>
               <span className="whitespace-nowrap">{note.user.name} ביקש:</span>
-              <span>{note.note}</span>
+              <span>{note.shiftNote}</span>
             </li>
           ))}
         </ul>
@@ -320,11 +322,11 @@ function GuardShiftTypeNotes({ notes }: GuardShiftTypeNotesProps) {
   );
 }
 
-interface GuardWeeklyNotesProps {
+interface WeeklyNotesProps {
   weeklyNotes: (GuardWeeklyNote & { user: { name: string } })[];
 }
 
-function GuardWeeklyNotes({ weeklyNotes }: GuardWeeklyNotesProps) {
+function WeeklyNotes({ weeklyNotes }: WeeklyNotesProps) {
   if (weeklyNotes.length === 0) return;
 
   return (

@@ -121,7 +121,7 @@ model Availability {
   user      User      @relation(fields: [userId], references: [id])
   day       DayOfWeek
   shiftType ShiftType
-  note      String?
+  shiftNote String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 

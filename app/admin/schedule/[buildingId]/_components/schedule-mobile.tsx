@@ -10,7 +10,7 @@ import { useState } from "react";
 export function ScheduleMobile({ availabilities, weeklyNotes }: ScheduleProps) {
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>("SUNDAY");
 
-  const notes = availabilities.filter((availability) => availability.note);
+  const notes = availabilities.filter((availability) => availability.shiftNote);
 
   return (
     <section className="flex flex-col gap-2 px-1">
@@ -70,7 +70,7 @@ interface ShiftBlockProps {
 }
 
 function ShiftBlock({ type, availabilities }: ShiftBlockProps) {
-  const shiftTypeNotes = availabilities.filter((a) => a.note !== null);
+  const shiftTypeNotes = availabilities.filter((a) => a.shiftNote !== null);
 
   return (
     <div className="flex flex-col gap-2 rounded-lg border p-4">
@@ -79,7 +79,7 @@ function ShiftBlock({ type, availabilities }: ShiftBlockProps) {
         <ul className="flex items-center gap-1.5 flex-wrap">
           {availabilities.map((a) => (
             <li key={a.id}>
-              <GuardPill name={a.user.name} hasNotes={!!a.note} />
+              <GuardPill name={a.user.name} hasNotes={!!a.shiftNote} />
             </li>
           ))}
         </ul>
@@ -96,7 +96,7 @@ function ShiftBlock({ type, availabilities }: ShiftBlockProps) {
                 <span className="font-medium whitespace-nowrap">
                   {note.user.name}:
                 </span>
-                <span>{note.note}</span>
+                <span>{note.shiftNote}</span>
               </div>
             </li>
           ))}

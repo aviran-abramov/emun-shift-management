@@ -32,7 +32,7 @@ export async function createAvailability(data: unknown): Promise<ActionResult> {
         userId: session.user.id,
         day: result.data.day,
         shiftType: result.data.shiftType,
-        note: result.data.note || null,
+        shiftNote: result.data.shiftNote || null,
       },
     });
   } catch (error) {
