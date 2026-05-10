@@ -53,7 +53,7 @@ export function ScheduleMobile({
         {generalNotes.length > 0 ? (
           <ul>
             {generalNotes.map((note) => (
-              <li key={note.id} className="flex items-center gap-1">
+              <li key={note.id} className="flex items-start gap-1">
                 <span className="font-medium">{note.user.name}:</span>
                 <span>{note.content}</span>
               </li>
@@ -93,10 +93,12 @@ function ShiftBlock({ type, availabilities }: ShiftBlockProps) {
       {shiftTypeNotes.length > 0 && (
         <ul className="bg-[#F5F4ED] rounded-lg px-4 py-2">
           {shiftTypeNotes.map((note) => (
-            <li key={note.id} className="flex items-center gap-2">
-              <span className="inline-block size-1.5 rounded-full bg-orange-500" />
-              <div className="flex items-center gap-1">
-                <span className="font-medium">{note.user.name} ביקש:</span>
+            <li key={note.id} className="flex gap-1">
+              <span className="text-orange-500">&#9679;</span>
+              <div className="flex gap-1">
+                <span className="font-medium whitespace-nowrap">
+                  {note.user.name}:
+                </span>
                 <span>{note.note}</span>
               </div>
             </li>
