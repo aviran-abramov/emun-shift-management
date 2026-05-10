@@ -300,7 +300,7 @@ function GuardShiftTypeNotes({ notes }: GuardShiftTypeNotesProps) {
       {notes.length > 0 ? (
         <ul>
           {notes.map((note) => (
-            <li key={note.id} className="flex items-center gap-1 font-medium">
+            <li key={note.id} className="flex items-start gap-1 font-medium">
               <span className="text-muted-foreground">
                 {DAY_LABELS[note.day]}
               </span>
@@ -308,7 +308,7 @@ function GuardShiftTypeNotes({ notes }: GuardShiftTypeNotesProps) {
                 {SHIFT_LABELS[note.shiftType]}
               </span>
               <span>-</span>
-              <span>{note.user.name} ביקש:</span>
+              <span className="whitespace-nowrap">{note.user.name} ביקש:</span>
               <span>{note.note}</span>
             </li>
           ))}
