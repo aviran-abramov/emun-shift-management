@@ -1,11 +1,11 @@
 import { GuardPill } from "@/app/admin/schedule/[buildingId]/_components/guard-pill";
 import { ScheduleProps } from "@/app/admin/schedule/[buildingId]/types";
-import { Availability, GuardScheduleNote } from "@/app/generated/prisma/client";
+import { Availability, GuardWeeklyNote } from "@/app/generated/prisma/client";
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 
 export function ScheduleDesktop({
   availabilities,
-  generalNotes,
+  weeklyNotes,
 }: ScheduleProps) {
   const notes = availabilities.filter((availability) => availability.note);
 
@@ -283,7 +283,7 @@ export function ScheduleDesktop({
         </tbody>
       </table>
 
-      <GuardScheduleNotes notes={generalNotes} />
+      <GuardWeeklyNotes weeklyNotes={weeklyNotes} />
       <GuardShiftTypeNotes notes={notes} />
     </section>
   );
@@ -320,19 +320,19 @@ function GuardShiftTypeNotes({ notes }: GuardShiftTypeNotesProps) {
   );
 }
 
-interface GuardScheduleNotesProps {
-  notes: (GuardScheduleNote & { user: { name: string } })[];
+interface GuardWeeklyNotesProps {
+  weeklyNotes: (GuardWeeklyNote & { user: { name: string } })[];
 }
 
-function GuardScheduleNotes({ notes }: GuardScheduleNotesProps) {
-  if (notes.length === 0) return;
+function GuardWeeklyNotes({ weeklyNotes }: GuardWeeklyNotesProps) {
+  if (weeklyNotes.length === 0) return;
 
   return (
     <div className="bg-[#F5F4ED] rounded-lg px-4 py-2">
       <h3 className="text-lg font-semibold">הערות כלליות</h3>
-      {notes.length > 0 ? (
+      {weeklyNotes.length > 0 ? (
         <ul>
-          {notes.map((note) => (
+          {weeklyNotes.map((note) => (
             <li key={note.id} className="flex items-center gap-1">
               <span className="font-medium">{note.user.name}:</span>
               <span>{note.content}</span>

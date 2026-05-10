@@ -19,7 +19,7 @@ export type DeleteAvailabilityFormData = z.infer<
   typeof DeleteAvailabilitySchema
 >;
 
-export const CreateScheduleNoteSchema = z.object({
+export const CreateWeeklyNoteSchema = z.object({
   content: z
     .string()
     .trim()
@@ -27,14 +27,10 @@ export const CreateScheduleNoteSchema = z.object({
     .max(500, { error: "הערה ארוכה מדי (עד 500 תווים)" }),
 });
 
-export type CreateScheduleNoteFormData = z.infer<
-  typeof CreateScheduleNoteSchema
->;
+export type CreateWeeklyNoteFormData = z.infer<typeof CreateWeeklyNoteSchema>;
 
-export const DeleteScheduleNoteSchema = z.object({
+export const DeleteWeeklyNoteSchema = z.object({
   id: z.string(),
 });
 
-export type DeleteScheduleNoteFormData = z.infer<
-  typeof DeleteScheduleNoteSchema
->;
+export type DeleteWeeklyNoteFormData = z.infer<typeof DeleteWeeklyNoteSchema>;

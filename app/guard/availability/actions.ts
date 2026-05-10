@@ -6,9 +6,9 @@ import prisma from "@/lib/prisma";
 import { getSessionWithRole } from "@/lib/session";
 import {
   CreateAvailabilitySchema,
-  CreateScheduleNoteSchema,
+  CreateWeeklyNoteSchema,
   DeleteAvailabilitySchema,
-  DeleteScheduleNoteSchema,
+  DeleteWeeklyNoteSchema,
 } from "@/lib/validators/availability";
 import { revalidatePath } from "next/cache";
 
@@ -80,13 +80,13 @@ export async function deleteAvailability(data: unknown): Promise<ActionResult> {
   return { success: true };
 }
 
-export async function createScheduleNote(data: unknown): Promise<ActionResult> {
+export async function createWeeklyNote(data: unknown): Promise<ActionResult> {
   const session = await getSessionWithRole("GUARD");
   if (!session) {
     return { success: false, error: "אינך רשאי להוסיף הערות" };
   }
 
-  const result = CreateScheduleNoteSchema.safeParse(data);
+  const result = CreateWeeklyNoteSchema.safeParse(data);
   if (!result.success) {
     return {
       success: false,
@@ -95,7 +95,7 @@ export async function createScheduleNote(data: unknown): Promise<ActionResult> {
   }
 
   try {
-    await prisma.guardScheduleNote.create({
+    await prisma.guardWeeklyNote.create({
       data: { content: result.data.content, userId: session.user.id },
     });
   } catch (error) {
@@ -110,13 +110,13 @@ export async function createScheduleNote(data: unknown): Promise<ActionResult> {
   return { success: true };
 }
 
-export async function deleteScheduleNote(data: unknown): Promise<ActionResult> {
+export async function deleteWeeklyNote(data: unknown): Promise<ActionResult> {
   const session = await getSessionWithRole("GUARD");
   if (!session) {
     return { success: false, error: "אינך רשאי למחוק הערות" };
   }
 
-  const result = DeleteScheduleNoteSchema.safeParse(data);
+  const result = DeleteWeeklyNoteSchema.safeParse(data);
   if (!result.success) {
     return {
       success: false,
@@ -125,7 +125,7 @@ export async function deleteScheduleNote(data: unknown): Promise<ActionResult> {
   }
 
   try {
-    await prisma.guardScheduleNote.delete({
+    await prisma.guardWeeklyNote.delete({
       where: { id: result.data.id, userId: session.user.id },
     });
   } catch (error) {

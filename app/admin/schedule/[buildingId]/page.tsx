@@ -21,7 +21,7 @@ export default async function AdminBuildingSchedulePage({
     include: { user: true },
   });
 
-  const guardScheduleNotes = await prisma.guardScheduleNote.findMany({
+  const weeklyNotes = await prisma.guardWeeklyNote.findMany({
     include: { user: true },
   });
 
@@ -32,14 +32,14 @@ export default async function AdminBuildingSchedulePage({
       <div className="hidden lg:block">
         <ScheduleDesktop
           availabilities={availabilities}
-          generalNotes={guardScheduleNotes}
+          weeklyNotes={weeklyNotes}
         />
       </div>
 
       <div className="lg:hidden">
         <ScheduleMobile
           availabilities={availabilities}
-          generalNotes={guardScheduleNotes}
+          weeklyNotes={weeklyNotes}
         />
       </div>
     </PageContainer>

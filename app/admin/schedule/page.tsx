@@ -1,4 +1,3 @@
-import { WeeklyAvailabilities } from "@/app/admin/schedule/_components/weekly-availabilities";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
 import { SectionTitle } from "@/components/layout/section-title";

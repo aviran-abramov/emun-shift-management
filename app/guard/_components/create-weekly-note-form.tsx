@@ -1,6 +1,6 @@
 "use client";
 
-import { createScheduleNote } from "@/app/guard/availability/actions";
+import { createWeeklyNote } from "@/app/guard/availability/actions";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -10,22 +10,22 @@ import {
 } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  CreateScheduleNoteFormData,
-  CreateScheduleNoteSchema,
+  CreateWeeklyNoteFormData,
+  CreateWeeklyNoteSchema,
 } from "@/lib/validators/availability";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 
-export function CreateScheduleNoteForm() {
-  const form = useForm<CreateScheduleNoteFormData>({
-    resolver: zodResolver(CreateScheduleNoteSchema),
+export function CreateWeeklyNoteForm() {
+  const form = useForm<CreateWeeklyNoteFormData>({
+    resolver: zodResolver(CreateWeeklyNoteSchema),
     defaultValues: {
       content: "",
     },
   });
 
-  const onSubmit = async (data: CreateScheduleNoteFormData) => {
-    const result = await createScheduleNote(data);
+  const onSubmit = async (data: CreateWeeklyNoteFormData) => {
+    const result = await createWeeklyNote(data);
     if (result.success) {
       form.reset();
     } else {

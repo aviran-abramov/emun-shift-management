@@ -18,24 +18,24 @@ enum Role {
 }
 
 model User {
-  id                String             @id @default(cuid())
-  firstName         String
-  lastName          String
-  username          String             @unique
-  role              Role               @default(GUARD)
-  name              String
-  email             String?            @unique
-  emailVerified     Boolean            @default(false)
-  image             String?
-  isActive          Boolean            @default(true)
-  buildings         Building[]
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  displayUsername   String?
-  sessions          Session[]
-  accounts          Account[]
-  availabilities    Availability[]
-  guardScheduleNote GuardScheduleNote?
+  id              String           @id @default(cuid())
+  firstName       String
+  lastName        String
+  username        String           @unique
+  role            Role             @default(GUARD)
+  name            String
+  email           String?          @unique
+  emailVerified   Boolean          @default(false)
+  image           String?
+  isActive        Boolean          @default(true)
+  buildings       Building[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  displayUsername String?
+  sessions        Session[]
+  accounts        Account[]
+  availabilities  Availability[]
+  guardWeeklyNote GuardWeeklyNote?
 
   @@map("user")
 }
@@ -128,7 +128,7 @@ model Availability {
   @@unique([userId, day, shiftType])
 }
 
-model GuardScheduleNote {
+model GuardWeeklyNote {
   id        String   @id @default(cuid())
   userId    String   @unique
   user      User     @relation(fields: [userId], references: [id])

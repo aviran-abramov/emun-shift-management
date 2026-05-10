@@ -7,10 +7,7 @@ import { DayOfWeek, ShiftType } from "@/app/generated/prisma/enums";
 import { DAY_LABELS, DAY_LABELS_SHORT, SHIFT_LABELS } from "@/lib/labels";
 import { useState } from "react";
 
-export function ScheduleMobile({
-  availabilities,
-  generalNotes,
-}: ScheduleProps) {
+export function ScheduleMobile({ availabilities, weeklyNotes }: ScheduleProps) {
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>("SUNDAY");
 
   const notes = availabilities.filter((availability) => availability.note);
@@ -50,9 +47,9 @@ export function ScheduleMobile({
 
       <div className="bg-[#F5F4ED] border rounded-lg px-4 py-2">
         <h3 className="text-lg font-semibold">הערות כלליות</h3>
-        {generalNotes.length > 0 ? (
+        {weeklyNotes.length > 0 ? (
           <ul>
-            {generalNotes.map((note) => (
+            {weeklyNotes.map((note) => (
               <li key={note.id} className="flex items-start gap-1">
                 <span className="font-medium">{note.user.name}:</span>
                 <span>{note.content}</span>

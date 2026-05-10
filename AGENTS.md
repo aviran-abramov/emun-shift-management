@@ -39,7 +39,7 @@ There is no Senior Manager role. Only `GUARD` and `MANAGER` exist in the schema.
 
 Guards can attach two distinct kinds of notes:
 
-1. **General scheduling note** (`GuardScheduleNote`, one per guard) — overall
+1. **General scheduling note** (`GuardWeeklyNote`, one per guard) — overall
    preferences across the whole week. Example: _"I want 5 shifts total, prefer
    2 nights and 3 mornings."_
 
@@ -52,11 +52,11 @@ These are separate concepts. Don't conflate them.
 ## Data model summary
 
 - `User` — guards and managers, linked to multiple `Building`s, has many
-  `Availability` records, has at most one `GuardScheduleNote`
+  `Availability` records, has at most one `GuardWeeklyNote`
 - `Building` — has name, street, city, soft-deletable, linked to multiple users
 - `Availability` — recurring weekly slot: `(day, shiftType, optional note)`,
   unique per user/day/shiftType
-- `GuardScheduleNote` — single general note per guard
+- `GuardWeeklyNote` — single general note per guard
 - `Session`, `Account`, `Verification` — better-auth tables (don't modify
   manually unless better-auth requires it)
 - Enums: `Role` (GUARD, MANAGER), `ShiftType` (MORNING, EVENING, NIGHT),
