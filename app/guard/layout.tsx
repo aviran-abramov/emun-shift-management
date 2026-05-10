@@ -1,7 +1,7 @@
 import { MobileHeader } from "@/components/layout/mobile-header";
 import { AppSidebar } from "@/components/layout/sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { requireSession } from "@/lib/session";
+import { requireRole } from "@/lib/session";
 import { guardNavItems } from "@/lib/sidebar-nav";
 
 export default async function GuardLayout({
@@ -9,7 +9,7 @@ export default async function GuardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await requireSession();
+  const session = await requireRole("GUARD");
 
   return (
     <SidebarProvider>
