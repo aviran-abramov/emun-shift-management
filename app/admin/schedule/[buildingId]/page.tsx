@@ -29,14 +29,14 @@ export default async function AdminBuildingSchedulePage({
     <PageContainer className="max-w-full flex flex-col gap-4">
       <PageTitle title={building.name} />
 
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <ScheduleDesktop
           availabilities={availabilities}
           generalNotes={guardScheduleNotes}
         />
       </div>
 
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <ScheduleMobile
           availabilities={availabilities}
           generalNotes={guardScheduleNotes}
