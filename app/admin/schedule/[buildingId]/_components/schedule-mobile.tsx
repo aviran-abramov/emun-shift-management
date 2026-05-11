@@ -57,15 +57,17 @@ export function ScheduleMobile({
         </h3>
 
         <div className="flex flex-col gap-3">
-          {(Object.keys(SHIFT_LABELS) as ShiftType[]).map((shift) => (
-            <ShiftBlock
-              key={shift}
-              type={shift}
-              availabilities={availabilities.filter(
-                (a) => a.day === selectedDay && a.shiftType === shift,
-              )}
-            />
-          ))}
+          {(Object.keys(SHIFT_LABELS) as ShiftType[])
+            .filter((shift) => shift !== "NIGHT")
+            .map((shift) => (
+              <ShiftBlock
+                key={shift}
+                type={shift}
+                availabilities={availabilities.filter(
+                  (a) => a.day === selectedDay && a.shiftType === shift,
+                )}
+              />
+            ))}
         </div>
       </div>
 

@@ -225,7 +225,7 @@ export function ScheduleDesktop({
             </td>
           </tr>
 
-          <tr>
+          {/* <tr>
             <th scope="row">לילה</th>
             <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
               {availabilities
@@ -304,7 +304,7 @@ export function ScheduleDesktop({
                   />
                 ))}
             </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
 
