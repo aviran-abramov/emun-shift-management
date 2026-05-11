@@ -19,10 +19,12 @@ export function ScheduleDesktop({
   return (
     <section className="flex flex-col gap-4">
       <div className="flex items-center">
-        <p className="bg-[#F6EEDF] text-[#5A4815] font-semibold px-2 py-1 rounded-md flex items-center gap-1">
-          <span>{notSubmittedGuards.length}</span>
-          <span>לא הגיש{notSubmittedGuards.length > 1 ? "ו" : ""}</span>
-        </p>
+        {notSubmittedGuards.length > 0 && (
+          <p className="bg-[#F6EEDF] text-[#5A4815] font-semibold px-2 py-1 rounded-md flex items-center gap-1">
+            <span>{notSubmittedGuards.length}</span>
+            <span>לא הגיש{notSubmittedGuards.length > 1 ? "ו" : ""}</span>
+          </p>
+        )}
       </div>
 
       <table
