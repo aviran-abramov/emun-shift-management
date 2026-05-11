@@ -222,6 +222,13 @@ interface ShiftCellProps {
 }
 
 function ShiftCell({ day, shiftType, availabilities }: ShiftCellProps) {
+  if (day === "SATURDAY" || (day === "FRIDAY" && shiftType === "EVENING"))
+    return (
+      <td className="bg-gray-300 rounded">
+        <p className="font-semibold text-center text-black/35">לא פעיל</p>
+      </td>
+    );
+
   const slots = availabilities.filter(
     (a) => a.day === day && a.shiftType === shiftType,
   );
