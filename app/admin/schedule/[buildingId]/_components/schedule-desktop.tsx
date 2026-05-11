@@ -233,6 +233,13 @@ function ShiftCell({ day, shiftType, availabilities }: ShiftCellProps) {
     (a) => a.day === day && a.shiftType === shiftType,
   );
 
+  if (slots.length === 0)
+    return (
+      <td className="bg-[#F7ECEC] rounded">
+        <p className="text-[#7F2C28] font-semibold text-center">חסר</p>
+      </td>
+    );
+
   return (
     <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
       {slots.map((a) => (
