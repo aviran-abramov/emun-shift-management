@@ -7,11 +7,26 @@ import { DayOfWeek, ShiftType } from "@/app/generated/prisma/enums";
 import { DAY_LABELS, DAY_LABELS_SHORT, SHIFT_LABELS } from "@/lib/labels";
 import { useState } from "react";
 
-export function ScheduleMobile({ availabilities, weeklyNotes }: ScheduleProps) {
+export function ScheduleMobile({
+  guards,
+  availabilities,
+  weeklyNotes,
+}: ScheduleProps) {
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>("SUNDAY");
 
+  const notSubmittedGuards = guards.filter(
+    (g) => !availabilities.some((a) => a.userId === g.id),
+  );
+
   return (
-    <section className="flex flex-col gap-2 px-1">
+    <section className="flex flex-col gap-4 px-1">
+      <div className="flex items-center">
+        <p className="bg-[#F6EEDF] text-[#5A4815] font-semibold px-2 py-1 rounded-md flex items-center gap-1">
+          <span>{notSubmittedGuards.length}</span>
+          <span>לא הגיש{notSubmittedGuards.length > 1 ? "ו" : ""}</span>
+        </p>
+      </div>
+
       <ul className="grid grid-cols-7 border-b pb-3">
         {Object.entries(DAY_LABELS_SHORT).map(([key, value]) => (
           <li

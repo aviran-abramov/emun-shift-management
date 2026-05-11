@@ -4,6 +4,7 @@ import { Availability, GuardWeeklyNote } from "@/app/generated/prisma/client";
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 
 export function ScheduleDesktop({
+  guards,
   availabilities,
   weeklyNotes,
 }: ScheduleProps) {
@@ -11,8 +12,19 @@ export function ScheduleDesktop({
     (availability) => availability.shiftNote,
   );
 
+  const notSubmittedGuards = guards.filter(
+    (g) => !availabilities.some((a) => a.userId === g.id),
+  );
+
   return (
     <section className="flex flex-col gap-4">
+      <div className="flex items-center">
+        <p className="bg-[#F6EEDF] text-[#5A4815] font-semibold px-2 py-1 rounded-md flex items-center gap-1">
+          <span>{notSubmittedGuards.length}</span>
+          <span>לא הגיש{notSubmittedGuards.length > 1 ? "ו" : ""}</span>
+        </p>
+      </div>
+
       <table
         dir="rtl"
         className="border-separate border-spacing-1 table-fixed w-full"

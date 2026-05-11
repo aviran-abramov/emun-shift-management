@@ -25,12 +25,18 @@ export default async function AdminBuildingSchedulePage({
     include: { user: true },
   });
 
+  const guards = await prisma.user.findMany({
+    where: { role: "GUARD", buildings: { some: { id: buildingId } } },
+    select: { id: true, name: true },
+  });
+
   return (
     <PageContainer className="max-w-full flex flex-col gap-4">
       <PageTitle title={building.name} />
 
       <div className="hidden lg:block">
         <ScheduleDesktop
+          guards={guards}
           availabilities={availabilities}
           weeklyNotes={weeklyNotes}
         />
@@ -38,6 +44,7 @@ export default async function AdminBuildingSchedulePage({
 
       <div className="lg:hidden">
         <ScheduleMobile
+          guards={guards}
           availabilities={availabilities}
           weeklyNotes={weeklyNotes}
         />
