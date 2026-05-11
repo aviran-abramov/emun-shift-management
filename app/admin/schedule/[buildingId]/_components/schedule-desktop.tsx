@@ -10,34 +10,20 @@ import {
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 
 export function ScheduleDesktop({
-  guards,
   availabilities,
   weeklyNotes,
+  emptyShiftsCount,
+  notSubmittedGuardsCount,
 }: ScheduleProps) {
   const shiftNotes = availabilities.filter(
     (availability) => availability.shiftNote,
   );
 
-  const notSubmittedGuards = guards.filter(
-    (g) => !availabilities.some((a) => a.userId === g.id),
-  );
-
-  let emptyShiftsCount = 11;
-  Object.keys(DAY_LABELS).forEach((day) => {
-    Object.keys(SHIFT_LABELS).forEach((shiftType) => {
-      if (
-        availabilities.some((a) => a.day === day && a.shiftType === shiftType)
-      ) {
-        emptyShiftsCount--;
-      }
-    });
-  });
-
   return (
     <section className="flex flex-col gap-4">
       <ScheduleStats
         emptyShiftsCount={emptyShiftsCount}
-        notSubmittedCount={notSubmittedGuards.length}
+        notSubmittedGuardsCount={notSubmittedGuardsCount}
         weeklyNotesCount={weeklyNotes.length}
       />
 
@@ -58,24 +44,80 @@ export function ScheduleDesktop({
         <tbody>
           <tr>
             <th scope="row">בוקר</th>
-            <ShiftCell day="SUNDAY" shiftType="MORNING" availabilities={availabilities} />
-            <ShiftCell day="MONDAY" shiftType="MORNING" availabilities={availabilities} />
-            <ShiftCell day="TUESDAY" shiftType="MORNING" availabilities={availabilities} />
-            <ShiftCell day="WEDNESDAY" shiftType="MORNING" availabilities={availabilities} />
-            <ShiftCell day="THURSDAY" shiftType="MORNING" availabilities={availabilities} />
-            <ShiftCell day="FRIDAY" shiftType="MORNING" availabilities={availabilities} />
-            <ShiftCell day="SATURDAY" shiftType="MORNING" availabilities={availabilities} />
+            <ShiftCell
+              day="SUNDAY"
+              shiftType="MORNING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="MONDAY"
+              shiftType="MORNING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="TUESDAY"
+              shiftType="MORNING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="WEDNESDAY"
+              shiftType="MORNING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="THURSDAY"
+              shiftType="MORNING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="FRIDAY"
+              shiftType="MORNING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="SATURDAY"
+              shiftType="MORNING"
+              availabilities={availabilities}
+            />
           </tr>
 
           <tr>
             <th scope="row">ערב</th>
-            <ShiftCell day="SUNDAY" shiftType="EVENING" availabilities={availabilities} />
-            <ShiftCell day="MONDAY" shiftType="EVENING" availabilities={availabilities} />
-            <ShiftCell day="TUESDAY" shiftType="EVENING" availabilities={availabilities} />
-            <ShiftCell day="WEDNESDAY" shiftType="EVENING" availabilities={availabilities} />
-            <ShiftCell day="THURSDAY" shiftType="EVENING" availabilities={availabilities} />
-            <ShiftCell day="FRIDAY" shiftType="EVENING" availabilities={availabilities} />
-            <ShiftCell day="SATURDAY" shiftType="EVENING" availabilities={availabilities} />
+            <ShiftCell
+              day="SUNDAY"
+              shiftType="EVENING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="MONDAY"
+              shiftType="EVENING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="TUESDAY"
+              shiftType="EVENING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="WEDNESDAY"
+              shiftType="EVENING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="THURSDAY"
+              shiftType="EVENING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="FRIDAY"
+              shiftType="EVENING"
+              availabilities={availabilities}
+            />
+            <ShiftCell
+              day="SATURDAY"
+              shiftType="EVENING"
+              availabilities={availabilities}
+            />
           </tr>
 
           {/* <tr>

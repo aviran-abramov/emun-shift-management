@@ -1,12 +1,12 @@
 interface ScheduleStatsProps {
   emptyShiftsCount: number;
-  notSubmittedCount: number;
+  notSubmittedGuardsCount: number;
   weeklyNotesCount: number;
 }
 
 export function ScheduleStats({
   emptyShiftsCount,
-  notSubmittedCount,
+  notSubmittedGuardsCount,
   weeklyNotesCount,
 }: ScheduleStatsProps) {
   return (
@@ -18,10 +18,10 @@ export function ScheduleStats({
         </p>
       )}
 
-      {notSubmittedCount > 0 && (
+      {notSubmittedGuardsCount > 0 && (
         <p className="bg-[#F6EEDF] text-[#5A4815] font-semibold px-2 py-1 rounded-md flex items-center gap-1">
-          <span>{notSubmittedCount}</span>
-          <span>לא הגיש{notSubmittedCount > 1 ? "ו" : ""}</span>
+          <span>{notSubmittedGuardsCount}</span>
+          <span>לא הגיש{notSubmittedGuardsCount > 1 ? "ו" : ""}</span>
         </p>
       )}
 

@@ -9,32 +9,18 @@ import { DAY_LABELS, DAY_LABELS_SHORT, SHIFT_LABELS } from "@/lib/labels";
 import { useState } from "react";
 
 export function ScheduleMobile({
-  guards,
   availabilities,
   weeklyNotes,
+  emptyShiftsCount,
+  notSubmittedGuardsCount,
 }: ScheduleProps) {
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>("SUNDAY");
-
-  const notSubmittedGuards = guards.filter(
-    (g) => !availabilities.some((a) => a.userId === g.id),
-  );
-
-  let emptyShiftsCount = 11;
-  Object.keys(DAY_LABELS).forEach((day) => {
-    Object.keys(SHIFT_LABELS).forEach((shiftType) => {
-      if (
-        availabilities.some((a) => a.day === day && a.shiftType === shiftType)
-      ) {
-        emptyShiftsCount--;
-      }
-    });
-  });
 
   return (
     <section className="flex flex-col gap-4 px-1">
       <ScheduleStats
         emptyShiftsCount={emptyShiftsCount}
-        notSubmittedCount={notSubmittedGuards.length}
+        notSubmittedGuardsCount={notSubmittedGuardsCount}
         weeklyNotesCount={weeklyNotes.length}
       />
 

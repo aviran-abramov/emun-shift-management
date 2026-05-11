@@ -2,6 +2,7 @@ import { ScheduleDesktop } from "@/app/admin/schedule/[buildingId]/_components/s
 import { ScheduleMobile } from "@/app/admin/schedule/[buildingId]/_components/schedule-mobile";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
+import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
 
@@ -30,23 +31,40 @@ export default async function AdminBuildingSchedulePage({
     select: { id: true, name: true },
   });
 
+  const notSubmittedGuards = guards.filter(
+    (g) => !availabilities.some((a) => a.userId === g.id),
+  );
+
+  let emptyShiftsCount = 11;
+  Object.keys(DAY_LABELS).forEach((day) => {
+    Object.keys(SHIFT_LABELS).forEach((shiftType) => {
+      if (
+        availabilities.some((a) => a.day === day && a.shiftType === shiftType)
+      ) {
+        emptyShiftsCount--;
+      }
+    });
+  });
+
   return (
     <PageContainer className="max-w-full flex flex-col gap-4">
       <PageTitle title={building.name} />
 
       <div className="hidden lg:block">
         <ScheduleDesktop
-          guards={guards}
           availabilities={availabilities}
           weeklyNotes={weeklyNotes}
+          emptyShiftsCount={emptyShiftsCount}
+          notSubmittedGuardsCount={notSubmittedGuards.length}
         />
       </div>
 
       <div className="lg:hidden">
         <ScheduleMobile
-          guards={guards}
           availabilities={availabilities}
           weeklyNotes={weeklyNotes}
+          emptyShiftsCount={emptyShiftsCount}
+          notSubmittedGuardsCount={notSubmittedGuards.length}
         />
       </div>
     </PageContainer>
