@@ -26,12 +26,16 @@ export default async function AdminBuildingSchedulePage({
     include: { user: true },
   });
 
-  const guards = await prisma.user.findMany({
-    where: { role: "GUARD", buildings: { some: { id: buildingId } } },
+  const activeGuards = await prisma.user.findMany({
+    where: {
+      role: "GUARD",
+      isActive: true,
+      buildings: { some: { id: buildingId } },
+    },
     select: { id: true, name: true },
   });
 
-  const notSubmittedGuards = guards.filter(
+  const notSubmittedGuards = activeGuards.filter(
     (g) => !availabilities.some((a) => a.userId === g.id),
   );
 
@@ -52,6 +56,7 @@ export default async function AdminBuildingSchedulePage({
 
       <div className="hidden lg:block">
         <ScheduleDesktop
+          activeGuardsCount={activeGuards.length}
           availabilities={availabilities}
           weeklyNotes={weeklyNotes}
           emptyShiftsCount={emptyShiftsCount}
@@ -61,6 +66,7 @@ export default async function AdminBuildingSchedulePage({
 
       <div className="lg:hidden">
         <ScheduleMobile
+          activeGuardsCount={activeGuards.length}
           availabilities={availabilities}
           weeklyNotes={weeklyNotes}
           emptyShiftsCount={emptyShiftsCount}

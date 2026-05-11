@@ -9,6 +9,7 @@ import { DAY_LABELS, DAY_LABELS_SHORT, SHIFT_LABELS } from "@/lib/labels";
 import { useState } from "react";
 
 export function ScheduleMobile({
+  activeGuardsCount,
   availabilities,
   weeklyNotes,
   emptyShiftsCount,
@@ -18,6 +19,11 @@ export function ScheduleMobile({
 
   return (
     <section className="flex flex-col gap-4 px-1">
+      <p className="bg-[#e1f3de] text-[#27500A] self-start font-semibold px-2 py-1 rounded-md flex items-center gap-1">
+        <span>{activeGuardsCount}</span>
+        <span>{activeGuardsCount > 1 ? "שומרים פעילים" : "שומר פעיל"}</span>
+      </p>
+
       <ScheduleStats
         emptyShiftsCount={emptyShiftsCount}
         notSubmittedGuardsCount={notSubmittedGuardsCount}
