@@ -1,7 +1,12 @@
 import { GuardPill } from "@/app/admin/schedule/[buildingId]/_components/guard-pill";
 import { ScheduleStats } from "@/app/admin/schedule/[buildingId]/_components/schedule-stats";
 import { ScheduleProps } from "@/app/admin/schedule/[buildingId]/types";
-import { Availability, GuardWeeklyNote } from "@/app/generated/prisma/client";
+import {
+  Availability,
+  DayOfWeek,
+  GuardWeeklyNote,
+  ShiftType,
+} from "@/app/generated/prisma/client";
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 
 export function ScheduleDesktop({
@@ -53,176 +58,24 @@ export function ScheduleDesktop({
         <tbody>
           <tr>
             <th scope="row">בוקר</th>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter((a) => a.day === "SUNDAY" && a.shiftType === "MORNING")
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter((a) => a.day === "MONDAY" && a.shiftType === "MORNING")
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter((a) => a.day === "TUESDAY" && a.shiftType === "MORNING")
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter(
-                  (a) => a.day === "WEDNESDAY" && a.shiftType === "MORNING",
-                )
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter(
-                  (a) => a.day === "THURSDAY" && a.shiftType === "MORNING",
-                )
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter((a) => a.day === "FRIDAY" && a.shiftType === "MORNING")
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter(
-                  (a) => a.day === "SATURDAY" && a.shiftType === "MORNING",
-                )
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
+            <ShiftCell day="SUNDAY" shiftType="MORNING" availabilities={availabilities} />
+            <ShiftCell day="MONDAY" shiftType="MORNING" availabilities={availabilities} />
+            <ShiftCell day="TUESDAY" shiftType="MORNING" availabilities={availabilities} />
+            <ShiftCell day="WEDNESDAY" shiftType="MORNING" availabilities={availabilities} />
+            <ShiftCell day="THURSDAY" shiftType="MORNING" availabilities={availabilities} />
+            <ShiftCell day="FRIDAY" shiftType="MORNING" availabilities={availabilities} />
+            <ShiftCell day="SATURDAY" shiftType="MORNING" availabilities={availabilities} />
           </tr>
 
           <tr>
             <th scope="row">ערב</th>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter((a) => a.day === "SUNDAY" && a.shiftType === "EVENING")
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter((a) => a.day === "MONDAY" && a.shiftType === "EVENING")
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter((a) => a.day === "TUESDAY" && a.shiftType === "EVENING")
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter(
-                  (a) => a.day === "WEDNESDAY" && a.shiftType === "EVENING",
-                )
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter(
-                  (a) => a.day === "THURSDAY" && a.shiftType === "EVENING",
-                )
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter((a) => a.day === "FRIDAY" && a.shiftType === "EVENING")
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
-            <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
-              {availabilities
-                .filter(
-                  (a) => a.day === "SATURDAY" && a.shiftType === "EVENING",
-                )
-                .map((a) => (
-                  <GuardPill
-                    key={a.id}
-                    name={a.user.name}
-                    hasNotes={!!a.shiftNote}
-                  />
-                ))}
-            </td>
+            <ShiftCell day="SUNDAY" shiftType="EVENING" availabilities={availabilities} />
+            <ShiftCell day="MONDAY" shiftType="EVENING" availabilities={availabilities} />
+            <ShiftCell day="TUESDAY" shiftType="EVENING" availabilities={availabilities} />
+            <ShiftCell day="WEDNESDAY" shiftType="EVENING" availabilities={availabilities} />
+            <ShiftCell day="THURSDAY" shiftType="EVENING" availabilities={availabilities} />
+            <ShiftCell day="FRIDAY" shiftType="EVENING" availabilities={availabilities} />
+            <ShiftCell day="SATURDAY" shiftType="EVENING" availabilities={availabilities} />
           </tr>
 
           {/* <tr>
@@ -311,6 +164,26 @@ export function ScheduleDesktop({
       <WeeklyNotes weeklyNotes={weeklyNotes} />
       <ShiftNotes shiftNotes={shiftNotes} />
     </section>
+  );
+}
+
+interface ShiftCellProps {
+  day: DayOfWeek;
+  shiftType: ShiftType;
+  availabilities: (Availability & { user: { name: string } })[];
+}
+
+function ShiftCell({ day, shiftType, availabilities }: ShiftCellProps) {
+  const slots = availabilities.filter(
+    (a) => a.day === day && a.shiftType === shiftType,
+  );
+
+  return (
+    <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
+      {slots.map((a) => (
+        <GuardPill key={a.id} name={a.user.name} hasNotes={!!a.shiftNote} />
+      ))}
+    </td>
   );
 }
 
