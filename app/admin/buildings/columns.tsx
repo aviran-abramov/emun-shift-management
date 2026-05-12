@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+import Link from "next/link";
 
 export const columns: ColumnDef<Building>[] = [
   {
@@ -95,5 +96,17 @@ export const columns: ColumnDef<Building>[] = [
         month: "2-digit",
         year: "numeric",
       }),
+  },
+  {
+    id: "actions",
+    header: "פעולות",
+    size: 140,
+    cell: ({ row }) => (
+      <Button asChild variant="outline" size="sm">
+        <Link href={`/admin/buildings/${row.original.id}/config`}>
+          הגדר משמרות
+        </Link>
+      </Button>
+    ),
   },
 ];
