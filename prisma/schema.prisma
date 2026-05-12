@@ -89,14 +89,15 @@ model Verification {
 }
 
 model Building {
-  id        String   @id @default(cuid())
-  name      String
-  street    String
-  city      String
-  isActive  Boolean  @default(true)
-  users     User[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id               String                    @id @default(cuid())
+  name             String
+  street           String
+  city             String
+  isActive         Boolean                   @default(true)
+  users            User[]
+  createdAt        DateTime                  @default(now())
+  updatedAt        DateTime                  @updatedAt
+  shiftSlotConfigs BuildingShiftSlotConfig[]
 }
 
 enum ShiftType {
@@ -113,6 +114,20 @@ enum DayOfWeek {
   THURSDAY
   FRIDAY
   SATURDAY
+}
+
+model BuildingShiftSlotConfig {
+  id         String    @id @default(cuid())
+  buildingId String
+  building   Building  @relation(fields: [buildingId], references: [id], onDelete: Cascade)
+  dayOfWeek  DayOfWeek
+  shiftType  ShiftType
+  isEnabled  Boolean   @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([buildingId, dayOfWeek, shiftType])
 }
 
 model Availability {
