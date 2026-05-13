@@ -1,8 +1,8 @@
 "use client";
 
-import { GuardPill } from "@/app/admin/schedule/[buildingId]/_components/guard-pill";
-import { ScheduleStats } from "@/app/admin/schedule/[buildingId]/_components/schedule-stats";
-import { ScheduleProps } from "@/app/admin/schedule/[buildingId]/types";
+import { GuardPill } from "@/app/admin/buildings/[buildingId]/schedule/_components/guard-pill";
+import { ScheduleStats } from "@/app/admin/buildings/[buildingId]/schedule/_components/schedule-stats";
+import { ScheduleProps } from "@/app/admin/buildings/[buildingId]/schedule/types";
 import { Availability } from "@/app/generated/prisma/client";
 import { DayOfWeek, ShiftType } from "@/app/generated/prisma/enums";
 import { DAY_LABELS, DAY_LABELS_SHORT, SHIFT_LABELS } from "@/lib/labels";

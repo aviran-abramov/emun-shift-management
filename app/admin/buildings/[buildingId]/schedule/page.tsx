@@ -1,5 +1,5 @@
-import { ScheduleDesktop } from "@/app/admin/schedule/[buildingId]/_components/schedule-desktop";
-import { ScheduleMobile } from "@/app/admin/schedule/[buildingId]/_components/schedule-mobile";
+import { ScheduleDesktop } from "@/app/admin/buildings/[buildingId]/schedule/_components/schedule-desktop";
+import { ScheduleMobile } from "@/app/admin/buildings/[buildingId]/schedule/_components/schedule-mobile";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";

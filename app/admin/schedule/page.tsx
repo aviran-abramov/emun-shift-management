@@ -26,7 +26,7 @@ export default async function AdminSchedulePage() {
             {buildings.map((building) => (
               <li key={building.id}>
                 <Link
-                  href={`/admin/schedule/${building.id}`}
+                  href={`/admin/buildings/${building.id}/schedule`}
                   className="text-blue-500 hover:underline text-xl font-semibold"
                 >
                   {building.name}
