@@ -4,13 +4,16 @@ import { Button } from "@/components/ui/button";
 import { CardContent, CardFooter } from "@/components/ui/card";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
+import { Loader2 } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInFormData, SignInSchema } from "@/lib/validators/auth";
 import { signIn } from "@/app/(auth)/sign-in/actions";
+import { useState } from "react";
 
 export default function SignInForm() {
+  const [isSigningIn, setIsSigningIn] = useState(false);
+
   const form = useForm<SignInFormData>({
     resolver: zodResolver(SignInSchema),
     defaultValues: {
@@ -20,9 +23,12 @@ export default function SignInForm() {
   });
 
   const onSubmit = async (data: SignInFormData) => {
+    setIsSigningIn(true);
+
     const result = await signIn(data);
     if (!result.success) {
       form.setError("root", { message: result.error });
+      setIsSigningIn(false);
     }
   };
 
@@ -77,12 +83,15 @@ export default function SignInForm() {
         {form.formState.errors.root && (
           <FieldError errors={[form.formState.errors.root]} />
         )}
-        <Button
-          type="submit"
-          disabled={form.formState.isSubmitting}
-          className="self-stretch"
-        >
-          התחבר
+        <Button type="submit" disabled={isSigningIn} className="self-stretch">
+          {isSigningIn ? (
+            <>
+              <Loader2 className="animate-spin" />
+              <span>מתחבר</span>
+            </>
+          ) : (
+            "התחבר"
+          )}
         </Button>
       </CardFooter>
     </form>
