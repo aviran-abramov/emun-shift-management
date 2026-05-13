@@ -1,5 +1,6 @@
 "use client";
 
+import { updateBuildingShiftConfig } from "@/app/admin/buildings/[buildingId]/config/actions";
 import {
   Building,
   BuildingShiftSlotConfig,
@@ -26,8 +27,20 @@ export default function EditBuildingShiftConfigForm({
     );
   };
 
+  const handleSubmit = async (event: React.SubmitEvent) => {
+    event.preventDefault();
+
+    await updateBuildingShiftConfig({
+      buildingId: building.id,
+      slots: slots.map((slot) => ({
+        id: slot.id,
+        isEnabled: slot.isEnabled,
+      })),
+    });
+  };
+
   return (
-    <form className="space-y-2">
+    <form onSubmit={handleSubmit} className="space-y-2">
       <table
         dir="rtl"
         className="border-separate border-spacing-1 table-fixed w-full"
@@ -67,7 +80,7 @@ export default function EditBuildingShiftConfigForm({
           ))}
         </tbody>
       </table>
-      <Button type="button">עדכן</Button>
+      <Button type="submit">עדכן</Button>
     </form>
   );
 }

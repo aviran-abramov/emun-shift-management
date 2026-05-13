@@ -19,3 +19,17 @@ export const CreateBuildingSchema = z.object({
 });
 
 export type CreateBuildingFormData = z.infer<typeof CreateBuildingSchema>;
+
+export const UpdateBuildingShiftConfigSchema = z.object({
+  buildingId: z.string().min(1, "מזהה בניין חסר"),
+  slots: z.array(
+    z.object({
+      id: z.string().min(1, "מזהה סלוט חסר"),
+      isEnabled: z.boolean(),
+    }),
+  ),
+});
+
+export type UpdateBuildingShiftConfigFormData = z.infer<
+  typeof UpdateBuildingShiftConfigSchema
+>;
