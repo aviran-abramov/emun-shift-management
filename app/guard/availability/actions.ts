@@ -1,24 +1,23 @@
 "use server";
 
-import { Prisma } from "@/app/generated/prisma/client";
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import prisma from "@/lib/prisma";
 import { getSessionWithRole } from "@/lib/session";
 import {
-  CreateAvailabilitySchema,
   CreateWeeklyNoteSchema,
   DeleteAvailabilitySchema,
   DeleteWeeklyNoteSchema,
+  SaveAvailabilitiesSchema,
 } from "@/lib/validators/availability";
 import { revalidatePath } from "next/cache";
 
-export async function createAvailability(data: unknown): Promise<ActionResult> {
+export async function saveAvailabilities(data: unknown): Promise<ActionResult> {
   const session = await getSessionWithRole("GUARD");
   if (!session) {
     return { success: false, error: "אין לך הרשאה להגיש משמרות" };
   }
 
-  const result = CreateAvailabilitySchema.safeParse(data);
+  const result = SaveAvailabilitiesSchema.safeParse(data);
   if (!result.success) {
     return {
       success: false,
@@ -26,24 +25,25 @@ export async function createAvailability(data: unknown): Promise<ActionResult> {
     };
   }
 
+  const { slots } = result.data;
+
   try {
-    await prisma.availability.create({
-      data: {
-        userId: session.user.id,
-        day: result.data.day,
-        shiftType: result.data.shiftType,
-        shiftNote: result.data.shiftNote || null,
-      },
+    await prisma.$transaction(async (tx) => {
+      await tx.availability.deleteMany({
+        where: { userId: session.user.id },
+      });
+
+      await tx.availability.createMany({
+        data: slots.map((slot) => ({
+          userId: session.user.id,
+          day: slot.dayOfWeek,
+          shiftType: slot.shiftType,
+        })),
+      });
     });
   } catch (error) {
-    if (
-      error instanceof Prisma.PrismaClientKnownRequestError &&
-      error.code === "P2002"
-    ) {
-      return { success: false, error: "כבר הגשת זמינות למשמרת זו" };
-    }
     console.error(error);
-    return { success: false, error: "הוספת המשמרת נכשלה" };
+    return { success: false, error: "הוספת המשמרות נכשלה" };
   }
 
   revalidatePath("/guard/availability");
