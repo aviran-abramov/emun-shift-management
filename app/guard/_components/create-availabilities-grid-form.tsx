@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 import { Check, X } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface CreateAvailabilitiesGridFormProps {
   availabilities: Availability[];
@@ -44,12 +45,17 @@ export function CreateAvailabilitiesGridForm({
   const handleSubmit = async (event: React.SubmitEvent) => {
     event.preventDefault();
 
-    await saveAvailabilities({
+    const result = await saveAvailabilities({
       slots: selectedSlots.map((slot) => ({
         dayOfWeek: slot.day,
         shiftType: slot.shiftType,
       })),
     });
+    if (!result.success) {
+      toast.error(result.error);
+      return;
+    }
+    toast.success("הגשת המשמרות בוצעה בהצלחה!");
   };
 
   return (
