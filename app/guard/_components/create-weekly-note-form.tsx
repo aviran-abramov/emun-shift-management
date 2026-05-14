@@ -15,6 +15,7 @@ import {
 } from "@/lib/validators/availability";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export function CreateWeeklyNoteForm() {
   const form = useForm<CreateWeeklyNoteFormData>({
@@ -28,6 +29,7 @@ export function CreateWeeklyNoteForm() {
     const result = await createWeeklyNote(data);
     if (result.success) {
       form.reset();
+      toast.success("ההערות עודכנו בהצלחה!");
     } else {
       form.setError("root", { message: result.error });
     }
