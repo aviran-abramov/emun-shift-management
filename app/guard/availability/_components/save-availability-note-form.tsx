@@ -20,6 +20,7 @@ import {
 } from "@/lib/validators/availability";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 interface SaveAvailabilityNoteFormProps {
   onTrigger: () => void;
@@ -36,7 +37,12 @@ export default function SaveAvailabilityNoteForm({
   });
 
   const onSubmit = async (data: SaveAvailabilityNoteFormData) => {
-    await saveAvailabilityNote(data);
+    const result = await saveAvailabilityNote(data);
+    if (!result.success) {
+      toast.error(result.error);
+      return;
+    }
+    toast.success("ההערה עודכנה בהצלחה!");
   };
 
   return (
