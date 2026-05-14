@@ -10,6 +10,7 @@ import {
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createBuilding } from "@/app/admin/buildings/actions";
+import { toast } from "sonner";
 
 interface CreateBuildingFormProps {
   onSuccess: () => void;
@@ -30,6 +31,7 @@ export function CreateBuildingForm({ onSuccess }: CreateBuildingFormProps) {
     if (result.success) {
       form.reset();
       onSuccess();
+      toast.success("הבניין נוסף בהצלחה!");
     } else {
       form.setError("root", { message: result.error });
     }
