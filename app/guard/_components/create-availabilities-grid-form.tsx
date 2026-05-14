@@ -17,7 +17,7 @@ export function CreateAvailabilitiesGridForm({
 }: CreateAvailabilitiesGridFormProps) {
   const [selectedSlots, setSelectedSlots] = useState(
     availabilities.map((a) => ({
-      day: a.day,
+      day: a.dayOfWeek,
       shiftType: a.shiftType,
     })),
   );

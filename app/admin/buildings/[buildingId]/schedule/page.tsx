@@ -43,7 +43,7 @@ export default async function AdminBuildingSchedulePage({
   Object.keys(DAY_LABELS).forEach((day) => {
     Object.keys(SHIFT_LABELS).forEach((shiftType) => {
       if (
-        availabilities.some((a) => a.day === day && a.shiftType === shiftType)
+        availabilities.some((a) => a.dayOfWeek === day && a.shiftType === shiftType)
       ) {
         emptyShiftsCount--;
       }

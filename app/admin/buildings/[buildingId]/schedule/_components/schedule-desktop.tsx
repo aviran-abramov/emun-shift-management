@@ -130,7 +130,7 @@ export function ScheduleDesktop({
             <th scope="row">לילה</th>
             <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
               {availabilities
-                .filter((a) => a.day === "SUNDAY" && a.shiftType === "NIGHT")
+                .filter((a) => a.dayOfWeek === "SUNDAY" && a.shiftType === "NIGHT")
                 .map((a) => (
                   <GuardPill
                     key={a.id}
@@ -141,7 +141,7 @@ export function ScheduleDesktop({
             </td>
             <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
               {availabilities
-                .filter((a) => a.day === "MONDAY" && a.shiftType === "NIGHT")
+                .filter((a) => a.dayOfWeek === "MONDAY" && a.shiftType === "NIGHT")
                 .map((a) => (
                   <GuardPill
                     key={a.id}
@@ -152,7 +152,7 @@ export function ScheduleDesktop({
             </td>
             <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
               {availabilities
-                .filter((a) => a.day === "TUESDAY" && a.shiftType === "NIGHT")
+                .filter((a) => a.dayOfWeek === "TUESDAY" && a.shiftType === "NIGHT")
                 .map((a) => (
                   <GuardPill
                     key={a.id}
@@ -163,7 +163,7 @@ export function ScheduleDesktop({
             </td>
             <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
               {availabilities
-                .filter((a) => a.day === "WEDNESDAY" && a.shiftType === "NIGHT")
+                .filter((a) => a.dayOfWeek === "WEDNESDAY" && a.shiftType === "NIGHT")
                 .map((a) => (
                   <GuardPill
                     key={a.id}
@@ -174,7 +174,7 @@ export function ScheduleDesktop({
             </td>
             <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
               {availabilities
-                .filter((a) => a.day === "THURSDAY" && a.shiftType === "NIGHT")
+                .filter((a) => a.dayOfWeek === "THURSDAY" && a.shiftType === "NIGHT")
                 .map((a) => (
                   <GuardPill
                     key={a.id}
@@ -185,7 +185,7 @@ export function ScheduleDesktop({
             </td>
             <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
               {availabilities
-                .filter((a) => a.day === "FRIDAY" && a.shiftType === "NIGHT")
+                .filter((a) => a.dayOfWeek === "FRIDAY" && a.shiftType === "NIGHT")
                 .map((a) => (
                   <GuardPill
                     key={a.id}
@@ -196,7 +196,7 @@ export function ScheduleDesktop({
             </td>
             <td className="bg-[#F6EEDF] p-1.5 rounded space-y-1 align-top">
               {availabilities
-                .filter((a) => a.day === "SATURDAY" && a.shiftType === "NIGHT")
+                .filter((a) => a.dayOfWeek === "SATURDAY" && a.shiftType === "NIGHT")
                 .map((a) => (
                   <GuardPill
                     key={a.id}
@@ -230,7 +230,7 @@ function ShiftCell({ day, shiftType, availabilities }: ShiftCellProps) {
     );
 
   const slots = availabilities.filter(
-    (a) => a.day === day && a.shiftType === shiftType,
+    (a) => a.dayOfWeek === day && a.shiftType === shiftType,
   );
 
   if (slots.length === 0)
@@ -262,7 +262,7 @@ function ShiftNotes({ shiftNotes }: ShiftNotesProps) {
           {shiftNotes.map((note) => (
             <li key={note.id} className="flex items-start gap-1 font-medium">
               <span className="text-muted-foreground">
-                {DAY_LABELS[note.day]}
+                {DAY_LABELS[note.dayOfWeek]}
               </span>
               <span className="text-muted-foreground">
                 {SHIFT_LABELS[note.shiftType]}

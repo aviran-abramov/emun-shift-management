@@ -56,7 +56,7 @@ export function ScheduleMobile({
                 key={shift}
                 type={shift}
                 availabilities={availabilities.filter(
-                  (a) => a.day === selectedDay && a.shiftType === shift,
+                  (a) => a.dayOfWeek === selectedDay && a.shiftType === shift,
                 )}
               />
             ))}

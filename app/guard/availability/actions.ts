@@ -36,7 +36,7 @@ export async function saveAvailabilities(data: unknown): Promise<ActionResult> {
       await tx.availability.createMany({
         data: slots.map((slot) => ({
           userId: session.user.id,
-          day: slot.dayOfWeek,
+          dayOfWeek: slot.dayOfWeek,
           shiftType: slot.shiftType,
         })),
       });

@@ -16,7 +16,7 @@ export async function WeeklyAvailabilities() {
         <DaySection
           key={day}
           dayName={DAY_LABELS[day]}
-          availabilities={availabilties.filter((a) => a.day === day)}
+          availabilities={availabilties.filter((a) => a.dayOfWeek === day)}
         />
       ))}
     </div>
