@@ -20,23 +20,29 @@ export function AvailabilityNotes({ availabilities }: AvailabilityNotesProps) {
 
   return (
     <section className="max-w-sm space-y-2">
-      <SectionTitle>הערות למשמרות ספציפיות</SectionTitle>
+      <div className="bg-[#F5F4ED] rounded-lg px-4 py-2">
+        <SectionTitle>הערות למשמרות ספציפיות</SectionTitle>
 
-      {availabilitiesWithNotes.length > 0 ? (
-        <ul>
-          {availabilitiesWithNotes.map((a) => (
-            <li key={a.id} className="flex items-center gap-1">
-              <span>{DAY_LABELS[a.dayOfWeek]}</span>
-              <span>-</span>
-              <span>{SHIFT_LABELS[a.shiftType]}</span>
-              <span>-</span>
-              <span>{a.shiftNote}</span>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="text-muted-foreground">לא הוספת הערות</p>
-      )}
+        {availabilitiesWithNotes.length > 0 ? (
+          <ul>
+            {availabilitiesWithNotes.map((a) => (
+              <li key={a.id} className="flex items-center gap-1">
+                <span className="text-orange-500/80 text-xs">&#9679;</span>
+                <span className="text-muted-foreground">
+                  {DAY_LABELS[a.dayOfWeek]}
+                </span>
+                <span className="text-muted-foreground">
+                  {SHIFT_LABELS[a.shiftType]}
+                </span>
+                <span>-</span>
+                <span>{a.shiftNote}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-muted-foreground">לא הוספת הערות</p>
+        )}
+      </div>
 
       {!isOpen ? (
         <Button type="button" onClick={handleTrigger}>
