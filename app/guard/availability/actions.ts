@@ -8,6 +8,7 @@ import {
   DeleteAvailabilitySchema,
   DeleteWeeklyNoteSchema,
   SaveAvailabilitiesSchema,
+  SaveAvailabilityNoteSchema,
 } from "@/lib/validators/availability";
 import { revalidatePath } from "next/cache";
 
@@ -134,6 +135,37 @@ export async function deleteWeeklyNote(data: unknown): Promise<ActionResult> {
       success: false,
       error: "אינך רשאי למחוק הערות",
     };
+  }
+
+  revalidatePath("/guard/availability");
+  return { success: true };
+}
+
+export async function saveAvailabilityNote(
+  data: unknown,
+): Promise<ActionResult> {
+  const session = await getSessionWithRole("GUARD");
+  if (!session) return { success: false, error: "הנך לא רשאי להוסיף הערה" };
+
+  const result = SaveAvailabilityNoteSchema.safeParse(data);
+  if (!result.success) {
+    return { success: false, error: createErrorMessage(result.error.issues) };
+  }
+
+  try {
+    await prisma.availability.update({
+      where: {
+        userId_dayOfWeek_shiftType: {
+          userId: session.user.id,
+          dayOfWeek: result.data.dayOfWeek,
+          shiftType: result.data.shiftType,
+        },
+      },
+      data: { shiftNote: result.data.shiftNote },
+    });
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "הוספת ההערה נכשלה" };
   }
 
   revalidatePath("/guard/availability");

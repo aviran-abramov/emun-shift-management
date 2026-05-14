@@ -37,3 +37,13 @@ export const DeleteWeeklyNoteSchema = z.object({
 });
 
 export type DeleteWeeklyNoteFormData = z.infer<typeof DeleteWeeklyNoteSchema>;
+
+export const SaveAvailabilityNoteSchema = z.object({
+  dayOfWeek: z.enum(DayOfWeek, { error: "יש לבחור יום" }),
+  shiftType: z.enum(ShiftType, { error: "יש לבחור משמרת" }),
+  shiftNote: z.string().trim().min(1, { error: "יש להזין הערה" }),
+});
+
+export type SaveAvailabilityNoteFormData = z.infer<
+  typeof SaveAvailabilityNoteSchema
+>;

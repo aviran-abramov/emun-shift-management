@@ -25,7 +25,7 @@ export default async function GuardAvailabilityPage() {
           <CreateAvailabilitiesGridForm availabilities={availabilities} />
         </section>
 
-        <AvailabilityNotes />
+        <AvailabilityNotes availabilities={availabilities} />
 
         <section className="max-w-sm">
           <SectionTitle>הערות כלליות</SectionTitle>
