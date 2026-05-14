@@ -7,6 +7,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createGuard } from "@/app/admin/guards/actions";
 import { CreateGuardFormData, CreateGuardSchema } from "@/lib/validators/guard";
+import { toast } from "sonner";
 
 interface CreateGuardFormProps {
   onSuccess: () => void;
@@ -28,6 +29,7 @@ export function CreateGuardForm({ onSuccess }: CreateGuardFormProps) {
     if (result.success) {
       form.reset();
       onSuccess();
+      toast.success("השומר נוסף בהצלחה!");
     } else {
       form.setError("root", { message: result.error });
     }
