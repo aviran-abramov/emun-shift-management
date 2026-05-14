@@ -1,6 +1,7 @@
 import { CreateAvailabilitiesGridForm } from "@/app/guard/_components/create-availabilities-grid-form";
 import { CreateWeeklyNoteForm } from "@/app/guard/_components/create-weekly-note-form";
 import { DeleteWeeklyNoteButton } from "@/app/guard/_components/delete-weekly-note-button";
+import { AvailabilityNotes } from "@/app/guard/availability/_components/availability-notes";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
 import { SectionTitle } from "@/components/layout/section-title";
@@ -23,6 +24,8 @@ export default async function GuardAvailabilityPage() {
         <section>
           <CreateAvailabilitiesGridForm availabilities={availabilities} />
         </section>
+
+        <AvailabilityNotes />
 
         <section className="max-w-sm">
           <SectionTitle>הערות כלליות</SectionTitle>
