@@ -21,6 +21,7 @@ export async function getGuards(): Promise<Guard[]> {
       lastName: true,
       username: true,
       createdAt: true,
+      buildings: true,
     },
     orderBy: {
       createdAt: "desc",

@@ -1,10 +1,14 @@
 "use client";
 
+import { Building } from "@/app/generated/prisma/client";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
 
 export type Guard = {
   id: string;
+  buildings: Building[];
   isActive: boolean;
   firstName: string;
   lastName: string;
@@ -46,5 +50,18 @@ export const columns: ColumnDef<Guard>[] = [
         month: "2-digit",
         year: "numeric",
       }),
+  },
+  {
+    id: "actions",
+    header: "פעולות",
+    size: 140,
+    cell: ({ row }) => (
+      <Button asChild variant="outline" size="sm">
+        <Link href={`/admin/guards/${row.original.id}/buildings`}>
+          <span>נהל בניינים</span>
+          <span>({row.original.buildings.length})</span>
+        </Link>
+      </Button>
+    ),
   },
 ];
