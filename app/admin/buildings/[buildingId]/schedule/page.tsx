@@ -17,23 +17,23 @@ export default async function AdminBuildingSchedulePage({
   });
   if (!building) notFound();
 
-  const availabilities = await prisma.availability.findMany({
-    where: { user: { buildings: { some: { id: buildingId } } } },
-    include: { user: true },
-  });
-
-  const weeklyNotes = await prisma.guardWeeklyNote.findMany({
-    include: { user: true },
-  });
-
-  const activeGuards = await prisma.user.findMany({
-    where: {
-      role: "GUARD",
-      isActive: true,
-      buildings: { some: { id: buildingId } },
-    },
-    select: { id: true, name: true },
-  });
+  const [availabilities, weeklyNotes, activeGuards] = await Promise.all([
+    prisma.availability.findMany({
+      where: { user: { buildings: { some: { id: buildingId } } } },
+      include: { user: true },
+    }),
+    prisma.guardWeeklyNote.findMany({
+      include: { user: true },
+    }),
+    prisma.user.findMany({
+      where: {
+        role: "GUARD",
+        isActive: true,
+        buildings: { some: { id: buildingId } },
+      },
+      select: { id: true, name: true },
+    }),
+  ]);
 
   const notSubmittedGuards = activeGuards.filter(
     (g) => !availabilities.some((a) => a.userId === g.id),
@@ -43,7 +43,9 @@ export default async function AdminBuildingSchedulePage({
   Object.keys(DAY_LABELS).forEach((day) => {
     Object.keys(SHIFT_LABELS).forEach((shiftType) => {
       if (
-        availabilities.some((a) => a.dayOfWeek === day && a.shiftType === shiftType)
+        availabilities.some(
+          (a) => a.dayOfWeek === day && a.shiftType === shiftType,
+        )
       ) {
         emptyShiftsCount--;
       }
