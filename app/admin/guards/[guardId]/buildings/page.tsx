@@ -1,3 +1,4 @@
+import AddBuildingForm from "@/app/admin/guards/[guardId]/buildings/_components/add-building-form";
 import { RemoveBuildingButton } from "@/app/admin/guards/[guardId]/buildings/_components/remove-building-button";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
@@ -19,12 +20,19 @@ export default async function AdminGuardBuildings({
   });
   if (!guard) notFound();
 
+  const buildings = await prisma.building.findMany({});
+
   return (
     <PageContainer>
       <PageTitle
         title={`בניינים - ${guard.name}`}
         count={guard.buildings.length}
       />
+
+      <section>
+        <SectionTitle>הוסף בניין</SectionTitle>
+        <AddBuildingForm guardId={guardId} buildings={buildings} />
+      </section>
 
       <section className="flex flex-col gap-1">
         <SectionTitle>רשימת בניינים</SectionTitle>

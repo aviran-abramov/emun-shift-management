@@ -24,6 +24,13 @@ export const CreateGuardSchema = z.object({
 
 export type CreateGuardFormData = z.infer<typeof CreateGuardSchema>;
 
+export const AddBuildingSchema = z.object({
+  buildingId: z.string().trim().min(1, { error: "מזהה בניין חסר" }),
+  guardId: z.string().trim().min(1, { error: "מזהה עובד חסר" }),
+});
+
+export type AddBuildingFormData = z.infer<typeof AddBuildingSchema>;
+
 export const RemoveBuildingSchema = z.object({
   buildingId: z.string().trim().min(1, { error: "מזהה בניין חסר" }),
   guardId: z.string().trim().min(1, { error: "מזהה עובד חסר" }),
