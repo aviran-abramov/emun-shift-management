@@ -4,12 +4,16 @@ import { DataTable } from "@/components/ui/data-table";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
 import { CreateGuardDialog } from "@/app/admin/guards/_components/create-guard-dialog";
-import { getGuards } from "@/app/admin/guards/actions";
+import prisma from "@/lib/prisma";
 
 export const metadata: Metadata = { title: "שומרים" };
 
 export default async function GuardsPage() {
-  const guards = await getGuards();
+  const guards = await prisma.user.findMany({
+    where: { role: "GUARD" },
+    include: { buildings: true },
+    orderBy: { createdAt: "desc" },
+  });
 
   return (
     <PageContainer>
