@@ -21,7 +21,7 @@ export default async function GuardAvailabilityPage() {
       <div className="flex flex-col gap-4">
         <PageTitle title="הגשת משמרות" />
 
-        <section>
+        <section className="bg-[#F5F4ED] rounded-lg p-2">
           <CreateAvailabilitiesGridForm availabilities={availabilities} />
         </section>
 
