@@ -47,3 +47,11 @@ export const SaveAvailabilityNoteSchema = z.object({
 export type SaveAvailabilityNoteFormData = z.infer<
   typeof SaveAvailabilityNoteSchema
 >;
+
+export const DeleteAvailabilityNoteSchema = z.object({
+  availabilityId: z.string(),
+});
+
+export type DeleteAvailabilityNoteFormData = z.infer<
+  typeof DeleteAvailabilityNoteSchema
+>;
