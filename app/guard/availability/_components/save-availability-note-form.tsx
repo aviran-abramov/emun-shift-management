@@ -51,6 +51,7 @@ export default function SaveAvailabilityNoteForm({
       onSubmit={form.handleSubmit(onSubmit)}
       className="space-y-2 border rounded-lg p-3"
     >
+      <h3 className="font-semibold">הוספת הערה</h3>
       <FieldGroup className="flex flex-col gap-2">
         <Controller
           name="dayOfWeek"
