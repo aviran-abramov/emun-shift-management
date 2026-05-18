@@ -21,7 +21,7 @@ export function AvailabilityNotes({ availabilities }: AvailabilityNotesProps) {
 
   return (
     <section className="max-w-sm space-y-2">
-      <div className="bg-[#F5F4ED] rounded-lg px-4 py-2">
+      <div className="bg-[#F5F4ED] rounded-lg px-4 py-2 space-y-2">
         <SectionTitle>הערות למשמרות ספציפיות</SectionTitle>
 
         {availabilitiesWithNotes.length > 0 ? (
@@ -46,16 +46,16 @@ export function AvailabilityNotes({ availabilities }: AvailabilityNotesProps) {
         ) : (
           <p className="text-muted-foreground">לא הוספת הערות</p>
         )}
-      </div>
 
-      {!isOpen ? (
-        <Button type="button" onClick={handleTrigger}>
-          <span className="text-xl font-bold">+</span>
-          <span>הוסף הערה</span>
-        </Button>
-      ) : (
-        <SaveAvailabilityNoteForm onTrigger={handleTrigger} />
-      )}
+        {!isOpen ? (
+          <Button type="button" onClick={handleTrigger}>
+            <span className="text-xl font-bold">+</span>
+            <span>הוסף הערה</span>
+          </Button>
+        ) : (
+          <SaveAvailabilityNoteForm onTrigger={handleTrigger} />
+        )}
+      </div>
     </section>
   );
 }

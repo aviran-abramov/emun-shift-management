@@ -63,7 +63,7 @@ export default function SaveAvailabilityNoteForm({
                 value={field.value}
                 onValueChange={field.onChange}
               >
-                <SelectTrigger>
+                <SelectTrigger className="bg-white">
                   <SelectValue placeholder="בחר יום"></SelectValue>
                 </SelectTrigger>
                 <SelectContent>
@@ -92,7 +92,7 @@ export default function SaveAvailabilityNoteForm({
                 value={field.value}
                 onValueChange={field.onChange}
               >
-                <SelectTrigger>
+                <SelectTrigger className="bg-white">
                   <SelectValue placeholder="בחר סוג משמרת"></SelectValue>
                 </SelectTrigger>
                 <SelectContent>
@@ -118,7 +118,7 @@ export default function SaveAvailabilityNoteForm({
           render={({ field }) => (
             <Field>
               <FieldLabel>הערה</FieldLabel>
-              <Textarea {...field} />
+              <Textarea {...field} className="bg-white" />
             </Field>
           )}
         />
