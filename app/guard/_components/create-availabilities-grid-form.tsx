@@ -4,7 +4,7 @@ import { Availability } from "@/app/generated/prisma/client";
 import { DayOfWeek, ShiftType } from "@/app/generated/prisma/enums";
 import { saveAvailabilities } from "@/app/guard/availability/actions";
 import { Button } from "@/components/ui/button";
-import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
+import { DAY_LABELS, DAY_LABELS_SHORT, SHIFT_LABELS } from "@/lib/labels";
 import { Check, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -67,7 +67,7 @@ export function CreateAvailabilitiesGridForm({
         <thead>
           <tr>
             <th scope="col" className="md:w-16"></th>
-            {Object.entries(DAY_LABELS).map(([dayType, dayLabel]) => (
+            {Object.entries(DAY_LABELS_SHORT).map(([dayType, dayLabel]) => (
               <th key={dayType} scope="col">
                 {dayLabel}
               </th>
