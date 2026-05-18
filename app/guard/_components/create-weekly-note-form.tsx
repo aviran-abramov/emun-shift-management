@@ -37,7 +37,7 @@ export function CreateWeeklyNoteForm() {
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
-      <FieldGroup>
+      <FieldGroup className="gap-2">
         <Controller
           name="content"
           control={form.control}
@@ -48,6 +48,7 @@ export function CreateWeeklyNoteForm() {
                 {...field}
                 id={field.name}
                 aria-invalid={fieldState.invalid}
+                className="bg-white"
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>

@@ -27,7 +27,7 @@ export default async function GuardAvailabilityPage() {
 
         <AvailabilityNotes availabilities={availabilities} />
 
-        <section className="max-w-sm">
+        <section className="max-w-sm bg-[#F5F4ED] rounded-lg px-4 py-2">
           <SectionTitle>הערות כלליות</SectionTitle>
           {weeklyNote ? (
             <div className="space-y-2">
