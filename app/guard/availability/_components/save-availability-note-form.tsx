@@ -43,6 +43,7 @@ export default function SaveAvailabilityNoteForm({
       return;
     }
     toast.success("ההערה עודכנה בהצלחה!");
+    onTrigger();
   };
 
   return (
