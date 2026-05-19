@@ -17,15 +17,13 @@ export default async function GuardsPage() {
 
   return (
     <PageContainer>
-      <section className="flex flex-col gap-3">
-        <PageTitle title="רשימת שומרים" count={guards.length} />
-        <CreateGuardDialog />
-        <DataTable
-          columns={columns}
-          data={guards}
-          filter={{ column: "firstName", placeholder: "סנן לפי שם השומר" }}
-        />
-      </section>
+      <PageTitle title="רשימת שומרים" count={guards.length} />
+      <CreateGuardDialog />
+      <DataTable
+        columns={columns}
+        data={guards}
+        filter={{ column: "firstName", placeholder: "סנן לפי שם השומר" }}
+      />
     </PageContainer>
   );
 }

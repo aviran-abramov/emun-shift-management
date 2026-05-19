@@ -13,15 +13,13 @@ export default async function BuildingsPage() {
 
   return (
     <PageContainer>
-      <section className="flex flex-col gap-3">
-        <PageTitle title="רשימת בניינים" count={buildings.length} />
-        <CreateBuildingDialog />
-        <DataTable
-          columns={columns}
-          data={buildings}
-          filter={{ column: "name", placeholder: "סנן לפי שם הבניין" }}
-        />
-      </section>
+      <PageTitle title="רשימת בניינים" count={buildings.length} />
+      <CreateBuildingDialog />
+      <DataTable
+        columns={columns}
+        data={buildings}
+        filter={{ column: "name", placeholder: "סנן לפי שם הבניין" }}
+      />
     </PageContainer>
   );
 }

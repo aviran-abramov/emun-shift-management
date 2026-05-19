@@ -18,27 +18,25 @@ export default async function GuardAvailabilityPage() {
 
   return (
     <PageContainer>
-      <div className="flex flex-col gap-4">
-        <PageTitle title="הגשת משמרות" />
+      <PageTitle title="הגשת משמרות" />
 
-        <section className="bg-[#F5F4ED] rounded-lg p-2">
-          <CreateAvailabilitiesGridForm availabilities={availabilities} />
-        </section>
+      <section className="bg-[#F5F4ED] rounded-lg p-2">
+        <CreateAvailabilitiesGridForm availabilities={availabilities} />
+      </section>
 
-        <AvailabilityNotes availabilities={availabilities} />
+      <AvailabilityNotes availabilities={availabilities} />
 
-        <section className="max-w-sm bg-[#F5F4ED] rounded-lg px-4 py-2">
-          <SectionTitle>הערות כלליות</SectionTitle>
-          {weeklyNote ? (
-            <div className="space-y-2">
-              <p className="mr-1">{weeklyNote.content}</p>
-              <DeleteWeeklyNoteButton id={weeklyNote.id} />
-            </div>
-          ) : (
-            <CreateWeeklyNoteForm />
-          )}
-        </section>
-      </div>
+      <section className="max-w-sm bg-[#F5F4ED] rounded-lg px-4 py-2">
+        <SectionTitle>הערות כלליות</SectionTitle>
+        {weeklyNote ? (
+          <div className="space-y-2">
+            <p className="mr-1">{weeklyNote.content}</p>
+            <DeleteWeeklyNoteButton id={weeklyNote.id} />
+          </div>
+        ) : (
+          <CreateWeeklyNoteForm />
+        )}
+      </section>
     </PageContainer>
   );
 }

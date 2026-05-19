@@ -16,26 +16,26 @@ export default async function AdminSchedulePage() {
 
   return (
     <PageContainer className="max-w-2xl">
-      <div className="flex flex-col gap-4">
-        <PageTitle title="סידורי עבודה" />
-        <div className="flex flex-col gap-4">
-          <SectionTitle className="font-semibold">
-            רשימת בניינים ({buildings.length})
-          </SectionTitle>
-          <ul>
-            {buildings.map((building) => (
-              <li key={building.id}>
-                <Link
-                  href={`/admin/buildings/${building.id}/schedule`}
-                  className="text-blue-500 hover:underline text-xl font-semibold"
-                >
-                  {building.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <PageTitle title="סידורי עבודה" />
+
+      <section className="flex flex-col gap-2">
+        <SectionTitle className="font-semibold">
+          רשימת בניינים ({buildings.length})
+        </SectionTitle>
+
+        <ul>
+          {buildings.map((building) => (
+            <li key={building.id}>
+              <Link
+                href={`/admin/buildings/${building.id}/schedule`}
+                className="text-blue-500 hover:underline text-xl font-semibold"
+              >
+                {building.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
     </PageContainer>
   );
 }

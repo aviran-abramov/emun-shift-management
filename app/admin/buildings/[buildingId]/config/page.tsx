@@ -18,11 +18,9 @@ export default async function AdminBuildingConfigPage({
 
   return (
     <PageContainer>
-      <section className="flex flex-col gap-3">
-        <PageTitle title={`הגדרת משמרות - ${building.name}`} />
+      <PageTitle title={`הגדרת משמרות - ${building.name}`} />
 
-        <EditBuildingShiftConfigForm building={building} />
-      </section>
+      <EditBuildingShiftConfigForm building={building} />
     </PageContainer>
   );
 }
