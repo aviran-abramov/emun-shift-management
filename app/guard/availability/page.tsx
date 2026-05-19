@@ -1,10 +1,8 @@
 import { CreateAvailabilitiesGridForm } from "@/app/guard/_components/create-availabilities-grid-form";
-import { CreateWeeklyNoteForm } from "@/app/guard/_components/create-weekly-note-form";
-import { DeleteWeeklyNoteButton } from "@/app/guard/_components/delete-weekly-note-button";
 import { AvailabilityNotes } from "@/app/guard/availability/_components/availability-notes";
+import { WeeklyNote } from "@/app/guard/availability/_components/weekly-note";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
-import { SectionTitle } from "@/components/layout/section-title";
 import prisma from "@/lib/prisma";
 import { requireRole } from "@/lib/session";
 
@@ -26,17 +24,7 @@ export default async function GuardAvailabilityPage() {
 
       <AvailabilityNotes availabilities={availabilities} />
 
-      <section className="max-w-sm bg-[#F5F4ED] rounded-lg px-4 py-2">
-        <SectionTitle>הערות כלליות</SectionTitle>
-        {weeklyNote ? (
-          <div className="space-y-2">
-            <p className="mr-1">{weeklyNote.content}</p>
-            <DeleteWeeklyNoteButton id={weeklyNote.id} />
-          </div>
-        ) : (
-          <CreateWeeklyNoteForm />
-        )}
-      </section>
+      <WeeklyNote note={weeklyNote} />
     </PageContainer>
   );
 }
