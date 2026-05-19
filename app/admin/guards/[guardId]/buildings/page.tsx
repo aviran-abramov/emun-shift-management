@@ -3,6 +3,7 @@ import { RemoveBuildingButton } from "@/app/admin/guards/[guardId]/buildings/_co
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
 import { SectionTitle } from "@/components/layout/section-title";
+import SectionCard from "@/components/shared/section-card";
 import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
@@ -29,12 +30,12 @@ export default async function AdminGuardBuildings({
         count={guard.buildings.length}
       />
 
-      <section>
+      <SectionCard>
         <SectionTitle>הוסף בניין</SectionTitle>
         <AddBuildingForm guardId={guardId} buildings={buildings} />
-      </section>
+      </SectionCard>
 
-      <section className="flex flex-col gap-1">
+      <SectionCard>
         <SectionTitle>רשימת בניינים</SectionTitle>
         {guard.buildings.length > 0 ? (
           <ul>
@@ -58,7 +59,7 @@ export default async function AdminGuardBuildings({
         ) : (
           <p className="text-muted-foreground">אין בניינים פעילים לעובד זה</p>
         )}
-      </section>
+      </SectionCard>
     </PageContainer>
   );
 }

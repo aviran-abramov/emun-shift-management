@@ -7,6 +7,7 @@ import {
   GuardWeeklyNote,
   ShiftType,
 } from "@/app/generated/prisma/client";
+import SectionCard from "@/components/shared/section-card";
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 
 export function ScheduleDesktop({
@@ -21,7 +22,7 @@ export function ScheduleDesktop({
   );
 
   return (
-    <section className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <p className="bg-[#e1f3de] text-[#27500A] self-start font-semibold px-2 py-1 rounded-md flex items-center gap-1">
         <span>{activeGuardsCount}</span>
         <span>{activeGuardsCount > 1 ? "שומרים פעילים" : "שומר פעיל"}</span>
@@ -211,7 +212,7 @@ export function ScheduleDesktop({
 
       <WeeklyNotes weeklyNotes={weeklyNotes} />
       <ShiftNotes shiftNotes={shiftNotes} />
-    </section>
+    </div>
   );
 }
 
@@ -255,7 +256,7 @@ interface ShiftNotesProps {
 
 function ShiftNotes({ shiftNotes }: ShiftNotesProps) {
   return (
-    <div className="bg-[#F5F4ED] rounded-lg px-4 py-2">
+    <SectionCard>
       <h3 className="text-lg font-semibold">הערות לפי משמרת</h3>
       {shiftNotes.length > 0 ? (
         <ul>
@@ -276,7 +277,7 @@ function ShiftNotes({ shiftNotes }: ShiftNotesProps) {
       ) : (
         <p>אין הערות</p>
       )}
-    </div>
+    </SectionCard>
   );
 }
 
@@ -288,7 +289,7 @@ function WeeklyNotes({ weeklyNotes }: WeeklyNotesProps) {
   if (weeklyNotes.length === 0) return;
 
   return (
-    <div className="bg-[#F5F4ED] rounded-lg px-4 py-2">
+    <SectionCard>
       <h3 className="text-lg font-semibold">הערות כלליות</h3>
       {weeklyNotes.length > 0 ? (
         <ul>
@@ -302,6 +303,6 @@ function WeeklyNotes({ weeklyNotes }: WeeklyNotesProps) {
       ) : (
         <p>אין הערות</p>
       )}
-    </div>
+    </SectionCard>
   );
 }

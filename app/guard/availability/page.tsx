@@ -3,6 +3,7 @@ import { AvailabilityNotes } from "@/app/guard/availability/_components/availabi
 import { WeeklyNote } from "@/app/guard/availability/_components/weekly-note";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
+import SectionCard from "@/components/shared/section-card";
 import prisma from "@/lib/prisma";
 import { requireRole } from "@/lib/session";
 
@@ -18,9 +19,9 @@ export default async function GuardAvailabilityPage() {
     <PageContainer>
       <PageTitle title="הגשת משמרות" />
 
-      <section className="bg-[#F5F4ED] rounded-lg p-2">
+      <SectionCard className="px-2">
         <CreateAvailabilitiesGridForm availabilities={availabilities} />
-      </section>
+      </SectionCard>
 
       <AvailabilityNotes availabilities={availabilities} />
 

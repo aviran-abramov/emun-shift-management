@@ -1,6 +1,7 @@
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
 import { SectionTitle } from "@/components/layout/section-title";
+import SectionCard from "@/components/shared/section-card";
 import prisma from "@/lib/prisma";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -18,7 +19,7 @@ export default async function AdminSchedulePage() {
     <PageContainer className="max-w-2xl">
       <PageTitle title="סידורי עבודה" />
 
-      <section className="flex flex-col gap-2">
+      <SectionCard>
         <SectionTitle className="font-semibold">
           רשימת בניינים ({buildings.length})
         </SectionTitle>
@@ -35,7 +36,7 @@ export default async function AdminSchedulePage() {
             </li>
           ))}
         </ul>
-      </section>
+      </SectionCard>
     </PageContainer>
   );
 }

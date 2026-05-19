@@ -5,6 +5,7 @@ import { ScheduleStats } from "@/app/admin/buildings/[buildingId]/schedule/_comp
 import { ScheduleProps } from "@/app/admin/buildings/[buildingId]/schedule/types";
 import { Availability } from "@/app/generated/prisma/client";
 import { DayOfWeek, ShiftType } from "@/app/generated/prisma/enums";
+import SectionCard from "@/components/shared/section-card";
 import { DAY_LABELS, DAY_LABELS_SHORT, SHIFT_LABELS } from "@/lib/labels";
 import { useState } from "react";
 
@@ -18,7 +19,7 @@ export function ScheduleMobile({
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>("SUNDAY");
 
   return (
-    <section className="flex flex-col gap-4 px-1">
+    <div className="flex flex-col gap-4 px-1">
       <p className="bg-[#e1f3de] text-[#27500A] self-start font-semibold px-2 py-1 rounded-md flex items-center gap-1">
         <span>{activeGuardsCount}</span>
         <span>{activeGuardsCount > 1 ? "שומרים פעילים" : "שומר פעיל"}</span>
@@ -63,7 +64,7 @@ export function ScheduleMobile({
         </div>
       </div>
 
-      <div className="bg-[#F5F4ED] border rounded-lg px-4 py-2">
+      <SectionCard className="border">
         <h3 className="text-lg font-semibold">הערות כלליות</h3>
         {weeklyNotes.length > 0 ? (
           <ul>
@@ -77,8 +78,8 @@ export function ScheduleMobile({
         ) : (
           <p className="text-muted-foreground">אין הערות</p>
         )}
-      </div>
-    </section>
+      </SectionCard>
+    </div>
   );
 }
 

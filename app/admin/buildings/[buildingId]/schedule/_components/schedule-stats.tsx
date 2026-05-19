@@ -10,7 +10,7 @@ export function ScheduleStats({
   weeklyNotesCount,
 }: ScheduleStatsProps) {
   return (
-    <div className="flex items-center gap-2 text-sm">
+    <section className="flex items-center gap-2 text-sm">
       {emptyShiftsCount > 0 && (
         <p className="bg-[#F7ECEC] text-[#7F2C28] font-semibold px-2 py-1 rounded-md flex items-center gap-1">
           <span>{emptyShiftsCount}</span>
@@ -31,6 +31,6 @@ export function ScheduleStats({
           <span>{weeklyNotesCount > 1 ? "הערות כלליות" : "הערה כללית"}</span>
         </p>
       )}
-    </div>
+    </section>
   );
 }
