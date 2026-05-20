@@ -1,8 +1,6 @@
 "use client";
 
 import { GuardPill } from "@/app/admin/buildings/[buildingId]/schedule/_components/guard-pill";
-import { ScheduleStats } from "@/app/admin/buildings/[buildingId]/schedule/_components/schedule-stats";
-import { StatPill } from "@/app/admin/buildings/[buildingId]/schedule/_components/stat-pill";
 import { ScheduleProps } from "@/app/admin/buildings/[buildingId]/schedule/types";
 import { Availability } from "@/app/generated/prisma/client";
 import { DayOfWeek, ShiftType } from "@/app/generated/prisma/enums";
@@ -10,30 +8,11 @@ import SectionCard from "@/components/shared/section-card";
 import { DAY_LABELS, DAY_LABELS_SHORT, SHIFT_LABELS } from "@/lib/labels";
 import { useState } from "react";
 
-export function ScheduleMobile({
-  activeGuardsCount,
-  availabilities,
-  weeklyNotes,
-  emptyShiftsCount,
-  notSubmittedGuardsCount,
-}: ScheduleProps) {
+export function ScheduleMobile({ availabilities, weeklyNotes }: ScheduleProps) {
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>("SUNDAY");
 
   return (
-    <div className="flex flex-col gap-4 px-1">
-      <StatPill
-        count={activeGuardsCount}
-        singularLabel="שומר פעיל"
-        pluralLabel="שומרים פעילים"
-        className="bg-[#e1f3de] text-[#27500A] self-start"
-      />
-
-      <ScheduleStats
-        emptyShiftsCount={emptyShiftsCount}
-        notSubmittedGuardsCount={notSubmittedGuardsCount}
-        weeklyNotesCount={weeklyNotes.length}
-      />
-
+    <div className="flex flex-col gap-4">
       <ul className="grid grid-cols-7 border-b pb-3">
         {Object.entries(DAY_LABELS_SHORT).map(([key, value]) => (
           <li

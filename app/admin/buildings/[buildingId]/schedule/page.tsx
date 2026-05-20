@@ -1,5 +1,7 @@
 import { ScheduleDesktop } from "@/app/admin/buildings/[buildingId]/schedule/_components/schedule-desktop";
 import { ScheduleMobile } from "@/app/admin/buildings/[buildingId]/schedule/_components/schedule-mobile";
+import { ScheduleStats } from "@/app/admin/buildings/[buildingId]/schedule/_components/schedule-stats";
+import { StatPill } from "@/app/admin/buildings/[buildingId]/schedule/_components/stat-pill";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
@@ -56,23 +58,30 @@ export default async function AdminBuildingSchedulePage({
     <PageContainer className="max-w-full flex flex-col gap-4">
       <PageTitle title={building.name} />
 
+      <StatPill
+        count={activeGuards.length}
+        singularLabel="שומר פעיל"
+        pluralLabel="שומרים פעילים"
+        className="bg-[#e1f3de] text-[#27500A] self-start"
+      />
+
+      <ScheduleStats
+        emptyShiftsCount={emptyShiftsCount}
+        notSubmittedGuardsCount={notSubmittedGuards.length}
+        weeklyNotesCount={weeklyNotes.length}
+      />
+
       <div className="hidden lg:block">
         <ScheduleDesktop
-          activeGuardsCount={activeGuards.length}
           availabilities={availabilities}
           weeklyNotes={weeklyNotes}
-          emptyShiftsCount={emptyShiftsCount}
-          notSubmittedGuardsCount={notSubmittedGuards.length}
         />
       </div>
 
       <div className="lg:hidden">
         <ScheduleMobile
-          activeGuardsCount={activeGuards.length}
           availabilities={availabilities}
           weeklyNotes={weeklyNotes}
-          emptyShiftsCount={emptyShiftsCount}
-          notSubmittedGuardsCount={notSubmittedGuards.length}
         />
       </div>
     </PageContainer>

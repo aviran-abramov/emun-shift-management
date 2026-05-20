@@ -1,6 +1,4 @@
 import { GuardPill } from "@/app/admin/buildings/[buildingId]/schedule/_components/guard-pill";
-import { ScheduleStats } from "@/app/admin/buildings/[buildingId]/schedule/_components/schedule-stats";
-import { StatPill } from "@/app/admin/buildings/[buildingId]/schedule/_components/stat-pill";
 import { ScheduleProps } from "@/app/admin/buildings/[buildingId]/schedule/types";
 import {
   Availability,
@@ -12,11 +10,8 @@ import SectionCard from "@/components/shared/section-card";
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 
 export function ScheduleDesktop({
-  activeGuardsCount,
   availabilities,
   weeklyNotes,
-  emptyShiftsCount,
-  notSubmittedGuardsCount,
 }: ScheduleProps) {
   const shiftNotes = availabilities.filter(
     (availability) => availability.shiftNote,
@@ -24,19 +19,6 @@ export function ScheduleDesktop({
 
   return (
     <div className="flex flex-col gap-4">
-      <StatPill
-        count={activeGuardsCount}
-        singularLabel="שומר פעיל"
-        pluralLabel="שומרים פעילים"
-        className="bg-[#e1f3de] text-[#27500A] self-start"
-      />
-
-      <ScheduleStats
-        emptyShiftsCount={emptyShiftsCount}
-        notSubmittedGuardsCount={notSubmittedGuardsCount}
-        weeklyNotesCount={weeklyNotes.length}
-      />
-
       <table
         dir="rtl"
         className="border-separate border-spacing-1 table-fixed w-full"
