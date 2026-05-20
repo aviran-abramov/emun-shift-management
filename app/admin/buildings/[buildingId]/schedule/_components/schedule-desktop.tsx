@@ -1,5 +1,6 @@
 import { GuardPill } from "@/app/admin/buildings/[buildingId]/schedule/_components/guard-pill";
 import { ScheduleStats } from "@/app/admin/buildings/[buildingId]/schedule/_components/schedule-stats";
+import { StatPill } from "@/app/admin/buildings/[buildingId]/schedule/_components/stat-pill";
 import { ScheduleProps } from "@/app/admin/buildings/[buildingId]/schedule/types";
 import {
   Availability,
@@ -23,10 +24,12 @@ export function ScheduleDesktop({
 
   return (
     <div className="flex flex-col gap-4">
-      <p className="bg-[#e1f3de] text-[#27500A] self-start font-semibold px-2 py-1 rounded-md flex items-center gap-1">
-        <span>{activeGuardsCount}</span>
-        <span>{activeGuardsCount > 1 ? "שומרים פעילים" : "שומר פעיל"}</span>
-      </p>
+      <StatPill
+        count={activeGuardsCount}
+        singularLabel="שומר פעיל"
+        pluralLabel="שומרים פעילים"
+        className="bg-[#e1f3de] text-[#27500A] self-start"
+      />
 
       <ScheduleStats
         emptyShiftsCount={emptyShiftsCount}
