@@ -1,6 +1,6 @@
 "use client";
 
-import { removeBuilding } from "@/app/admin/guards/[guardId]/buildings/actions";
+import { detachBuildingFromGuard } from "@/app/admin/guards/[guardId]/buildings/actions";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
@@ -14,7 +14,7 @@ export function RemoveBuildingButton({
   guardId,
 }: RemoveBuildingButtonProps) {
   const handleClick = async () => {
-    const result = await removeBuilding({ buildingId, guardId });
+    const result = await detachBuildingFromGuard({ buildingId, guardId });
     if (!result.success) {
       toast.error(result.error);
       return;

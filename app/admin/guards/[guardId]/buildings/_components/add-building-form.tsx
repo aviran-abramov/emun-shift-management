@@ -1,6 +1,6 @@
 "use client";
 
-import { addBuilding } from "@/app/admin/guards/[guardId]/buildings/actions";
+import { attachBuildingToGuard } from "@/app/admin/guards/[guardId]/buildings/actions";
 import { Building } from "@/app/generated/prisma/client";
 import { Button } from "@/components/ui/button";
 import { Field, FieldLabel } from "@/components/ui/field";
@@ -13,7 +13,10 @@ import {
   SelectItem,
   Select,
 } from "@/components/ui/select";
-import { AddBuildingFormData, AddBuildingSchema } from "@/lib/validators/guard";
+import {
+  AttachBuildingToGuardFormData,
+  AttachBuildingToGuardSchema,
+} from "@/lib/validators/guard";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -27,16 +30,16 @@ export default function AddBuildingForm({
   guardId,
   buildings,
 }: AddBuildingFormProps) {
-  const form = useForm<AddBuildingFormData>({
-    resolver: zodResolver(AddBuildingSchema),
+  const form = useForm<AttachBuildingToGuardFormData>({
+    resolver: zodResolver(AttachBuildingToGuardSchema),
     defaultValues: {
       guardId,
       buildingId: "",
     },
   });
 
-  const onSubmit = async (data: AddBuildingFormData) => {
-    const result = await addBuilding(data);
+  const onSubmit = async (data: AttachBuildingToGuardFormData) => {
+    const result = await attachBuildingToGuard(data);
     if (result.success) {
       form.reset();
       toast.success("הבניין נוסף בהצלחה!");

@@ -4,18 +4,20 @@ import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import prisma from "@/lib/prisma";
 import { getSessionWithRole } from "@/lib/session";
 import {
-  AddBuildingSchema,
-  RemoveBuildingSchema,
+  AttachBuildingToGuardSchema,
+  DetachBuildingFromGuardSchema,
 } from "@/lib/validators/guard";
 import { revalidatePath } from "next/cache";
 
-export async function addBuilding(data: unknown): Promise<ActionResult> {
+export async function attachBuildingToGuard(
+  data: unknown,
+): Promise<ActionResult> {
   const session = await getSessionWithRole("MANAGER");
   if (!session) {
     return { success: false, error: "אינך רשאי להוסיף בניינים" };
   }
 
-  const result = AddBuildingSchema.safeParse(data);
+  const result = AttachBuildingToGuardSchema.safeParse(data);
   if (!result.success) {
     return {
       success: false,
@@ -39,13 +41,15 @@ export async function addBuilding(data: unknown): Promise<ActionResult> {
   return { success: true };
 }
 
-export async function removeBuilding(data: unknown): Promise<ActionResult> {
+export async function detachBuildingFromGuard(
+  data: unknown,
+): Promise<ActionResult> {
   const session = await getSessionWithRole("MANAGER");
   if (!session) {
     return { success: false, error: "אינך רשאי להסיר בניינים" };
   }
 
-  const result = RemoveBuildingSchema.safeParse(data);
+  const result = DetachBuildingFromGuardSchema.safeParse(data);
   if (!result.success) {
     return {
       success: false,
