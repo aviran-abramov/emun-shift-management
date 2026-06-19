@@ -1,4 +1,4 @@
-import { Role } from "@/app/generated/prisma/enums";
+import { UserRole } from "@/app/generated/prisma/enums";
 import { getSession } from "@/lib/session";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
@@ -10,7 +10,7 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 
-  const role = session.user.role as Role;
+  const role = session.user.role as UserRole;
   const { pathname } = request.nextUrl;
 
   if (pathname === "/") {

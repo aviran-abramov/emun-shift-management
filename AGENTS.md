@@ -59,7 +59,7 @@ These are separate concepts. Don't conflate them.
 - `GuardWeeklyNote` — single general note per guard
 - `Session`, `Account`, `Verification` — better-auth tables (don't modify
   manually unless better-auth requires it)
-- Enums: `Role` (GUARD, MANAGER), `ShiftType` (MORNING, EVENING, NIGHT),
+- Enums: `UserRole` (GUARD, MANAGER), `ShiftType` (MORNING, EVENING, NIGHT),
   `DayOfWeek` (SUNDAY through SATURDAY)
 
 ## Tech Stack

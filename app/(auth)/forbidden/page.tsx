@@ -1,4 +1,4 @@
-import { Role } from "@/app/generated/prisma/enums";
+import { UserRole } from "@/app/generated/prisma/enums";
 import { SectionTitle } from "@/components/layout/section-title";
 import { Button } from "@/components/ui/button";
 import { DEFAULT_PATHS } from "@/lib/paths";
@@ -8,7 +8,7 @@ import Link from "next/link";
 export default async function ForbiddenPage() {
   const session = await requireSession();
 
-  const role = session.user.role as Role;
+  const role = session.user.role as UserRole;
   const href = DEFAULT_PATHS[role];
 
   return (

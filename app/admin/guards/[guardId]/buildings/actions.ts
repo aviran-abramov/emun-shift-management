@@ -1,6 +1,6 @@
 "use server";
 
-import { Role } from "@/app/generated/prisma/enums";
+import { UserRole } from "@/app/generated/prisma/enums";
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import prisma from "@/lib/prisma";
 import { getSessionForRole } from "@/lib/session";
@@ -13,7 +13,7 @@ import { revalidatePath } from "next/cache";
 export async function attachBuildingToGuard(
   data: unknown,
 ): Promise<ActionResult> {
-  const session = await getSessionForRole(Role.MANAGER);
+  const session = await getSessionForRole(UserRole.MANAGER);
   if (!session) {
     return { success: false, error: "אינך רשאי להוסיף בניינים" };
   }
@@ -45,7 +45,7 @@ export async function attachBuildingToGuard(
 export async function detachBuildingFromGuard(
   data: unknown,
 ): Promise<ActionResult> {
-  const session = await getSessionForRole(Role.MANAGER);
+  const session = await getSessionForRole(UserRole.MANAGER);
   if (!session) {
     return { success: false, error: "אינך רשאי להסיר בניינים" };
   }

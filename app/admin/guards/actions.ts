@@ -1,6 +1,6 @@
 "use server";
 
-import { Role } from "@/app/generated/prisma/enums";
+import { UserRole } from "@/app/generated/prisma/enums";
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
@@ -10,7 +10,7 @@ import { APIError } from "better-auth";
 import { revalidatePath } from "next/cache";
 
 export async function createGuard(data: unknown): Promise<ActionResult> {
-  const session = await getSessionForRole(Role.MANAGER);
+  const session = await getSessionForRole(UserRole.MANAGER);
   if (!session) {
     return { success: false, error: "אין לך הרשאה להוסיף שומר" };
   }
