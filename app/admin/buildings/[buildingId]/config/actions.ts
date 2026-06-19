@@ -1,5 +1,6 @@
 "use server";
 
+import { Role } from "@/app/generated/prisma/enums";
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import prisma from "@/lib/prisma";
 import { getSessionForRole } from "@/lib/session";
@@ -9,7 +10,7 @@ import { revalidatePath } from "next/cache";
 export async function updateBuildingShiftConfig(
   data: unknown,
 ): Promise<ActionResult> {
-  const session = await getSessionForRole("MANAGER");
+  const session = await getSessionForRole(Role.MANAGER);
   if (!session) {
     return { success: false, error: "אין לך הרשאה לעדכן הגדרות למשמרות" };
   }

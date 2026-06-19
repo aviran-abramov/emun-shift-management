@@ -1,5 +1,6 @@
 "use server";
 
+import { Role } from "@/app/generated/prisma/enums";
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import prisma from "@/lib/prisma";
 import { getSessionForRole } from "@/lib/session";
@@ -14,7 +15,7 @@ import {
 import { revalidatePath } from "next/cache";
 
 export async function saveAvailabilities(data: unknown): Promise<ActionResult> {
-  const session = await getSessionForRole("GUARD");
+  const session = await getSessionForRole(Role.GUARD);
   if (!session) {
     return { success: false, error: "אין לך הרשאה להגיש משמרות" };
   }
@@ -53,7 +54,7 @@ export async function saveAvailabilities(data: unknown): Promise<ActionResult> {
 }
 
 export async function deleteAvailability(data: unknown): Promise<ActionResult> {
-  const session = await getSessionForRole("GUARD");
+  const session = await getSessionForRole(Role.GUARD);
   if (!session) {
     return { success: false, error: "אינך רשאי למחוק זמינות זו" };
   }
@@ -83,7 +84,7 @@ export async function deleteAvailability(data: unknown): Promise<ActionResult> {
 }
 
 export async function createWeeklyNote(data: unknown): Promise<ActionResult> {
-  const session = await getSessionForRole("GUARD");
+  const session = await getSessionForRole(Role.GUARD);
   if (!session) {
     return { success: false, error: "אינך רשאי להוסיף הערות" };
   }
@@ -113,7 +114,7 @@ export async function createWeeklyNote(data: unknown): Promise<ActionResult> {
 }
 
 export async function deleteWeeklyNote(data: unknown): Promise<ActionResult> {
-  const session = await getSessionForRole("GUARD");
+  const session = await getSessionForRole(Role.GUARD);
   if (!session) {
     return { success: false, error: "אינך רשאי למחוק הערות" };
   }
@@ -145,7 +146,7 @@ export async function deleteWeeklyNote(data: unknown): Promise<ActionResult> {
 export async function saveAvailabilityNote(
   data: unknown,
 ): Promise<ActionResult> {
-  const session = await getSessionForRole("GUARD");
+  const session = await getSessionForRole(Role.GUARD);
   if (!session) return { success: false, error: "הנך לא רשאי להוסיף הערה" };
 
   const result = SaveAvailabilityNoteSchema.safeParse(data);
@@ -176,7 +177,7 @@ export async function saveAvailabilityNote(
 export async function deleteAvailabilityNote(
   data: unknown,
 ): Promise<ActionResult> {
-  const session = await getSessionForRole("GUARD");
+  const session = await getSessionForRole(Role.GUARD);
   if (!session) {
     return { success: false, error: "אינך רשאי למחוק הערות" };
   }
