@@ -2,7 +2,7 @@
 
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import prisma from "@/lib/prisma";
-import { getSessionWithRole } from "@/lib/session";
+import { getSessionForRole } from "@/lib/session";
 import {
   AttachBuildingToGuardSchema,
   DetachBuildingFromGuardSchema,
@@ -12,7 +12,7 @@ import { revalidatePath } from "next/cache";
 export async function attachBuildingToGuard(
   data: unknown,
 ): Promise<ActionResult> {
-  const session = await getSessionWithRole("MANAGER");
+  const session = await getSessionForRole("MANAGER");
   if (!session) {
     return { success: false, error: "אינך רשאי להוסיף בניינים" };
   }
@@ -44,7 +44,7 @@ export async function attachBuildingToGuard(
 export async function detachBuildingFromGuard(
   data: unknown,
 ): Promise<ActionResult> {
-  const session = await getSessionWithRole("MANAGER");
+  const session = await getSessionForRole("MANAGER");
   if (!session) {
     return { success: false, error: "אינך רשאי להסיר בניינים" };
   }

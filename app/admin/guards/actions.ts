@@ -3,13 +3,13 @@
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { getSessionWithRole } from "@/lib/session";
+import { getSessionForRole } from "@/lib/session";
 import { CreateGuardSchema } from "@/lib/validators/guard";
 import { APIError } from "better-auth";
 import { revalidatePath } from "next/cache";
 
 export async function createGuard(data: unknown): Promise<ActionResult> {
-  const session = await getSessionWithRole("MANAGER");
+  const session = await getSessionForRole("MANAGER");
   if (!session) {
     return { success: false, error: "אין לך הרשאה להוסיף שומר" };
   }

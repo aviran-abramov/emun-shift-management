@@ -7,7 +7,7 @@ export async function getSession() {
   return auth.api.getSession({ headers: await headers() });
 }
 
-export async function getSessionWithRole(role: Role) {
+export async function getSessionForRole(role: Role) {
   const session = await getSession();
   if (!session || session.user.role !== role) return null;
 

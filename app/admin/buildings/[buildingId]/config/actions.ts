@@ -2,14 +2,14 @@
 
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import prisma from "@/lib/prisma";
-import { getSessionWithRole } from "@/lib/session";
+import { getSessionForRole } from "@/lib/session";
 import { UpdateBuildingShiftConfigSchema } from "@/lib/validators/building";
 import { revalidatePath } from "next/cache";
 
 export async function updateBuildingShiftConfig(
   data: unknown,
 ): Promise<ActionResult> {
-  const session = await getSessionWithRole("MANAGER");
+  const session = await getSessionForRole("MANAGER");
   if (!session) {
     return { success: false, error: "אין לך הרשאה לעדכן הגדרות למשמרות" };
   }

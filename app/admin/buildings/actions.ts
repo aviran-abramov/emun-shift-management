@@ -3,12 +3,12 @@
 import { Role } from "@/app/generated/prisma/enums";
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import { createBuildingWithSlots } from "@/lib/buildings/create-building-with-slots";
-import { getSessionWithRole } from "@/lib/session";
+import { getSessionForRole } from "@/lib/session";
 import { CreateBuildingSchema } from "@/lib/validators/building";
 import { revalidatePath } from "next/cache";
 
 export async function createBuilding(data: unknown): Promise<ActionResult> {
-  const session = await getSessionWithRole(Role.MANAGER);
+  const session = await getSessionForRole(Role.MANAGER);
   if (!session) {
     return { success: false, error: "אינך רשאי להוסיף בניין" };
   }
