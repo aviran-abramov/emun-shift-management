@@ -8,8 +8,16 @@ import SectionCard from "@/components/shared/section-card";
 import { DAY_LABELS, DAY_LABELS_SHORT, SHIFT_LABELS } from "@/lib/labels";
 import { useState } from "react";
 
-export function ScheduleMobile({ availabilities, weeklyNotes }: ScheduleProps) {
+export function ScheduleMobile({
+  availabilities,
+  shiftSlotConfigs,
+  weeklyNotes,
+}: ScheduleProps) {
   const [selectedDay, setSelectedDay] = useState<DayOfWeek>("SUNDAY");
+
+  const enabledDayShifts = shiftSlotConfigs.filter(
+    (shift) => shift.dayOfWeek === selectedDay && shift.isEnabled,
+  );
 
   return (
     <div className="flex flex-col gap-4">
@@ -32,17 +40,21 @@ export function ScheduleMobile({ availabilities, weeklyNotes }: ScheduleProps) {
         </h3>
 
         <div className="flex flex-col gap-3">
-          {(Object.keys(SHIFT_LABELS) as ShiftType[])
-            .filter((shift) => shift !== "NIGHT")
-            .map((shift) => (
+          {enabledDayShifts.length > 0 ? (
+            enabledDayShifts.map((slot) => (
               <ShiftBlock
-                key={shift}
-                type={shift}
+                key={slot.id}
+                type={slot.shiftType}
                 availabilities={availabilities.filter(
-                  (a) => a.dayOfWeek === selectedDay && a.shiftType === shift,
+                  (a) =>
+                    a.dayOfWeek === selectedDay &&
+                    a.shiftType === slot.shiftType,
                 )}
               />
-            ))}
+            ))
+          ) : (
+            <p className="text-muted-foreground">לא הוגדרו משמרות ליום זה</p>
+          )}
         </div>
       </div>
 

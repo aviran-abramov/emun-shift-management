@@ -15,6 +15,7 @@ export default async function AdminBuildingSchedulePage({
   const { buildingId } = await params;
   const building = await prisma.building.findUnique({
     where: { id: buildingId },
+    include: { shiftSlotConfigs: true },
   });
   if (!building) notFound();
 
@@ -68,6 +69,7 @@ export default async function AdminBuildingSchedulePage({
         <ScheduleDesktop
           availabilities={availabilities}
           weeklyNotes={weeklyNotes}
+          shiftSlotConfigs={building.shiftSlotConfigs}
         />
       </div>
 
@@ -75,6 +77,7 @@ export default async function AdminBuildingSchedulePage({
         <ScheduleMobile
           availabilities={availabilities}
           weeklyNotes={weeklyNotes}
+          shiftSlotConfigs={building.shiftSlotConfigs}
         />
       </div>
     </PageContainer>
