@@ -8,7 +8,7 @@ interface SectionCardProps {
 
 export default function SectionCard({ children, className }: SectionCardProps) {
   return (
-    <section className={cn("rounded-lg bg-[#F5F4ED] px-4 py-2", className)}>
+    <section className={cn("rounded-lg bg-[#FCF7EB] px-4 py-2", className)}>
       {children}
     </section>
   );
