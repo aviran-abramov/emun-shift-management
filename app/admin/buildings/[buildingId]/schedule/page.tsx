@@ -24,6 +24,7 @@ export default async function AdminBuildingSchedulePage({
       include: { user: true },
     }),
     prisma.guardWeeklyNote.findMany({
+      where: { user: { buildings: { some: { id: buildingId } } } },
       include: { user: true },
     }),
     prisma.user.findMany({
