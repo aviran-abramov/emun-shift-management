@@ -3,7 +3,6 @@
 import { UserRole } from "@/app/generated/prisma/enums";
 import { ActionResult, createErrorMessage } from "@/lib/action-result";
 import { auth } from "@/lib/auth";
-import prisma from "@/lib/prisma";
 import { getSessionForRole } from "@/lib/session";
 import { CreateGuardSchema } from "@/lib/validators/guard";
 import { APIError } from "better-auth";
@@ -26,7 +25,7 @@ export async function createGuard(data: unknown): Promise<ActionResult> {
   const { firstName, lastName, username, password } = result.data;
 
   try {
-    const signUpResult = await auth.api.signUpEmail({
+    await auth.api.signUpEmail({
       body: {
         role: "GUARD",
         email: `${username}@emun.local`,
@@ -36,11 +35,6 @@ export async function createGuard(data: unknown): Promise<ActionResult> {
         username,
         password,
       },
-    });
-
-    await prisma.user.update({
-      where: { id: signUpResult.user.id },
-      data: { buildings: { connect: { id: "1" } } },
     });
   } catch (error) {
     console.error(error);
