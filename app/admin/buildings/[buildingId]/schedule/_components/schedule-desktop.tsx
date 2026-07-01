@@ -272,21 +272,6 @@ function ShiftNotes({ shiftNotes }: ShiftNotesProps) {
           })}
         </ul>
       ) : (
-        // <ul>
-        //   {shiftNotes.map((note) => (
-        //     <li key={note.id} className="flex items-start gap-1 font-medium">
-        //       <span className="text-muted-foreground">
-        //         {DAY_LABELS[note.dayOfWeek]}
-        //       </span>
-        //       <span className="text-muted-foreground">
-        //         {SHIFT_LABELS[note.shiftType]}
-        //       </span>
-        //       <span>-</span>
-        //       <span className="whitespace-nowrap">{note.user.name} ביקש:</span>
-        //       <span>{note.shiftNote}</span>
-        //     </li>
-        //   ))}
-        // </ul>
         <p>אין הערות</p>
       )}
     </SectionCard>
