@@ -1,6 +1,6 @@
 import prisma from "../lib/prisma";
-import { auth } from "@/lib/auth";
-import { createBuildingWithSlots } from "@/lib/buildings/create-building-with-slots";
+import { auth } from "../lib/auth";
+import { createBuildingWithSlots } from "../lib/buildings/create-building-with-slots";
 import { buildings, admins, guards } from "./data";
 
 export interface SeedUser {
