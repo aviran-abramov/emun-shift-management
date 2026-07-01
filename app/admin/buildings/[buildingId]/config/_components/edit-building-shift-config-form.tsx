@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 import { Check, X } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface EditBuildingShiftConfigFormProps {
   building: Building & { shiftSlotConfigs: BuildingShiftSlotConfig[] };
@@ -30,13 +31,18 @@ export default function EditBuildingShiftConfigForm({
   const handleSubmit = async (event: React.SubmitEvent) => {
     event.preventDefault();
 
-    await updateBuildingShiftConfig({
+    const result = await updateBuildingShiftConfig({
       buildingId: building.id,
       slots: slots.map((slot) => ({
         id: slot.id,
         isEnabled: slot.isEnabled,
       })),
     });
+    if (!result.success) {
+      toast.error(result.error);
+      return;
+    }
+    toast.success("הגדרות המשמרות עודכנו בהצלחה!");
   };
 
   return (
