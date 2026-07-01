@@ -298,8 +298,6 @@ interface WeeklyNotesProps {
 }
 
 function WeeklyNotes({ weeklyNotes }: WeeklyNotesProps) {
-  if (weeklyNotes.length === 0) return;
-
   return (
     <SectionCard>
       <h3 className="text-lg font-semibold">הערות כלליות</h3>
