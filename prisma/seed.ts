@@ -9,6 +9,10 @@ export interface SeedUser {
   username: string;
   role: "GUARD" | "MANAGER";
   password: string;
+}
+
+export interface SeedGuard extends SeedUser {
+  role: "GUARD";
   buildingIds: string[];
 }
 
@@ -25,9 +29,15 @@ async function createUser(user: SeedUser) {
     },
   });
 
+  return signUpResult.user.id;
+}
+
+async function createGuard(guard: SeedGuard) {
+  const userId = await createUser(guard);
+
   await prisma.user.update({
-    where: { id: signUpResult.user.id },
-    data: { buildings: { connect: user.buildingIds.map((id) => ({ id })) } },
+    where: { id: userId },
+    data: { buildings: { connect: guard.buildingIds.map((id) => ({ id })) } },
   });
 }
 
@@ -43,7 +53,7 @@ async function main() {
   console.log(`✅ Created ${admins.length} admins`);
 
   for (const guard of guards) {
-    await createUser(guard);
+    await createGuard(guard);
   }
   console.log(`✅ Created ${guards.length} guards`);
 }
