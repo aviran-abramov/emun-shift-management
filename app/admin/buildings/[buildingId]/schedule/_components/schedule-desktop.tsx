@@ -231,26 +231,62 @@ interface ShiftNotesProps {
 }
 
 function ShiftNotes({ shiftNotes }: ShiftNotesProps) {
+  const guardNames: string[] = [];
+
+  for (const note of shiftNotes) {
+    if (!guardNames.includes(note.user.name)) {
+      guardNames.push(note.user.name);
+    }
+  }
+
   return (
     <SectionCard>
       <h3 className="text-lg font-semibold">הערות לפי משמרת</h3>
       {shiftNotes.length > 0 ? (
-        <ul>
-          {shiftNotes.map((note) => (
-            <li key={note.id} className="flex items-start gap-1 font-medium">
-              <span className="text-muted-foreground">
-                {DAY_LABELS[note.dayOfWeek]}
-              </span>
-              <span className="text-muted-foreground">
-                {SHIFT_LABELS[note.shiftType]}
-              </span>
-              <span>-</span>
-              <span className="whitespace-nowrap">{note.user.name} ביקש:</span>
-              <span>{note.shiftNote}</span>
-            </li>
-          ))}
+        <ul className="flex flex-col gap-0.5">
+          {guardNames.map((guardName) => {
+            const notes = shiftNotes.filter(
+              (shiftNote) => shiftNote.user.name === guardName,
+            );
+
+            return (
+              <li key={guardName}>
+                <p className="font-medium">{guardName}</p>
+                <ul>
+                  {notes.map((note) => (
+                    <li key={note.id} className="flex items-center gap-1">
+                      <span className="text-muted-foreground">
+                        {DAY_LABELS[note.dayOfWeek]}
+                      </span>
+                      <span>·</span>
+                      <span className="text-muted-foreground">
+                        {SHIFT_LABELS[note.shiftType]}
+                      </span>
+                      <span>·</span>
+                      <span>{note.shiftNote}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })}
         </ul>
       ) : (
+        // <ul>
+        //   {shiftNotes.map((note) => (
+        //     <li key={note.id} className="flex items-start gap-1 font-medium">
+        //       <span className="text-muted-foreground">
+        //         {DAY_LABELS[note.dayOfWeek]}
+        //       </span>
+        //       <span className="text-muted-foreground">
+        //         {SHIFT_LABELS[note.shiftType]}
+        //       </span>
+        //       <span>-</span>
+        //       <span className="whitespace-nowrap">{note.user.name} ביקש:</span>
+        //       <span>{note.shiftNote}</span>
+        //     </li>
+        //   ))}
+        // </ul>
         <p>אין הערות</p>
       )}
     </SectionCard>
