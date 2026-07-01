@@ -3,7 +3,6 @@ import { ScheduleMobile } from "@/app/admin/buildings/[buildingId]/schedule/_com
 import { ScheduleStats } from "@/app/admin/buildings/[buildingId]/schedule/_components/schedule-stats";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageTitle } from "@/components/layout/page-title";
-import { DAY_LABELS, SHIFT_LABELS } from "@/lib/labels";
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
 
@@ -41,18 +40,13 @@ export default async function AdminBuildingSchedulePage({
     (g) => !availabilities.some((a) => a.userId === g.id),
   );
 
-  let emptyShiftsCount = 11;
-  Object.keys(DAY_LABELS).forEach((day) => {
-    Object.keys(SHIFT_LABELS).forEach((shiftType) => {
-      if (
-        availabilities.some(
-          (a) => a.dayOfWeek === day && a.shiftType === shiftType,
-        )
-      ) {
-        emptyShiftsCount--;
-      }
-    });
-  });
+  const emptyShiftsCount = building.shiftSlotConfigs.filter(
+    (slot) =>
+      slot.isEnabled &&
+      !availabilities.some(
+        (a) => a.dayOfWeek === slot.dayOfWeek && a.shiftType === slot.shiftType,
+      ),
+  ).length;
 
   return (
     <PageContainer className="max-w-full flex flex-col gap-4">
