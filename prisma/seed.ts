@@ -1,7 +1,10 @@
 import prisma from "../lib/prisma";
 import { auth } from "../lib/auth";
 import { createBuildingWithSlots } from "../lib/buildings/create-building-with-slots";
-import { buildings, admins, guards } from "./data";
+import { data } from "./data";
+
+const isDemo = process.env.SEED_DEMO === "true";
+const { buildings, admins, guards } = isDemo ? data.mock : data.real;
 
 export interface SeedUser {
   firstName: string;
@@ -42,6 +45,8 @@ async function createGuard(guard: SeedGuard) {
 }
 
 async function main() {
+  console.log(`🌱 Seeding with ${isDemo ? "MOCK" : "REAL"} data`);
+
   for (const building of buildings) {
     await createBuildingWithSlots(building);
   }
