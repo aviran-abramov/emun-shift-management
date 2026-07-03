@@ -1,4 +1,5 @@
 import { UserRole } from "@/app/generated/prisma/enums";
+import { DEFAULT_PATHS } from "@/lib/paths";
 import { getSession } from "@/lib/session";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
@@ -15,9 +16,13 @@ export async function proxy(request: NextRequest) {
 
   if (pathname === "/") {
     if (role === "MANAGER")
-      return NextResponse.redirect(new URL("/admin", request.url));
+      return NextResponse.redirect(
+        new URL(DEFAULT_PATHS["MANAGER"], request.url),
+      );
     if (role === "GUARD")
-      return NextResponse.redirect(new URL("/guard", request.url));
+      return NextResponse.redirect(
+        new URL(DEFAULT_PATHS["GUARD"], request.url),
+      );
   }
 
   if (pathname.startsWith("/admin") && role !== "MANAGER") {
