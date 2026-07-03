@@ -63,7 +63,9 @@ export function AppSidebar({
                   width={30}
                   alt="emun logo"
                 />
-                <span className="font-semibold">מוקד אמון</span>
+                <span className="font-semibold">
+                  {process.env.NEXT_PUBLIC_APP_TITLE ?? "מוקד אמון"}
+                </span>
                 {/* </Link> */}
               </SidebarMenuButton>
             </SidebarMenuItem>

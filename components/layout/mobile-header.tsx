@@ -6,7 +6,7 @@ export function MobileHeader() {
     <div className="relative flex items-center justify-between md:hidden border-b bg-primary px-2 py-1">
       <MenuTrigger />
       <span className="absolute left-1/2 -translate-x-1/2 font-semibold">
-        מוקד אמון
+        {process.env.NEXT_PUBLIC_APP_TITLE ?? "מוקד אמון"}
       </span>
       <Image src="/favicon.ico" height={30} width={30} alt="emun logo" />
     </div>

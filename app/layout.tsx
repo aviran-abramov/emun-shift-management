@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | מוקד אמון",
-    default: "מוקד אמון",
+    template: `%s | ${process.env.NEXT_PUBLIC_APP_TITLE ?? "מוקד אמון"}`,
+    default: `${process.env.NEXT_PUBLIC_APP_TITLE ?? "מוקד אמון"}`,
   },
 };
 
