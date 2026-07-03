@@ -27,6 +27,7 @@ import {
 import { PanelTrigger } from "@/components/layout/panel-trigger";
 import { Button } from "@/components/ui/button";
 import { signOut } from "@/lib/actions/auth";
+import { cn } from "@/lib/utils";
 
 const navIcons = {
   PanelsTopLeft,
@@ -50,7 +51,14 @@ export function AppSidebar({
   const pathname = usePathname();
 
   return (
-    <Sidebar side="right" collapsible="icon">
+    <Sidebar
+      side="right"
+      collapsible="icon"
+      className={cn(
+        process.env.NEXT_PUBLIC_IS_DEMO === "true" &&
+          "top-10 h-[calc(100svh-2.5rem)]",
+      )}
+    >
       <SidebarHeader>
         <div className="flex items-center">
           <SidebarMenu className="flex-1 group-data-[collapsible=icon]:hidden">

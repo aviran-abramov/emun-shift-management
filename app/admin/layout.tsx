@@ -3,6 +3,7 @@ import { AppSidebar } from "@/components/layout/sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { requireRole } from "@/lib/session";
 import { adminNavItems } from "@/lib/sidebar-nav";
+import { cn } from "@/lib/utils";
 
 export default async function AdminLayout({
   children,
@@ -18,7 +19,12 @@ export default async function AdminLayout({
         userType="admin"
         navItems={adminNavItems}
       />
-      <main className="flex-1 min-w-0">
+      <main
+        className={cn(
+          "flex-1 min-w-0",
+          process.env.NEXT_PUBLIC_IS_DEMO === "true" && "pt-10",
+        )}
+      >
         <MobileHeader />
         {children}
       </main>
