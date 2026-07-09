@@ -1,5 +1,14 @@
 # **Emun Shift Management App**
 
+### Live Demo — **[emun-demo.vercel.app](https://emun-demo.vercel.app/)**
+
+Sign in with one of these demo accounts. The demo runs on a separate database. The seed is mock data — try anything, nothing affects production.
+
+| Role    | Username      | Password   |
+| ------- | ------------- | ---------- |
+| Manager | `admin`       | `admin123` |
+| Guard   | `noambark643` | `guard123` |
+
 ## Introduction
 
 I built this app for the security company I work at - I'm a guard there. The problem: 100+ guards from 20+ buildings send their availability to the manager's WhatsApp every week. I made an organized, headache-free app to make the manager's life easier and save him a lot of time, effort, and energy.
