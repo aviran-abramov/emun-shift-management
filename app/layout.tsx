@@ -47,7 +47,8 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         {process.env.NEXT_PUBLIC_IS_DEMO === "true" && (
           <div className="fixed inset-x-0 top-0 z-50 flex h-10 items-center justify-center bg-amber-100 text-amber-900">
-            ℹ️ מצב דמו - מוקד אמון - שם משתמש: admin - סיסמה: admin123
+            ℹ️ מצב דמו - מוקד אמון - מנהל: admin/admin123 - שומר:
+            noambark643/guard123
           </div>
         )}
         {children}
